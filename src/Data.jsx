@@ -49,3 +49,30 @@ export const services = [
         title: 'Recharge Card Printing'
     },
 ]
+
+export const strengths = [
+    {
+        id: 1,
+        details: "We're Fast"
+    },
+    {
+        id: 2,
+        details: "Automated Services"
+    },
+    {
+        id: 3,
+        details: "100% Secured"
+    },
+    {
+        id: 4,
+        details: "We're Reliable"
+    },
+    {
+        id: 5,
+        details: "Always Online"
+    },
+    {
+        id: 6,
+        details: "24/7 Customer Support"
+    },
+]

@@ -11,72 +11,77 @@ const DataPlans = () => {
     const [airtelDataPlans, setAirtelDataPlans] = useState(AIRTELDATA)
     const [nineMobileData, setNineMobileData] = useState(NINEMOBILEDATA)
   return (
-    <div>
+    <div className='w-full'>
         <div className='w-full'>
             {/* Title */}
-            <h1>Affordable Data Plans And Prices</h1>
+            <h1 className='my-8 text-center text-4xl font-bold'>Affordable Data Plans And Prices</h1>
             {/* Data Plans Div */}
-            <div className='flex w-full mx-auto justify-center'>
+            <div className='flex w-full mx-auto justify-center p-4 my-8 flex-wrap xl:flex-nowrap'>
                 {/* MTN DIV */}
-                <div className='p-4 mx-2 bg-gray-200 flex flex-col items-center basis-1/4'>
+                <div className='p-4 m-3 bg-gray-200 flex flex-col h-fit items-center basis-1/4 w-full'>
                     {/* MTN LOGO */}
                     <img className='w-[80px]' src={MTNLOGO} alt="" />
                     <p>MTN DATA</p>
                     {/* MTN DATA PLANS */}
                     <div className=''>
                         {mtnDataPlans?.map((data, id)=> 
-                        <div id= {id} className='border-t-2 border-solid border-gray-500 flex my-2 py-3 items-center text-center' >
+                        <div id= {id} className=' border-t-2 border-solid border-gray-500 flex my-2 py-3 items-center text-center min-w-[275px]' >
                             <p className='basis-1/3'>{data.Data}</p>
                             <p className='basis-1/3'>{data.Price}</p>
                             <p className='basis-1/3'>{data.Duration}</p>
                         </div>
                         )}
                     </div>
+                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Order now</p></a>
                 </div>
                 {/* GLO DIV */}
-                <div className='p-4 mx-2 bg-gray-200 flex flex-col items-center basis-1/4'>
+                <div className='p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
+                    {/* GLO LOGO */}
                     <img className='w-[80px]' src={GLOLOGO} alt="" />
                     <p>GLO DATA</p>
                     {/* GLO DATA PLANS */}
                     <div className=''>
                         {gloDataPlans?.map((data, id)=> 
-                        <div id= {id} className='border-t-2 border-solid border-gray-500 flex my-2 py-3 items-center text-center' >
+                        <div id= {id} className='border-t-2 border-solid border-gray-500 flex my-2 py-3 items-center text-center min-w-[275px]' >
                             <p className='basis-1/3'>{data.Data}</p>
                             <p className='basis-1/3'>{data.Price}</p>
                             <p className='basis-1/3'>{data.Duration}</p>
                         </div>
                         )}
                     </div>
+                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Order now</p></a>
                 </div>
                 {/* AIRTEL DIV */}
-                <div className='p-4 mx-2 bg-gray-200 flex flex-col items-center basis-1/4'>
+                <div className='p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
                     <img className='w-[80px]' src={AIRTELLOGO} alt="" />
                     <p>AIRTEL DATA</p>
                     {/* AIRTEL DATA PLANS */}
                     <div className=''>
                         {airtelDataPlans?.map((data, id)=> 
-                        <div id= {id} className='border-t-2 border-solid border-gray-500 flex my-2 py-3 items-center text-center' >
+                        <div id= {id} className='border-t-2 border-solid border-gray-500 flex my-2 py-3 items-center text-center min-w-[275px]' >
                             <p className='basis-1/3'>{data.Data}</p>
                             <p className='basis-1/3'>{data.Price}</p>
                             <p className='basis-1/3'>{data.Duration}</p>
                         </div>
                         )}
                     </div>
+                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Order now</p></a>
                 </div>
                 {/* 9mobile DIV */}
-                <div className='p-4 mx-2 bg-gray-200 flex flex-col items-center basis-1/4'>
+                <div className='p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
                     <img className='w-[80px]' src={NINEMOBILELOGO} alt="" />
                     <p>9MOBILE DATA</p>
                     {/*9MOBILE  DATA PLANS */}
                     <div className=''>
                         {nineMobileData?.map((data, id)=> 
-                        <div id= {id} className='border-t-2 border-solid border-gray-500 flex my-2 py-3 items-center text-center' >
+                        <div id= {id} className='border-t-2 border-solid border-gray-500 flex my-2 py-3 items-center text-center min-w-[275px]' >
                             <p className='basis-1/3'>{data.Data}</p>
                             <p className='basis-1/3'>{data.Price}</p>
                             <p className='basis-1/3'>{data.Duration}</p>
                         </div>
                         )}
                     </div>
+                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Order now</p></a>
                 </div>
             </div>
         </div>

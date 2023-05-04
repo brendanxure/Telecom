@@ -3,6 +3,7 @@ import Agent from '../Component/Agent'
 import AwesomeServ from '../Component/AwesomeServ'
 import Banner from '../Component/Banner'
 import DataPlans from '../Component/DataPlans'
+import Footer from '../Component/Footer'
 import Navbar from '../Component/Navbar'
 import Services from '../Component/Services'
 import Stat from '../Component/Stat'
@@ -19,6 +20,7 @@ const Home = () => {
         <Agent />
         <Stat />
         <DataPlans />
+        <Footer />
     </div>
   )
 }

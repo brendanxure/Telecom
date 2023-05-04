@@ -2,8 +2,8 @@ import React from 'react'
 
 const Stat = () => {
   return (
-    <div className='bg-gray-300 py-6'>
-        <div className='w-[70%] mx-auto flex justify-center md:justify-between items-center my-6 flex-wrap md:flex-nowrap'>
+    <div className='bg-gray-300 py-8'>
+        <div className='lg:w-[80%] w-[92%] mx-auto flex justify-center md:justify-between items-center my-6 flex-wrap md:flex-nowrap py-8'>
             <div className='p-4'>
                 <h1 className='text-6xl font-bold text-blue-500 my-2'>826K</h1>
                 <p>Registered User</p>

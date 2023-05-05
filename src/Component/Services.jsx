@@ -16,7 +16,7 @@ const Services = () => {
         {datas.map((data, id)=> 
         // each service
         <div className='relative bg-white m-3 p-4 flex flex-col justify-center items-center rounded-xl'>
-          <p className='bg-teal-900 w-fit px-2 rounded-xl absolute top-2 -right-3'>AUTOMATED</p>
+          <p className='bg-teal-900 w-fit px-2 rounded-xl absolute top-2 -right-3 text-gray-200'>AUTOMATED</p>
           <span className='flex w-full justify-center mt-8 my-4 bg-gray-200 py-2 rounded-full max-w-[40px] mx-auto text-xl md:text-2xl text-blue-500'>{data.logo}</span>
           <p className='text-center'>{data.title}</p>
         </div>

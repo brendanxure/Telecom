@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {AiOutlineClose} from 'react-icons/ai'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     const [check, setcheck] = useState(false)
@@ -37,8 +38,8 @@ const Navbar = () => {
             <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:border-none'><a href=''>About Us</a></li>
             <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:border-none'><a href="">Services</a></li>
             <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:border-none'><a href="">Pricing</a></li>            
-            <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:border-none'><a href="">Login</a></li>
-            <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:border-none'><a href="">Register</a></li>
+            <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:border-none'><Link to='/login'><a href="">Login</a></Link></li>
+            <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:border-none'><Link to='/Signup'><a href="">Register</a></Link></li>
         </ul>
         {!check && <label onClick={()=> setcheck(!check)} htmlFor="nav-check" className='lg:hidden cursor-pointer '><GiHamburgerMenu size={40} /></label>}
         {check && <label onClick={()=> setcheck(!check)} htmlFor="nav-check" className='lg:hidden cursor-pointer '><AiOutlineClose size={40} /></label>}

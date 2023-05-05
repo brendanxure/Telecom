@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Banner = () => {
   return (
@@ -11,8 +12,8 @@ const Banner = () => {
             <p className='lg:w-[50%] text-center text-xl my-2'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate inventore, hic illo ipsum in ipsa molestias blanditiis non facilis corrupti?</p>
             {/* signup/register link */}
             <div className='flex mx-auto justify-between my-4'>
-                <a href='#' className='bg-white text-black w-[100px] text-center py-2 mx-2'><p>REGISTER</p></a>
-                <a href="#" className='bg-teal-900 w-[100px] text-center py-2 mx-2'><p>LOGIN</p></a>
+            <Link to='/Signup' className='bg-white text-black w-[100px] text-center py-2 mx-2'><a href='#' >REGISTER</a></Link>
+            <Link to='/login' className='bg-teal-900 w-[100px] text-center py-2 mx-2'><a href="#" >LOGIN</a></Link>
             </div>
         </div>
     </div>

@@ -38,16 +38,16 @@ export const services = [
         logo: <BsCodeSlash />,
         title: "Developer's API"
     },
-    {
-        id: 7,
-        logo: <BsChatDots />,
-        title: 'Bulk SMS'
-    },
-    {
-        id: 8,
-        logo: <FiPrinter />,
-        title: 'Recharge Card Printing'
-    },
+    // {
+    //     id: 7,
+    //     logo: <BsChatDots />,
+    //     title: 'Bulk SMS'
+    // },
+    // {
+    //     id: 8,
+    //     logo: <FiPrinter />,
+    //     title: 'Recharge Card Printing'
+    // },
 ]
 
 export const strengths = [

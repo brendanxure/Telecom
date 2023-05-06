@@ -32,7 +32,7 @@ const DataPlans = () => {
                         </div>
                         )}
                     </div>
-                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Order now</p></a>
+                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Buy now</p></a>
                 </div>
                 {/* GLO DIV */}
                 <div className='p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
@@ -49,7 +49,7 @@ const DataPlans = () => {
                         </div>
                         )}
                     </div>
-                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Order now</p></a>
+                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Buy now</p></a>
                 </div>
                 {/* AIRTEL DIV */}
                 <div className='p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
@@ -65,7 +65,7 @@ const DataPlans = () => {
                         </div>
                         )}
                     </div>
-                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Order now</p></a>
+                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Buy now</p></a>
                 </div>
                 {/* 9mobile DIV */}
                 <div className='p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
@@ -81,7 +81,7 @@ const DataPlans = () => {
                         </div>
                         )}
                     </div>
-                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Order now</p></a>
+                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Buy now</p></a>
                 </div>
             </div>
         </div>

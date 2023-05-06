@@ -9,7 +9,7 @@ const Banner = () => {
         {/* welcome note banner */}
         <div className='absolute -z-5 left-0 top-0  bg-black/20 w-full h-full text-white flex flex-col justify-center items-center'>
             <h1 className='text-5xl md:text-6xl text-center my-4'>Welcome to <span className='text-teal-400 font-bold'>TELECOM!</span></h1>
-            <p className='lg:w-[50%] text-center text-xl my-2'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate inventore, hic illo ipsum in ipsa molestias blanditiis non facilis corrupti?</p>
+            <p className='lg:w-[50%] text-center text-xl my-2'>At TELECOM, we are dedicated to providing you with the most affordable and cheapest data, airtime, DStv, GOtv, and Startimes subscription options. We are also the right place for your electricity subscription needs. With us, you can rest assured that you are getting the best deals and prices for all of your subscription needs</p>
             {/* signup/register link */}
             <div className='flex mx-auto justify-between my-4'>
             <Link to='/Signup' className='bg-white text-black w-[100px] text-center py-2 mx-2'><a href='#' >REGISTER</a></Link>

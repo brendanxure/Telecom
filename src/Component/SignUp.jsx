@@ -9,8 +9,8 @@ const SignUp = () => {
 }
 
   return (
-    <div className='h-full w-full bg-gradient-to-tr from-teal-800 to-teal-500 flex justify-center items-center py-8'>
-        <div className='bg-white p-8'>
+    <div className='h-full w-full bg-gradient-to-tr from-teal-800 to-teal-500 flex justify-center items-center py-8 px-4'>
+        <div className='bg-white py-8 px-6 md:px-8'>
             <Link to='/'><h1 className='text-3xl text-center font-bold text-teal-400 my-4'>TELECOM</h1></Link>
             <h1 className='text-4xl text-center my-4'>Create an Account</h1>
             <Form onFinish={onFinish} className="min-w-[320px] md:min-w-[400px]">
@@ -58,9 +58,9 @@ const SignUp = () => {
                 <Form.Item>
                     <Button className='bg-b my-4 w-full'>Register</Button>
                 </Form.Item>
-                <div className='w-full flex justify-between text-blue-500'>
+                <div className='w-full flex flex-col md:flex-row justify-between text-blue-500'>
                     <a href=''>Forgot Password</a>
-                    <span className='text-black/90'>Already have an Account? <Link to='/login'><a href='' className='text-blue-500'>Log In</a></Link></span>
+                    <span className='text-black/90 '>Already have an Account? <Link to='/login'><a href='' className='text-blue-500'>Log In</a></Link></span>
                 </div>
             </Form>
         </div>

@@ -18,7 +18,7 @@ const DataPlans = () => {
             {/* Data Plans Div */}
             <div className='flex w-full mx-auto justify-center p-4 my-8 flex-wrap xl:flex-nowrap'>
                 {/* MTN DIV */}
-                <div className='p-4 m-3 bg-gray-200 flex flex-col h-fit items-center basis-1/4 w-full'>
+                <div className='hover:shadow-lg hover:shadow-black ease-in duration-150 p-4 m-3 bg-gray-200 flex flex-col h-fit items-center basis-1/4 w-full'>
                     {/* MTN LOGO */}
                     <img className='w-[80px]' src={MTNLOGO} alt="" />
                     <p>MTN DATA</p>
@@ -32,10 +32,10 @@ const DataPlans = () => {
                         </div>
                         )}
                     </div>
-                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Buy now</p></a>
+                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><p>Buy now</p></a>
                 </div>
                 {/* GLO DIV */}
-                <div className='p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
+                <div className='hover:shadow-lg hover:shadow-black ease-in duration-150 p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
                     {/* GLO LOGO */}
                     <img className='w-[80px]' src={GLOLOGO} alt="" />
                     <p>GLO DATA</p>
@@ -49,10 +49,10 @@ const DataPlans = () => {
                         </div>
                         )}
                     </div>
-                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Buy now</p></a>
+                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><p>Buy now</p></a>
                 </div>
                 {/* AIRTEL DIV */}
-                <div className='p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
+                <div className='hover:shadow-lg hover:shadow-black ease-in duration-150 p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
                     <img className='w-[80px]' src={AIRTELLOGO} alt="" />
                     <p>AIRTEL DATA</p>
                     {/* AIRTEL DATA PLANS */}
@@ -65,10 +65,10 @@ const DataPlans = () => {
                         </div>
                         )}
                     </div>
-                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Buy now</p></a>
+                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><p>Buy now</p></a>
                 </div>
                 {/* 9mobile DIV */}
-                <div className='p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
+                <div className='hover:shadow-lg hover:shadow-black ease-in duration-150 p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
                     <img className='w-[80px]' src={NINEMOBILELOGO} alt="" />
                     <p>9MOBILE DATA</p>
                     {/*9MOBILE  DATA PLANS */}
@@ -81,7 +81,7 @@ const DataPlans = () => {
                         </div>
                         )}
                     </div>
-                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3'><p>Buy now</p></a>
+                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><p>Buy now</p></a>
                 </div>
             </div>
         </div>

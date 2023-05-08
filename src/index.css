@@ -20,6 +20,10 @@
   height: 100%;
 } */
 
+html {
+  scroll-behavior: smooth;
+  
+}
 #nav-check:checked ~ .xure-nav{
   top: 72px;
   transition: 0.5s;

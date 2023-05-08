@@ -4,7 +4,7 @@ import 'animate.css'
 
 const Banner = () => {
   return (
-    <div className='relative'>
+    <div id='Banner' className='relative'>
       {/* background-image */}
         <img className='w-full h-[100vh] -z-40' src="https://images.unsplash.com/photo-1482747029550-096ad6aa9caf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="" />
         {/* welcome note banner */}

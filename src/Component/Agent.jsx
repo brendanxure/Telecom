@@ -2,7 +2,7 @@ import React from 'react'
 
 const Agent = () => {
   return (
-    <div className='flex flex-col flex-wrap lg:flex-row lg:flex-nowrap'>
+    <div className='flex flex-col bg-gray-100 flex-wrap lg:flex-row lg:flex-nowrap'>
       {/* left-side */}
         <div className='basis-1/2 flex flex-col justify-center px-4 text-gray-700 py-10'>
             <h1 className='text-5xl text-teal-600 text-center lg:text-left'>Become An Agent</h1>

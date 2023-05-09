@@ -5,23 +5,19 @@ import {FaHandPointRight} from "react-icons/fa"
 const WhyUS = () => {
     const [data, setData] = useState(strengths)
   return (
-    <div id='Whyus' className='flex flex-col lg:flex-row flex-wrap lg:flex-nowrap py-4'>
+    <div id='Whyus' className=' py-4'>
+            <h1 className='text-7xl text-center my-4 text-teal-600'>What makes us stand out?</h1>
         {/* left-side */}
-        <div className='basis-1/2 flex flex-col justify-center px-6 bg-teal-800 py-10 rounded-tr-full'>
-            <h1 className='text-5xl my-4 text-teal-600'>What makes us stand out?</h1>
+        <div className='flex justify-center px-6 py-10 rounded-tr-full items-center'>
             <p className='text-xl px-2'>Our services include instant recharge options for airtime, data bundles, electricity bill payment, and more. We pride ourselves on being fast, providing automated services, offering 100% secure transactions, and being a reliable choice. Our services are available online 24/7, and we also provide customer support around the clock.</p>
-            {/* <div className='grid grid-cols-2 my-4'>
-                {data.map((item, id)=> 
-                <span className='flex my-1'>
-                    <FaHandPointRight color='teal' size={20} /><p className='ml-2 text-lg'>{item.details}</p>
-                </span>
-                )}
-            </div> */}
         </div>
         {/* right-side */}
-        <div className='hidden md:block lg:my-0 py-10 basis-1/2 justify-center mx-auto'>
-            <img className='rounded-full w-[700px] h-[700px]' src="https://images.pexels.com/photos/4560152/pexels-photo-4560152.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-        </div>
+        <div className='grid grid-cols-3 mx-auto'>
+           <img className='max-h-[50vh] px-4 py-2' src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" srcset="" />
+           <img className='h-full px-4 py-2' src="https://images.unsplash.com/photo-1484712401471-05c7215830eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" srcset="" />
+           <img className='max-h-[50vh] px-4 py-2' src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" srcset="" />
+       </div>
+
     </div>
   )
 }

@@ -26,7 +26,7 @@ const Navbar = () => {
 
 
   return (
-    <div className='px-6 z-30 flex justify-between items-center w-full py-4 bg-teal-900 text-white'>
+    <div className='px-6 z-30 flex justify-between items-center w-full py-4 bg-gradient-to-tr from-teal-800 to-teal-500 text-white'>
         {/* left-side */}
         <div className='basis-1/2 text-3xl'>
             <a href='#'>TELECOM</a>

@@ -27,9 +27,9 @@ const slideright = () => {
       <div className='flex w-full items-center justify-between group/pep whitespace-nowrap scroll-smooth relative overflow-x-scroll scrollbar-hide' id={'slider'}>
         {datas.map((data, id)=> 
         // each service
-        <div className='hover:shadow-lg hover:scale-105 duration-150 ease-in shadow-gray-400 relative bg-teal-800 m-3 p-4 flex flex-col justify-center items-center rounded-xl min-w-[300px] h-[200px]'>
-          {/* <p className='bg-teal-900 w-fit px-2 rounded-xl absolute top-2 -right-3 text-gray-200'>AUTOMATED</p> */}
-          <span className='flex w-full justify-center my-4 bg-gray-200 py-2 rounded-full max-w-[60px] mx-auto text-xl md:text-4xl text-blue-500'>{data.logo}</span>
+        <div className='hover:shadow-lg hover:scale-105 hover:bg-black/90 hover:text-white duration-150 ease-in shadow-black relative bg-gray-400 shadow-md m-3 p-4 flex flex-col justify-center items-center rounded-xl min-w-[300px] h-[200px]'>
+          <p className='bg-white w-fit px-4 py-2 rounded-xl absolute top-2 left-3 text-black/90 text-xl font-bold'>{data.id}</p>
+          <span className='flex w-full justify-center my-4 bg-gray-200 py-2 rounded-full max-w-[60px] mx-auto text-xl md:text-4xl text-black/90'>{data.logo}</span>
           <p className='text-center text-xl'>{data.title}</p>
         </div>
         )}

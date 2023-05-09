@@ -4,6 +4,7 @@ import GLOLOGO from '../Logos/Glo-Logo.png'
 import NINEMOBILELOGO from '../Logos/9mobile-Logo.svg'
 import AIRTELLOGO from '../Logos/Airtel-logo.png'
 import { AIRTELDATA, GLODATA, MTNDATA, NINEMOBILEDATA } from '../Data';
+import {HiOutlineShoppingCart} from 'react-icons/hi'
 
 const DataPlans = () => {
     const [mtnDataPlans, setMtnDataPlans] = useState(MTNDATA)
@@ -32,7 +33,7 @@ const DataPlans = () => {
                         </div>
                         )}
                     </div>
-                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><p>Buy now</p></a>
+                    <a href="" className='w-full flex justify-center items-center rounded-xl py-3 bg-gradient-to-tr from-teal-800 to-teal-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><HiOutlineShoppingCart className='mr-1'/><p>Buy now</p></a>
                 </div>
                 {/* GLO DIV */}
                 <div className='hover:shadow-lg hover:shadow-black ease-in duration-150 p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
@@ -49,7 +50,7 @@ const DataPlans = () => {
                         </div>
                         )}
                     </div>
-                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><p>Buy now</p></a>
+                    <a href="" className='w-full flex justify-center items-center rounded-xl py-3 bg-gradient-to-tr from-teal-800 to-teal-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><HiOutlineShoppingCart className='mr-1'/><p>Buy now</p></a>
                 </div>
                 {/* AIRTEL DIV */}
                 <div className='hover:shadow-lg hover:shadow-black ease-in duration-150 p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
@@ -65,7 +66,7 @@ const DataPlans = () => {
                         </div>
                         )}
                     </div>
-                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><p>Buy now</p></a>
+                    <a href="" className='w-full flex justify-center items-center rounded-xl py-3 bg-gradient-to-tr from-teal-800 to-teal-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><HiOutlineShoppingCart className='mr-1'/><p>Buy now</p></a>
                 </div>
                 {/* 9mobile DIV */}
                 <div className='hover:shadow-lg hover:shadow-black ease-in duration-150 p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
@@ -81,7 +82,7 @@ const DataPlans = () => {
                         </div>
                         )}
                     </div>
-                    <a href="" className='w-full py-3 bg-blue-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><p>Buy now</p></a>
+                    <a href="" className='w-full flex justify-center items-center rounded-xl py-3 bg-gradient-to-tr from-teal-800 to-teal-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><HiOutlineShoppingCart className='mr-1'/><p>Buy now</p></a>
                 </div>
             </div>
         </div>

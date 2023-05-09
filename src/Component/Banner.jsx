@@ -6,7 +6,7 @@ const Banner = () => {
   return (
     <div id='Banner' className='relative'>
       {/* background-image */}
-        <img className='w-full h-[100vh] -z-40' src="https://images.unsplash.com/photo-1482747029550-096ad6aa9caf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="" />
+        <img className='w-full h-[100vh] -z-40' src="https://images.unsplash.com/photo-1649802877250-4352e80217e4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80" alt="" />
         {/* welcome note banner */}
         <div className='animate__animated animate__bounceInLeft animate__delay-2s absolute -z-5 left-0 top-0  bg-black/20 w-full h-full text-white flex flex-col justify-center items-center'>
             <h1 className='text-5xl md:text-6xl text-center my-4'>Welcome to <span className='text-teal-400 font-bold'>TELECOM!</span></h1>

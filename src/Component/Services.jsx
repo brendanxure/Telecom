@@ -15,7 +15,7 @@ const slideright = () => {
 }
 
   return (
-    <div id='Services' className='w-full bg-gray-200 py-[10vh] group/pep relative'>
+    <div id='Services' className='w-full py-[10vh] group/pep relative'>
       <div className='flex flex-wrap justify-center lg: mx-auto'>
         {/* left-side */}
       <div className='flex flex-col'>
@@ -23,7 +23,7 @@ const slideright = () => {
         {/* <a href="http://" className='bg-black/90 text-white p-4 text-center my-8'>Sign In to Account</a> */}
       </div>
       {/* right-side */}
-      <MdChevronLeft onClick={slideleft} size={40} className='hidden group-hover/pep:block bg-white rounded-full left-4 top-[55%] md:top-[50%] absolute z-10 opacity-50 hover:opacity-100 cursor-pointer text-black'/>
+      <MdChevronLeft onClick={slideleft} size={40} className='hidden group-hover/pep:block bg-gray-400 rounded-full left-4 top-[55%] md:top-[50%] absolute z-10 opacity-50 hover:opacity-100 cursor-pointer text-black'/>
       <div className='flex w-full items-center justify-between group/pep whitespace-nowrap scroll-smooth relative overflow-x-scroll scrollbar-hide' id={'slider'}>
         {datas.map((data, id)=> 
         // each service
@@ -34,7 +34,7 @@ const slideright = () => {
         </div>
         )}
       </div>
-      <MdChevronRight onClick={slideright} size={40} className='hidden group-hover/pep:block bg-white rounded-full absolute right-4 top-[55%] md:top-[50%] z-10 opacity-50 hover:opacity-100 cursor-pointer text-black'/>
+      <MdChevronRight onClick={slideright} size={40} className='hidden group-hover/pep:block bg-gray-400 rounded-full absolute right-4 top-[55%] md:top-[50%] z-10 opacity-50 hover:opacity-100 cursor-pointer text-black'/>
     </div>
     </div>
   )

@@ -34,7 +34,7 @@ const Navbar = () => {
         <input type="checkbox"  className='hidden' checked={check} name="" id="nav-check" />
         {/* mobile menu/right-side */}
         <ul className='xure-nav flex flex-col absolute left-[0%] top-[-100%] z-10 bg-teal-400 w-full text-black lg:relative lg:z-0 lg:p-0 lg:left-0 lg:bg-inherit lg:flex-row lg:text-white basis-1/2 justify-between'>
-            <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><a href=''>Home</a></li>
+            <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><a href='/'>Home</a></li>
             <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><a href=''>About Us</a></li>
             <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><a href="">Services</a></li>
             <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><a href="">Pricing</a></li>            

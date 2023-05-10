@@ -12,7 +12,7 @@ const DataPlans = () => {
     const [airtelDataPlans, setAirtelDataPlans] = useState(AIRTELDATA)
     const [nineMobileData, setNineMobileData] = useState(NINEMOBILEDATA)
   return (
-    <div className='w-full'>
+    <div className='w-full' id='DataPlans'>
         <div className='w-full'>
             {/* Title */}
             <h1 className='my-8 text-center text-4xl font-bold'>Affordable Data Plans And Prices</h1>

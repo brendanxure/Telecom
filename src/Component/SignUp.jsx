@@ -5,7 +5,13 @@ import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons'
 
 const SignUp = () => {
   const onFinish = (e) => {
-    console.log(e)
+    console.log(e.Username.trim(" "))
+    if(e.confirmpassword !== e.password) {
+      console.log('password doesnt match')
+    }
+    if(e.confirmpassword === e.password) {
+    console.log(Object.values(e))
+    }
 }
 
   return (
@@ -15,7 +21,7 @@ const SignUp = () => {
             <h1 className='text-4xl text-center my-4'>Create an Account</h1>
             <Form onFinish={onFinish} className="min-w-[320px] md:min-w-[400px]">
               <label htmlFor="">Username</label>
-              <Form.Item  className='' name='Username' label='' rules={[{type: 'string', required: 'true'}]}>
+              <Form.Item  className='' name='Username' label='' rules={[{type: 'string', required: 'true', message: "Please Enter Your Username"}]}>
                 <Input className='mt-2'
               placeholder="Enter your username"
               prefix={<UserOutlined className="site-form-item-icon " />}
@@ -26,11 +32,11 @@ const SignUp = () => {
               } />
               </Form.Item>
               <label className=''>Email</label>
-                <Form.Item className='' name="Email" label='' rules={[{type: 'email', required: 'true'}]}>  
+                <Form.Item className='' name="Email" label='' rules={[{type: 'email', required: 'true', message: "Please Enter Your Email Address"}]}>  
                     <Input placeholder='Input Email' className='mt-2 w-full' />
                 </Form.Item>
                 <label htmlFor="">Phone Number</label>
-                <Form.Item className='' label="" name='PhoneNumber' rules={[{required: 'true'}]}>
+                <Form.Item className='' label="" name='PhoneNumber' rules={[{required: 'true', message: "Please Enter Your Phone Number"}]}>
                   <Input placeholder='0812345678'
                    suffix={
                     <Tooltip title="Eg: 0812345678">
@@ -40,7 +46,7 @@ const SignUp = () => {
                   />
                 </Form.Item>
                 <label htmlFor="">Address</label>
-                <Form.Item className='' name='Address' label='' rules={[{type:'string', required: 'true'}]}>
+                <Form.Item className='' name='Address' label='' rules={[{type:'string', required: 'true', message: "Please Enter Your Address"}]}>
                   <Input />
                 </Form.Item>
                 <label htmlFor="">Referral Username [optional]</label>
@@ -48,15 +54,15 @@ const SignUp = () => {
                   <Input className='mt-2'/>
                 </Form.Item>
                 <label className=''>Password</label>
-                <Form.Item className='flex flex-col' name="Password" label='' rules={[{required: 'true'}]}>
+                <Form.Item className='flex flex-col' name="password" label='' rules={[{required: 'true', message: "Please Input Your Password"}]}>
                     <Input.Password placeholder='Input Password' className='mt-2'/>
                 </Form.Item>
                 <label className=''>Confirm Password</label>
-                <Form.Item className='flex flex-col' name="ConfirmPassword" label='' rules={[{required: 'true'}]}>
+                <Form.Item className='flex flex-col' name="confirmpassword" label='' rules={[{required: 'true', message: "Please Make Sure Password Match"}]}>
                     <Input.Password placeholder='Input Password' className='my-2'/>
                 </Form.Item>
                 <Form.Item>
-                    <Button className='bg-b my-4 w-full'>Register</Button>
+                    <Button htmlType='submit' className='bg-b my-4 w-full'>Register</Button>
                 </Form.Item>
                 <div className='w-full flex flex-col md:flex-row justify-between text-blue-500'>
                     <a href=''>Forgot Password</a>

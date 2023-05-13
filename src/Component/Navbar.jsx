@@ -1,9 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {AiOutlineClose} from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUser, logout } from '../features/Auth/AuthSlice'
 
 const Navbar = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const user = useSelector(getUser)
+    console.log(user.user)
+
     const [check, setcheck] = useState(false)
     const [windowSize, setWindowSize] = useState({
         width: undefined,
@@ -24,6 +32,12 @@ const Navbar = () => {
     }
    },[windowSize.width])
 
+   
+
+   const onLogout = () => {
+       dispatch(logout())
+   }
+
 
   return (
     <div className='px-6 z-30 flex justify-between items-center w-full py-4 bg-gradient-to-tr from-teal-800 to-teal-500 text-white'>
@@ -38,7 +52,8 @@ const Navbar = () => {
             <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><a href='#Whyus'>About Us</a></li>
             <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><a href="#Services">Services</a></li>
             <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><a href="#DataPlans">Pricing</a></li>            
-            <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><Link to='/login'><a href="">Login</a></Link></li>
+            {!user?.user && <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><Link to='/login'><a href="">Login</a></Link></li>}
+            {user?.user && <li onClick={onLogout} className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><a href="">Logout</a></li>}
             <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><Link to='/Signup'><a href="">Register</a></Link></li>
         </ul>
         {!check && <label onClick={()=> setcheck(!check)} htmlFor="nav-check" className='lg:hidden cursor-pointer '><GiHamburgerMenu size={40} /></label>}

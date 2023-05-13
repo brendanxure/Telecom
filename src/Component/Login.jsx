@@ -15,13 +15,15 @@ const Login = () => {
     const navigate = useNavigate()
     const {user, isLoading, isError, isSuccess, message} = useSelector(getUser)
 
+    console.log(isError, isSuccess, user, message)
+
     useEffect(()=>{
         if(isError) {
             toast.error(message)
         }
         if(isSuccess || user) {
             toast.success('Logged in Successfully')
-            navigate('/')
+            //navigate to your dash if you are logged in
         }
 
         dispatch(reset())
@@ -32,12 +34,11 @@ const Login = () => {
         dispatch(login(formData))
         formRef.current.resetFields();
     }
-    if (isLoading) {
-        return <Spinner/>
-    }
+    
 
   return (
     <div className='h-screen w-full bg-gradient-to-tr from-teal-800 to-teal-500 flex justify-center items-center'>
+        {isLoading && <Spinner />}
         <div className='bg-white p-8'>
             <Link to='/'><h1 className='text-3xl text-center font-bold text-teal-400 my-4'>TELECOM</h1></Link>
             <h1 className='text-4xl text-center my-4'>Sign In</h1>

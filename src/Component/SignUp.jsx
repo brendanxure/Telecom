@@ -1,16 +1,28 @@
 import { Button, Form, Input, Tooltip } from 'antd'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useRef } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUser, register } from '../features/Auth/AuthSlice'
 
 const SignUp = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const formRef = useRef()
+
+  const {isSuccess}  = useSelector(getUser)
+
   const onFinish = (e) => {
-    console.log(e.Username.trim(" "))
+    console.log(e)
     if(e.confirmpassword !== e.password) {
-      console.log('password doesnt match')
+      alert('password doesnt match')
     }
     if(e.confirmpassword === e.password) {
-    console.log(Object.values(e))
+      dispatch(register(e))
+    }
+    if(isSuccess) {
+      formRef.current.resetFields()
     }
 }
 
@@ -19,7 +31,7 @@ const SignUp = () => {
         <div className='bg-white py-8 px-6 md:px-8'>
             <Link to='/'><h1 className='text-3xl text-center font-bold text-teal-400 my-4'>TELECOM</h1></Link>
             <h1 className='text-4xl text-center my-4'>Create an Account</h1>
-            <Form onFinish={onFinish} className="min-w-[320px] md:min-w-[400px]">
+            <Form ref={formRef} onFinish={onFinish} className="min-w-[320px] md:min-w-[400px]">
               <label htmlFor="">Username</label>
               <Form.Item  className='' name='Username' label='' rules={[{type: 'string', required: 'true', message: "Please Enter Your Username"}]}>
                 <Input className='mt-2'

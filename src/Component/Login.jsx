@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUser, login, reset } from '../features/Auth/AuthSlice'
 import { toast } from 'react-toastify'
+import {ToastContainer} from 'react-toastify'
 import Spinner from './Spinner'
 
 
@@ -21,8 +22,8 @@ const Login = () => {
         if(isError) {
             toast.error(message)
         }
-        if(isSuccess || user) {
-            toast.success('Logged in Successfully')
+        if(isSuccess) {
+            alert('Logged in Successfully')
             //navigate to your dash if you are logged in
         }
 
@@ -32,13 +33,16 @@ const Login = () => {
     const onFinish = (formData) => {
         console.log(formData)
         dispatch(login(formData))
+        if (isSuccess){
         formRef.current.resetFields();
+        }
     }
     
 
   return (
     <div className='h-screen w-full bg-gradient-to-tr from-teal-800 to-teal-500 flex justify-center items-center'>
         {isLoading && <Spinner />}
+        <ToastContainer position='top-center'/>
         <div className='bg-white p-8'>
             <Link to='/'><h1 className='text-3xl text-center font-bold text-teal-400 my-4'>TELECOM</h1></Link>
             <h1 className='text-4xl text-center my-4'>Sign In</h1>

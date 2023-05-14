@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUser, logout } from '../features/Auth/AuthSlice'
 
+
 const Navbar = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()

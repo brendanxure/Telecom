@@ -19,11 +19,11 @@ $(document).ready(function () {
     $('#sidebar').toggleClass('active');
   });
   /*-- calendar js --*/
-  $('#example14').calendar({
-    inline: true
-  });
-  $('#example15').calendar();
-  /*-- tooltip js --*/
+  // $('#example14').calendar({
+  //   inline: true
+  // });
+  // $('#example15').calendar();
+  // /*-- tooltip js --*/
   $('[data-toggle="tooltip"]').tooltip();
 });
 

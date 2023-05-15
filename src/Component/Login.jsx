@@ -35,6 +35,7 @@ const Login = () => {
         dispatch(login(formData))
         if (isSuccess){
         formRef.current.resetFields();
+        navigate('/dashboard')
         }
     }
     

@@ -31,12 +31,13 @@ const Login = () => {
     },[user, isError, isSuccess, message, navigate, dispatch])
 
     const onFinish = (formData) => {
-        console.log(formData)
-        dispatch(login(formData))
-        if (isSuccess){
-        formRef.current.resetFields();
+        // console.log(formData)
+        // dispatch(login(formData))
+        // if (isSuccess){
+        // formRef.current.resetFields();
+        
+        // }
         navigate('/dashboard')
-        }
     }
     
 

@@ -4,20 +4,22 @@ import Dashboard from './Component/Dashboard';
 import Home from './Pages/Home';
 import LoginPage from './Pages/LoginPage';
 import SignUpPage from './Pages/SignUpPage';
+import {HelmetProvider} from 'react-helmet-async'
 
 
 function App() {
+  const helmetContext = {}
   return (
-    <div>
+    <HelmetProvider context={helmetContext}>
       <BrowserRouter>
         <Routes>
-          <Route path='dash' element={<Home />} />
-          <Route path = '/' element={<Dashboard />} />
+          <Route path='/' element={<Home />} />
+          <Route path = 'dashboard' element={<Dashboard />} />
           <Route path='login' element={<LoginPage />} />
           <Route path='Signup' element={<SignUpPage />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </HelmetProvider>
   );
 }
 

@@ -715,6 +715,7 @@ a:focus {
 
 .icon_info ul.user_profile_dd li a {
     cursor: pointer;
+    display: flex;
 }
 
 .icon_info ul.user_profile_dd>li {
@@ -757,6 +758,7 @@ a:focus {
     padding: 4px 15px;
     border-bottom: none;
     line-height: normal;
+    
 }
 
 .icon_info ul.user_profile_dd li div a span {

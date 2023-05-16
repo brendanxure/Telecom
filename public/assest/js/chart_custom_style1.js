@@ -124,20 +124,20 @@
 			}
 		});
 
-		window.onload = function() {
-			var ctx = document.getElementById('canvas').getContext('2d');
-			window.myBar = new Chart(ctx, {
-				type: 'bar',
-				data: barChartData,
-				options: {
-					responsive: true,
-					title: {
-						display: false,
-						text: 'Chart.js Combo Bar Line Chart'
-					},
-				}
-			});
-		};
+		// window.onload = function() {
+		// 	var ctx = document.getElementById('canvas').getContext('2d');
+		// 	window.myBar = new Chart(ctx, {
+		// 		type: 'bar',
+		// 		data: barChartData,
+		// 		options: {
+		// 			responsive: true,
+		// 			title: {
+		// 				display: false,
+		// 				text: 'Chart.js Combo Bar Line Chart'
+		// 			},
+		// 		}
+		// 	});
+		// };
 
 		document.getElementById('randomizeData').addEventListener('click', function() {
 			barChartData.datasets.forEach(function(dataset) {

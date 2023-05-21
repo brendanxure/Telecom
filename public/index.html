@@ -29,6 +29,13 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+      if (localStorage.getItem('sidebar-expanded') == 'true') {
+            document.querySelector('body').classList.add('sidebar-expanded');
+        } else {
+            document.querySelector('body').classList.remove('sidebar-expanded');
+        }
+    </script>
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -40,27 +47,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script src="assest/js/jquery.min.js"></script>
-      <script src="assest/js/popper.min.js"></script>
-      <script src="assest/js/bootstrap.min.js"></script>
-      <!-- wow animation -->
-      <script src="assest/js/animate.js"></script>
-      <!-- select country -->
-      <script src="assest/js/bootstrap-select.js"></script>
-      <!-- owl carousel -->
-      <script src="assest/js/owl.carousel.js"></script> 
-      <!-- chart js -->
-      <script src="assest/js/Chart.min.js"></script>
-      <script src="assest/js/Chart.bundle.min.js"></script>
-      <script src="assest/js/utils.js"></script>
-      <script src="assest/js/analyser.js"></script>
-      <!-- nice scrollbar -->
-      <script src="assest/js/perfect-scrollbar.min.js"></script>
-      <script>
-         var ps = new PerfectScrollbar('#sidebar');
-      </script>
-      <!-- custom js -->
-      <script src="assest/js/custom.js"></script>
-      <script src="assest/js/chart_custom_style1.js"></script>
+    <script type="module" src="../src/index.js"></script>
   </body>
 </html>

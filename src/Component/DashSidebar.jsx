@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 
 const DashSidebar = () => {
   return (
@@ -23,8 +25,9 @@ const DashSidebar = () => {
     <div class="sidebar_blog_2">
        <h4>General</h4>
        <ul class="list-unstyled components">
-          <li class="active">
-             <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+       <Link to='/dashboard'><li class="active"><a href="widgets.html"><i class="fa fa-clock-o orange_color"></i> <span>Dashboard</span></a></li></Link>
+          <li>
+             <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>Fund Wallet</span></a>
              <ul class="collapse list-unstyled" id="dashboard">
                 <li>
                    <a href="dashboard.html"> <span>Default Dashboard</span></a>
@@ -34,7 +37,8 @@ const DashSidebar = () => {
                 </li>
              </ul>
           </li>
-          <li><a href="widgets.html"><i class="fa fa-clock-o orange_color"></i> <span>Widgets</span></a></li>
+          <Link to='/buydata'><li><a href="widgets.html"><i class="fa fa-clock-o orange_color"></i> <span>Buy Data</span></a></li></Link>
+          <Link to='/buyairtime'><li><a href="widgets.html"><i class="fa fa-clock-o orange_color"></i> <span>Buy Airtime</span></a></li></Link>
           <li>
              <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-diamond purple_color"></i> <span>Elements</span></a>
              <ul class="collapse list-unstyled" id="element">

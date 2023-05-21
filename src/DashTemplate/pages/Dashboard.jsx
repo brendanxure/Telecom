@@ -75,7 +75,7 @@ function Dashboard() {
             {/* Account Details */}
             <div className="w-full bg-gray-400 py-6 px-4 text-lg">
               <h1 className='text-3xl font-bold my-4'>Account Number: 12334421</h1>
-              <p>Account Name: rumegaexpress.com - brendanxure</p>
+              <p>Account Name: Telecom.com - brendanxure</p>
               <p>Bank Name:</p>
               <div className='mt-4 text-sm'>
                 <h1>AUTOMATED BANK TRANSFER</h1>

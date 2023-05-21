@@ -44,7 +44,7 @@ const Login = () => {
   return (
     <div className='h-screen w-full bg-gradient-to-tr from-teal-800 to-teal-500 flex justify-center items-center'>
         {isLoading && <Spinner />}
-        <ToastContainer position='top-center'/>
+       
         <div className='bg-white p-8'>
             <Link to='/'><h1 className='text-3xl text-center font-bold text-teal-400 my-4'>TELECOM</h1></Link>
             <h1 className='text-4xl text-center my-4'>Sign In</h1>

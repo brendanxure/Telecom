@@ -316,3 +316,46 @@ export const NINEMOBILEDATA = [
         Duration: "30 days{Gifting}" 
     },
 ]
+
+export const dashboardGrid = [
+    {
+        id: 1,
+        image: "",
+        title: "Buy Airtime"
+    },
+    {
+        id: 2,
+        image: "",
+        title: "Buy Data"
+    },
+    {
+        id: 3,
+        image: "",
+        title: "Eletricity Bills"
+    },
+    {
+        id: 4,
+        image: "",
+        title: "Buy Airtime"
+    },
+    {
+        id: 5,
+        image: "",
+        title: "Buy Airtime"
+    },
+    {
+        id: 6,
+        image: "",
+        title: "Buy Airtime"
+    },
+    {
+        id: 7,
+        image: "",
+        title: "Buy Airtime"
+    },
+    {
+        id: 8,
+        image: "",
+        title: "Buy Airtime"
+    },
+]

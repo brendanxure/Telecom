@@ -4,14 +4,16 @@ import { Link, useNavigate } from 'react-router-dom'
 import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUser, register } from '../features/Auth/AuthSlice'
+import Spinner from './Spinner'
 
 const SignUp = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const {user, isLoading, isError, isSuccess, message} = useSelector(getUser)
+
   const formRef = useRef()
 
-  const {isSuccess}  = useSelector(getUser)
 
   const onFinish = (e) => {
     console.log(e)
@@ -20,14 +22,17 @@ const SignUp = () => {
     }
     if(e.confirmpassword === e.password) {
       dispatch(register(e))
+      navigate('/login')
     }
     if(isSuccess) {
       formRef.current.resetFields()
     }
+    
 }
 
   return (
     <div className='h-full w-full bg-gradient-to-tr from-teal-800 to-teal-500 flex justify-center items-center py-8 px-4'>
+      {isLoading && <Spinner />}
         <div className='bg-white py-8 px-6 md:px-8'>
             <Link to='/'><h1 className='text-3xl text-center font-bold text-teal-400 my-4'>TELECOM</h1></Link>
             <h1 className='text-4xl text-center my-4'>Create an Account</h1>

@@ -5,10 +5,12 @@ import Header from '../partials/Header';
 import WelcomeBanner from '../partials/dashboard/WelcomeBanner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWallet, faUser, faPeopleArrows, faCreditCard } from '@fortawesome/free-solid-svg-icons'
+import { dashboardGrid } from '../../Data';
 
 function Dashboard() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [cards, setCards] = useState(dashboardGrid)
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -70,17 +72,25 @@ function Dashboard() {
             </div>
             </div>
 
-            {/* Cards */}
+            {/* Account Details */}
             <div className="w-full bg-gray-400 py-6 px-4 text-lg">
               <h1 className='text-3xl font-bold my-4'>Account Number: 12334421</h1>
               <p>Account Name: rumegaexpress.com - brendanxure</p>
               <p>Bank Name:</p>
               <div className='mt-4 text-sm'>
-              <h1>AUTOMATED BANK TRANSFER</h1>
-              <p>Make transfer to this account to fund your wallet</p>
+                <h1>AUTOMATED BANK TRANSFER</h1>
+                <p>Make transfer to this account to fund your wallet</p>
               </div>
             </div>
-
+            {/* Cards */}
+            <div className='grid grid-cols-4 justify-between my-4 mx-auto'>
+              {cards.map(card => 
+              <div className='px-4 max-w-[90%] py-4 shadow-lg mx-2 my-4 border border-solid hover:scale-110 duration-150 ease-in shadow-black/90 rounded-xl w-full text-center'>
+                <img src='' />
+                <p>{card.title}</p>
+              </div>  
+              )}
+            </div>
           </div>
         </main>
 

@@ -13,100 +13,100 @@ export class DashboardPage extends Component {
       startDate: date
     });
   };
-  constructor(props){
-    super(props)
-    this.state = {
-      startDate: new Date(),
-      visitSaleData: {},
-      visitSaleOptions: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              display:false,
-              min: 0,
-              stepSize: 20,
-              max: 80
-            },
-            gridLines: {
-              drawBorder: false,
-              color: 'rgba(235,237,242,1)',
-              zeroLineColor: 'rgba(235,237,242,1)'
-            }
-          }],
-          xAxes: [{
-            gridLines: {
-              display:false,
-              drawBorder: false,
-              color: 'rgba(0,0,0,1)',
-              zeroLineColor: 'rgba(235,237,242,1)'
-            },
-            ticks: {
-              padding: 20,
-              fontColor: "#9c9fa6",
-              autoSkip: true,
-            },
-            categoryPercentage: 0.5,
-            barPercentage: 0.5
-        }]
-        },
-        legend: {
-          display: false,
-        },
-        elements: {
-          point: {
-            radius: 0
-          }
-        }
-      },
-      trafficData: {},
-      trafficOptions: {
-        responsive: true,
-        animation: {
-          animateScale: true,
-          animateRotate: true
-        },
-        legend: false,
-      },
-      todos: [
-        {
-            id: 1,
-            task: 'Pick up kids from school',
-            isCompleted: false
-        },
-        {
-            id: 2,
-            task: 'Prepare for presentation',
-            isCompleted: true
-        },
-        {
-            id: 3,
-            task: 'Print Statements',
-            isCompleted: false
-        },
-        {
-            id: 4,
-            task: 'Create invoice',
-            isCompleted: false
-        },
-        {
-            id: 5,
-            task: 'Call John',
-            isCompleted: true
-        },
-        {
-            id: 6,
-            task: 'Meeting with Alisa',
-            isCompleted: false
-        }
-      ],
-      inputValue: '',
-    }
-    this.statusChangedHandler = this.statusChangedHandler.bind(this);
-    this.addTodo = this.addTodo.bind(this);
-    this.removeTodo = this.removeTodo.bind(this);
-    this.inputChangeHandler = this.inputChangeHandler.bind(this);
-  }
+  // constructor(props){
+  //   super(props)
+  //   this.state = {
+  //     startDate: new Date(),
+  //     visitSaleData: {},
+  //     visitSaleOptions: {
+  //       scales: {
+  //         yAxes: [{
+  //           ticks: {
+  //             beginAtZero: true,
+  //             display:false,
+  //             min: 0,
+  //             stepSize: 20,
+  //             max: 80
+  //           },
+  //           gridLines: {
+  //             drawBorder: false,
+  //             color: 'rgba(235,237,242,1)',
+  //             zeroLineColor: 'rgba(235,237,242,1)'
+  //           }
+  //         }],
+  //         xAxes: [{
+  //           gridLines: {
+  //             display:false,
+  //             drawBorder: false,
+  //             color: 'rgba(0,0,0,1)',
+  //             zeroLineColor: 'rgba(235,237,242,1)'
+  //           },
+  //           ticks: {
+  //             padding: 20,
+  //             fontColor: "#9c9fa6",
+  //             autoSkip: true,
+  //           },
+  //           categoryPercentage: 0.5,
+  //           barPercentage: 0.5
+  //       }]
+  //       },
+  //       legend: {
+  //         display: false,
+  //       },
+  //       elements: {
+  //         point: {
+  //           radius: 0
+  //         }
+  //       }
+  //     },
+  //     trafficData: {},
+  //     trafficOptions: {
+  //       responsive: true,
+  //       animation: {
+  //         animateScale: true,
+  //         animateRotate: true
+  //       },
+  //       legend: false,
+  //     },
+  //     todos: [
+  //       {
+  //           id: 1,
+  //           task: 'Pick up kids from school',
+  //           isCompleted: false
+  //       },
+  //       {
+  //           id: 2,
+  //           task: 'Prepare for presentation',
+  //           isCompleted: true
+  //       },
+  //       {
+  //           id: 3,
+  //           task: 'Print Statements',
+  //           isCompleted: false
+  //       },
+  //       {
+  //           id: 4,
+  //           task: 'Create invoice',
+  //           isCompleted: false
+  //       },
+  //       {
+  //           id: 5,
+  //           task: 'Call John',
+  //           isCompleted: true
+  //       },
+  //       {
+  //           id: 6,
+  //           task: 'Meeting with Alisa',
+  //           isCompleted: false
+  //       }
+  //     ],
+  //     inputValue: '',
+  //   }
+  //   this.statusChangedHandler = this.statusChangedHandler.bind(this);
+  //   this.addTodo = this.addTodo.bind(this);
+  //   this.removeTodo = this.removeTodo.bind(this);
+  //   this.inputChangeHandler = this.inputChangeHandler.bind(this);
+  // }
   statusChangedHandler(event, id) {
 
     //const todoIndex = this.state.todos.findIndex( t => t.id === id );
@@ -178,9 +178,6 @@ export class DashboardPage extends Component {
   //   var gradientdonut3 = ctx.createLinearGradient(0, 0, 0, 300)
   //   gradientdonut3.addColorStop(0, 'rgba(254, 124, 150, 1)')
   //   gradientdonut3.addColorStop(1, 'rgba(255, 205, 150, 1)')
-
-
-
 
   //     const newVisitSaleData = {
   //     labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG'],
@@ -322,7 +319,7 @@ export class DashboardPage extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-7 grid-margin stretch-card">
+          {/* <div className="col-md-7 grid-margin stretch-card">
             <div className="card">
               <div className="card-body">
                 <div className="clearfix mb-4">
@@ -347,8 +344,8 @@ export class DashboardPage extends Component {
                 <Bar ref='chart' className="chartLegendContainer" data={this.state.visitSaleData} options={this.state.visitSaleOptions} id="visitSaleChart"/>
               </div>
             </div>
-          </div>
-          <div className="col-md-5 grid-margin stretch-card">
+          </div> */}
+          {/* <div className="col-md-5 grid-margin stretch-card">
             <div className="card">
               <div className="card-body">
                 <h4 className="card-title">Traffic Sources</h4>
@@ -371,7 +368,7 @@ export class DashboardPage extends Component {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="row">
           <div className="col-12 grid-margin">
@@ -437,7 +434,7 @@ export class DashboardPage extends Component {
             </div>
           </div>
         </div>
-        <div className="row">
+        {/* <div className="row">
           <div className="col-lg-5 grid-margin stretch-card">
             <div className="card">
               <div className="card-body p-0 d-flex">
@@ -484,9 +481,9 @@ export class DashboardPage extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="row">
-          <div className="col-xl-7 grid-margin stretch-card">
+          {/* <div className="col-xl-7 grid-margin stretch-card">
             <div className="card">
               <div className="card-body">
                 <h4 className="card-title">Project Status</h4>
@@ -554,12 +551,12 @@ export class DashboardPage extends Component {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="col-xl-5 grid-margin stretch-card">
+          </div> */}
+          {/* <div className="col-xl-5 grid-margin stretch-card">
             <div className="card">
               <div className="card-body">
                 <h4 className="card-title text-white">Todo</h4>
-                {/* <form  className="add-items d-flex" onSubmit={this.addTodo}>
+                <form  className="add-items d-flex" onSubmit={this.addTodo}>
                   <input 
                       type="text" 
                       className="form-control h-auto" 
@@ -568,8 +565,8 @@ export class DashboardPage extends Component {
                       onChange={this.inputChangeHandler}
                       required />
                   <button type="submit" className="btn btn-gradient-primary font-weight-bold px-lg-4 px-3">Add</button>
-                </form> */}
-                {/* <div className="list-wrapper">
+                </form> 
+                 <div className="list-wrapper">
                     <ul className="d-flex flex-column todo-list">
                         {this.state.todos.map((todo, index) =>{
                             return <ListItem 
@@ -580,10 +577,10 @@ export class DashboardPage extends Component {
                             >{todo.task}</ListItem>
                         })}
                     </ul>
-                </div> */}
+                </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div> 
     );

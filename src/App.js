@@ -8,6 +8,7 @@ import {HelmetProvider} from 'react-helmet-async'
 import BuyDataPage from './Pages/BuyDataPage';
 import BuyAirtimePage from './Pages/BuyAirtimePage';
 import DashboardPage from './Pages/DashboardPage';
+import Dashboard from './DashTemplate/app/dashboard/Dashboard';
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
     <HelmetProvider context={helmetContext}>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Dashboard />} />
           <Route path = 'dashboard' element={<DashboardPage />} />
           <Route path='buydata' element={<BuyDataPage /> } />
           <Route path='buyairtime' element={<BuyAirtimePage />} />

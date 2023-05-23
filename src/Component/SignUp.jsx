@@ -1,8 +1,9 @@
 import { Button, Form, Input, Tooltip } from 'antd'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons'
 import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 import { getUser, register } from '../features/Auth/AuthSlice'
 import Spinner from './Spinner'
 
@@ -14,6 +15,22 @@ const SignUp = () => {
 
   const formRef = useRef()
 
+  useEffect(()=>{
+    if(isError) {
+        toast.error(message)
+    }
+    if(isSuccess) {
+        formRef.current.resetFields();
+        alert('User Email Registered')
+        //navigate to your dash if you are logged in
+        navigate('/login')
+    }
+    if(user) {
+        navigate('/dashboard')
+    }
+    
+},[user, isError, isSuccess, message, navigate, dispatch])
+
 
   const onFinish = (e) => {
     console.log(e)
@@ -22,12 +39,7 @@ const SignUp = () => {
     }
     if(e.confirmpassword === e.password) {
       dispatch(register(e))
-      navigate('/login')
     }
-    if(isSuccess) {
-      formRef.current.resetFields()
-    }
-    
 }
 
   return (
@@ -38,7 +50,7 @@ const SignUp = () => {
             <h1 className='text-4xl text-center my-4'>Create an Account</h1>
             <Form ref={formRef} onFinish={onFinish} className="min-w-[320px] md:min-w-[400px]">
               <label htmlFor="">Username</label>
-              <Form.Item  className='' name='Username' label='' rules={[{type: 'string', required: 'true', message: "Please Enter Your Username"}]}>
+              <Form.Item  className='' name='username' label='' rules={[{type: 'string', required: 'true', message: "Please Enter Your Username"}]}>
                 <Input className='mt-2'
               placeholder="Enter your username"
               prefix={<UserOutlined className="site-form-item-icon " />}
@@ -49,11 +61,11 @@ const SignUp = () => {
               } />
               </Form.Item>
               <label className=''>Email</label>
-                <Form.Item className='' name="Email" label='' rules={[{type: 'email', required: 'true', message: "Please Enter Your Email Address"}]}>  
+                <Form.Item className='' name="email" label='' rules={[{type: 'email', required: 'true', message: "Please Enter Your Email Address"}]}>  
                     <Input placeholder='Input Email' className='mt-2 w-full' />
                 </Form.Item>
                 <label htmlFor="">Phone Number</label>
-                <Form.Item className='' label="" name='PhoneNumber' rules={[{required: 'true', message: "Please Enter Your Phone Number"}]}>
+                <Form.Item className='' label="" name='phonenumber' rules={[{required: 'true', message: "Please Enter Your Phone Number"}]}>
                   <Input placeholder='0812345678'
                    suffix={
                     <Tooltip title="Eg: 0812345678">
@@ -63,11 +75,11 @@ const SignUp = () => {
                   />
                 </Form.Item>
                 <label htmlFor="">Address</label>
-                <Form.Item className='' name='Address' label='' rules={[{type:'string', required: 'true', message: "Please Enter Your Address"}]}>
+                <Form.Item className='' name='address' label='' rules={[{type:'string', required: 'true', message: "Please Enter Your Address"}]}>
                   <Input />
                 </Form.Item>
                 <label htmlFor="">Referral Username [optional]</label>
-                <Form.Item className='' name='Referral' label='' rules={[{type:'string'}]}>
+                <Form.Item className='' name='referral' label='' rules={[{type:'string'}]}>
                   <Input className='mt-2'/>
                 </Form.Item>
                 <label className=''>Password</label>

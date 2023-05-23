@@ -23,22 +23,19 @@ const Login = () => {
             toast.error(message)
         }
         if(isSuccess) {
+            formRef.current.resetFields();
             alert('Logged in Successfully')
             //navigate to your dash if you are logged in
             navigate('/dashboard')
         }
-
-        dispatch(reset())
+        if(user) {
+            navigate('/dashboard')
+        }
+        
     },[user, isError, isSuccess, message, navigate, dispatch])
 
     const onFinish = (formData) => {
-        console.log(formData)
         dispatch(login(formData))
-        if (isSuccess){
-        navigate('/dashboard')
-        formRef.current.resetFields();
-        }
-       
     }
     
 

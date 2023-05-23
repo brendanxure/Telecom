@@ -265,7 +265,7 @@ export class DashboardPage extends Component {
     return (
       <div>
         <div className="proBanner">
-          {/* <div>
+          <div>
             <span className="d-flex align-items-center purchase-popup">
               <p>Get tons of UI components, Plugins, multiple layouts, 20+ sample pages, and more!</p>
               <a href="https://www.bootstrapdash.com/product/purple-react/?utm_source=organic&utm_medium=banner&utm_campaign=free-preview" rel="noopener noreferrer" target="_blank" className="btn btn-sm purchase-button ml-auto">Check Pro Version</a>
@@ -559,7 +559,7 @@ export class DashboardPage extends Component {
             <div className="card">
               <div className="card-body">
                 <h4 className="card-title text-white">Todo</h4>
-                <form  className="add-items d-flex" onSubmit={this.addTodo}>
+                {/* <form  className="add-items d-flex" onSubmit={this.addTodo}>
                   <input 
                       type="text" 
                       className="form-control h-auto" 
@@ -568,8 +568,8 @@ export class DashboardPage extends Component {
                       onChange={this.inputChangeHandler}
                       required />
                   <button type="submit" className="btn btn-gradient-primary font-weight-bold px-lg-4 px-3">Add</button>
-                </form>
-                <div className="list-wrapper">
+                </form> */}
+                {/* <div className="list-wrapper">
                     <ul className="d-flex flex-column todo-list">
                         {this.state.todos.map((todo, index) =>{
                             return <ListItem 
@@ -580,10 +580,10 @@ export class DashboardPage extends Component {
                             >{todo.task}</ListItem>
                         })}
                     </ul>
-                </div>
+                </div> */}
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
       </div> 
     );
@@ -601,6 +601,7 @@ const ListItem = (props) => {
                       /> {props.children} <i className="input-helper"></i>
               </label>
           </div>
+         
           <i className="remove mdi mdi-close-circle-outline" onClick={props.remove}></i>
       </li>
   )

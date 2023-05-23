@@ -16,8 +16,8 @@ function App() {
     <HelmetProvider context={helmetContext}>
       <BrowserRouter>
         <Routes>
-          <Route path='dashboard' element={<Home />} />
-          <Route path = '/' element={<DashboardPage />} />
+          <Route path='/' element={<Home />} />
+          <Route path = 'dashboard' element={<DashboardPage />} />
           <Route path='buydata' element={<BuyDataPage /> } />
           <Route path='buyairtime' element={<BuyAirtimePage />} />
           <Route path='login' element={<LoginPage />} />

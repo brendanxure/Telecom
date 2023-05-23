@@ -1,5 +1,4 @@
 import React from 'react'
-
 const Footer = () => {
   return (
     <div className='bg-gradient-to-tr from-teal-800 to-teal-500 text-white p-8 flex flex-wrap md:flex-nowrap justify-between'>

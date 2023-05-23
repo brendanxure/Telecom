@@ -1,22 +1,17 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
-import App2 from './DashTemplate/app/App2'
 import './index.css';
-import { getUser } from './features/Auth/AuthSlice';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
-const {user } = useSelector(getUser)
-
-
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-     {user ? <App2 /> : <App />}
+      <App />
     </Provider>
   </React.StrictMode>
 );

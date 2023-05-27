@@ -34,7 +34,8 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { getUser, register } from "../../../features/Auth/AuthSlice";
+import Spinner from "../../../Component/Spinner";
+import { getUser, register, reset } from "../../../features/Auth/AuthSlice";
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -69,9 +70,10 @@ useEffect(()=>{
       password: "",
       confirmpassword: ""
   })
-      alert('Logged in Successfully')
+      alert('Account Created Successfully')
       //navigate to your dash if you are logged in
-      navigate('/admin')
+      navigate('/auth/login')
+      dispatch(reset())
   }
   if(user) {
       navigate('/admin')
@@ -104,6 +106,7 @@ const onSubmit = (e) => {
 }
   return (
     <>
+    {isLoading && <Spinner />}
       <Col lg="6" md="8">
         <Card className="bg-secondary shadow border-0">
           <CardBody className="px-lg-5 py-lg-5">

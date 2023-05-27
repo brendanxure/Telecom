@@ -3,7 +3,7 @@ import {GiHamburgerMenu} from 'react-icons/gi'
 import {AiOutlineClose} from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUser, logout } from '../features/Auth/AuthSlice'
+import { getUser, logout, reset } from '../features/Auth/AuthSlice'
 
 
 const Navbar = () => {
@@ -13,13 +13,12 @@ const Navbar = () => {
     const user = useSelector(getUser)
     console.log(user.user)
 
-  
-
-   
-
    const onLogout = () => {
        dispatch(logout())
    }
+   useEffect(()=>{
+      dispatch(reset())
+   },[])
 
 
   return (

@@ -34,7 +34,8 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { getUser, login } from "../../../features/Auth/AuthSlice";
+import Spinner from "../../../Component/Spinner";
+import { getUser, login, reset } from "../../../features/Auth/AuthSlice";
 
 const Login = () => {
 
@@ -62,6 +63,7 @@ useEffect(()=>{
       alert('Logged in Successfully')
       //navigate to your dash if you are logged in
       navigate('/admin')
+      dispatch(reset())
   }
   if(user) {
     navigate('/admin')
@@ -86,6 +88,7 @@ const onSubmit = (e) => {
 }
   return (
     <>
+    {isLoading && <Spinner />}
       <Col lg="5" md="7">
         <Card className="bg-secondary shadow border-0">
           <CardBody className="px-lg-5 py-lg-5">

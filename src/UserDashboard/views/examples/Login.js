@@ -17,6 +17,9 @@
 */
 
 // reactstrap components
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Card,
@@ -31,56 +34,63 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { getUser, login } from "../../../features/Auth/AuthSlice";
 
 const Login = () => {
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+})
+
+const {email, password} = formData
+
+const {user, isLoading, isError, isSuccess, message} = useSelector(getUser)
+
+useEffect(()=>{
+  if(isError) {
+      alert(message)
+  }
+  if(isSuccess) {
+    setFormData({
+      email: "",
+      password: ""
+  })
+      alert('Logged in Successfully')
+      //navigate to your dash if you are logged in
+      navigate('/admin')
+  }
+  if(user) {
+    navigate('/admin')
+  }
+  
+},[user, isError, isSuccess, message, navigate, dispatch])
+
+const onChange = (e) => {
+  setFormData((prevState)=> ({
+      ...prevState,
+      [e.target.name]: e.target.value
+  }) )
+}
+
+const onSubmit = (e) => {
+  e.preventDefault()
+  const userData = {
+      email, password
+  }
+  console.log(userData)
+  dispatch(login(userData))
+}
   return (
     <>
       <Col lg="5" md="7">
         <Card className="bg-secondary shadow border-0">
-          <CardHeader className="bg-transparent pb-5">
-            <div className="text-muted text-center mt-2 mb-3">
-              <small>Sign in with</small>
-            </div>
-            <div className="btn-wrapper text-center">
-              <Button
-                className="btn-neutral btn-icon"
-                color="default"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <span className="btn-inner--icon">
-                  <img
-                    alt="..."
-                    src={
-                      require("../../assets/img/icons/common/github.svg")
-                        .default
-                    }
-                  />
-                </span>
-                <span className="btn-inner--text">Github</span>
-              </Button>
-              <Button
-                className="btn-neutral btn-icon"
-                color="default"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <span className="btn-inner--icon">
-                  <img
-                    alt="..."
-                    src={
-                      require("../../assets/img/icons/common/google.svg")
-                        .default
-                    }
-                  />
-                </span>
-                <span className="btn-inner--text">Google</span>
-              </Button>
-            </div>
-          </CardHeader>
           <CardBody className="px-lg-5 py-lg-5">
             <div className="text-center text-muted mb-4">
-              <small>Or sign in with credentials</small>
+              <small style={{fontSize: "20px"}}>Sign In</small>
             </div>
             <Form role="form">
               <FormGroup className="mb-3">
@@ -93,7 +103,11 @@ const Login = () => {
                   <Input
                     placeholder="Email"
                     type="email"
+                    required
                     autoComplete="new-email"
+                    name="email"
+                    value={email}
+                    onChange={onChange}
                   />
                 </InputGroup>
               </FormGroup>
@@ -107,32 +121,23 @@ const Login = () => {
                   <Input
                     placeholder="Password"
                     type="password"
+                    required
                     autoComplete="new-password"
+                    name="password"
+                    value={password}
+                    onChange={onChange}
                   />
                 </InputGroup>
               </FormGroup>
-              <div className="custom-control custom-control-alternative custom-checkbox">
-                <input
-                  className="custom-control-input"
-                  id=" customCheckLogin"
-                  type="checkbox"
-                />
-                <label
-                  className="custom-control-label"
-                  htmlFor=" customCheckLogin"
-                >
-                  <span className="text-muted">Remember me</span>
-                </label>
-              </div>
               <div className="text-center">
-                <Button className="my-4" color="primary" type="button">
+                <Button className="my-4" color="primary" onClick={onSubmit} type="button">
                   Sign in
                 </Button>
               </div>
             </Form>
           </CardBody>
         </Card>
-        <Row className="mt-3">
+        {/* <Row className="mt-3">
           <Col xs="6">
             <a
               className="text-light"
@@ -151,7 +156,7 @@ const Login = () => {
               <small>Create new account</small>
             </a>
           </Col>
-        </Row>
+        </Row> */}
       </Col>
     </>
   );

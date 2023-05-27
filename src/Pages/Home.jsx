@@ -7,7 +7,7 @@ import Footer from '../Component/Footer'
 import Navbar from '../Component/Navbar'
 import Services from '../Component/Services'
 import Stat from '../Component/Stat'
-import './Tailwind.css'
+
 import WhyUS from '../Component/WhyUS'
 
 const Home = () => {

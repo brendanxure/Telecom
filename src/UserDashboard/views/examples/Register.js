@@ -17,6 +17,9 @@
 */
 
 // reactstrap components
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Card,
@@ -31,56 +34,81 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { getUser, register } from "../../../features/Auth/AuthSlice";
 
 const Register = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    phonenumber: "",
+    address: "",
+    referral: "",
+    password: "",
+    confirmpassword: ""
+})
+
+
+const {username, email, phonenumber, address, referral, password, confirmpassword} = formData
+
+const {user, isLoading, isError, isSuccess, message} = useSelector(getUser)
+
+useEffect(()=>{
+  if(isError) {
+      alert(message)
+  }
+  if(isSuccess) {
+    setFormData({
+      username: "",
+      email: "",
+      phonenumber: "",
+      address: "",
+      referral: "",
+      password: "",
+      confirmpassword: ""
+  })
+      alert('Logged in Successfully')
+      //navigate to your dash if you are logged in
+      navigate('/admin')
+  }
+  if(user) {
+      navigate('/admin')
+  }
+  
+},[user, isError, isSuccess, message, navigate, dispatch])
+
+const onChange = (e) => {
+  setFormData((prevState)=> ({
+      ...prevState,
+      [e.target.name]: e.target.value
+  }) )
+}
+const onSubmit = (e) => {
+  const userData = {
+    username, email, phonenumber, address, referral, password
+  }
+  console.log(userData)
+  e.preventDefault()
+  if (confirmpassword !== password) {
+    alert('password doesnt match')
+  }
+  else if(username === referral) {
+    alert('Username and referral cannot be the same')
+  }
+  else {
+    dispatch(register(userData))
+  }
+  
+}
   return (
     <>
       <Col lg="6" md="8">
         <Card className="bg-secondary shadow border-0">
-          <CardHeader className="bg-transparent pb-5">
-            <div className="text-muted text-center mt-2 mb-4">
-              <small>Sign up with</small>
-            </div>
-            <div className="text-center">
-              <Button
-                className="btn-neutral btn-icon mr-4"
-                color="default"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <span className="btn-inner--icon">
-                  <img
-                    alt="..."
-                    src={
-                      require("../../assets/img/icons/common/github.svg")
-                        .default
-                    }
-                  />
-                </span>
-                <span className="btn-inner--text">Github</span>
-              </Button>
-              <Button
-                className="btn-neutral btn-icon"
-                color="default"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <span className="btn-inner--icon">
-                  <img
-                    alt="..."
-                    src={
-                      require("../../assets/img/icons/common/google.svg")
-                        .default
-                    }
-                  />
-                </span>
-                <span className="btn-inner--text">Google</span>
-              </Button>
-            </div>
-          </CardHeader>
           <CardBody className="px-lg-5 py-lg-5">
             <div className="text-center text-muted mb-4">
-              <small>Or sign up with credentials</small>
+              <small style={{fontSize: "20px"}}>Sign Up</small>
             </div>
             <Form role="form">
               <FormGroup>
@@ -90,7 +118,7 @@ const Register = () => {
                       <i className="ni ni-hat-3" />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input placeholder="Name" type="text" />
+                  <Input placeholder="username" type="text" required name="username" value={username} onChange={onChange}/>
                 </InputGroup>
               </FormGroup>
               <FormGroup>
@@ -103,7 +131,61 @@ const Register = () => {
                   <Input
                     placeholder="Email"
                     type="email"
+                    required
                     autoComplete="new-email"
+                    name="email"
+                    value={email}
+                    onChange={onChange}
+                  />
+                </InputGroup>
+              </FormGroup>
+              <FormGroup>
+                <InputGroup className="input-group-alternative mb-3">
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="ni ni-pin-3" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    placeholder="Phone Number eg: 08123456789"
+                    type="text"
+                    required
+                    name="phonenumber"
+                    value={phonenumber}
+                    onChange={onChange}
+                  />
+                </InputGroup>
+              </FormGroup>
+              <FormGroup>
+                <InputGroup className="input-group-alternative mb-3">
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="ni ni-planet" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    placeholder="Address"
+                    type="text"
+                    required
+                    name="address"
+                    value={address}
+                    onChange={onChange}
+                  />
+                </InputGroup>
+              </FormGroup>
+              <FormGroup>
+                <InputGroup className="input-group-alternative mb-3">
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="ni ni-circle-08" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    placeholder="Referral Username"
+                    type="text"
+                    name="referral"
+                    value={referral}
+                    onChange={onChange}
                   />
                 </InputGroup>
               </FormGroup>
@@ -117,17 +199,39 @@ const Register = () => {
                   <Input
                     placeholder="Password"
                     type="password"
+                    required
                     autoComplete="new-password"
+                    name="password"
+                    value={password}
+                    onChange={onChange}
                   />
                 </InputGroup>
               </FormGroup>
-              <div className="text-muted font-italic">
+              <FormGroup>
+                <InputGroup className="input-group-alternative">
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="ni ni-lock-circle-open" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    placeholder="Confirm Password"
+                    type="password"
+                    required
+                    autoComplete="new-password"
+                    name="confirmpassword"
+                    value={confirmpassword}
+                    onChange={onChange}
+                  />
+                </InputGroup>
+              </FormGroup>
+              {/* <div className="text-muted font-italic">
                 <small>
                   password strength:{" "}
                   <span className="text-success font-weight-700">strong</span>
                 </small>
-              </div>
-              <Row className="my-4">
+              </div> */}
+              {/* <Row className="my-4">
                 <Col xs="12">
                   <div className="custom-control custom-control-alternative custom-checkbox">
                     <input
@@ -148,9 +252,9 @@ const Register = () => {
                     </label>
                   </div>
                 </Col>
-              </Row>
+              </Row> */}
               <div className="text-center">
-                <Button className="mt-4" color="primary" type="button">
+                <Button className="mt-4" color="primary" onClick={onSubmit} type="button">
                   Create account
                 </Button>
               </div>

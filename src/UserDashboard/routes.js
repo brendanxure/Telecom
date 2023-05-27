@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import Index from "./views/Index";
+import Index from "./views/Index.js";
 // import Profile from "./views/examples/Profile.js";
 import Maps from "./views/examples/Maps.js";
 import Register from "./views/examples/Register.js";
@@ -25,7 +25,7 @@ import Icons from "./views/examples/Icons.js";
 
 var routes = [
   {
-    path: "/index",
+    path: "/",
     name: "Dashboard",
     icon: "ni ni-tv-2 text-primary",
     component: <Index />,
@@ -33,14 +33,14 @@ var routes = [
   },
   {
     path: "/icons",
-    name: "Icons",
+    name: "Buy Data",
     icon: "ni ni-planet text-blue",
     component: <Icons />,
     layout: "/admin",
   },
   {
     path: "/maps",
-    name: "Maps",
+    name: "Buy Airtime",
     icon: "ni ni-pin-3 text-orange",
     component: <Maps />,
     layout: "/admin",

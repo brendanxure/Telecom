@@ -12,81 +12,90 @@ const DataPlans = () => {
     const [airtelDataPlans, setAirtelDataPlans] = useState(AIRTELDATA)
     const [nineMobileData, setNineMobileData] = useState(NINEMOBILEDATA)
   return (
-    <div className='w-full' id='DataPlans'>
-        <div className='w-full'>
-            {/* Title */}
-            <h1 className='my-8 text-center text-4xl font-bold'>Affordable Data Plans And Prices</h1>
-            {/* Data Plans Div */}
-            <div className='flex w-full mx-auto justify-center p-4 my-8 flex-wrap xl:flex-nowrap'>
-                {/* MTN DIV */}
-                <div className='hover:shadow-lg hover:shadow-black ease-in duration-150 p-4 m-3 bg-gray-200 flex flex-col h-fit items-center basis-1/4 w-full'>
-                    {/* MTN LOGO */}
-                    <img className='w-[80px]' src={MTNLOGO} alt="" />
-                    <p>MTN DATA</p>
-                    {/* MTN DATA PLANS */}
-                    <div className=''>
-                        {mtnDataPlans?.map((data, id)=> 
-                        <div id= {id} className=' border-t-2 border-solid border-gray-500 flex my-2 py-3 items-center text-center min-w-[275px]' >
-                            <p className='basis-1/3'>{data.Data}</p>
-                            <p className='basis-1/3'>{data.Price}</p>
-                            <p className='basis-1/3'>{data.Duration}</p>
-                        </div>
-                        )}
-                    </div>
-                    <a href="" className='w-full flex justify-center items-center rounded-xl py-3 bg-gradient-to-tr from-teal-800 to-teal-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><HiOutlineShoppingCart className='mr-1'/><p>Buy now</p></a>
-                </div>
-                {/* GLO DIV */}
-                <div className='hover:shadow-lg hover:shadow-black ease-in duration-150 p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
-                    {/* GLO LOGO */}
-                    <img className='w-[80px]' src={GLOLOGO} alt="" />
-                    <p>GLO DATA</p>
-                    {/* GLO DATA PLANS */}
-                    <div className=''>
-                        {gloDataPlans?.map((data, id)=> 
-                        <div id= {id} className='border-t-2 border-solid border-gray-500 flex my-2 py-3 items-center text-center min-w-[275px]' >
-                            <p className='basis-1/3'>{data.Data}</p>
-                            <p className='basis-1/3'>{data.Price}</p>
-                            <p className='basis-1/3'>{data.Duration}</p>
-                        </div>
-                        )}
-                    </div>
-                    <a href="" className='w-full flex justify-center items-center rounded-xl py-3 bg-gradient-to-tr from-teal-800 to-teal-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><HiOutlineShoppingCart className='mr-1'/><p>Buy now</p></a>
-                </div>
-                {/* AIRTEL DIV */}
-                <div className='hover:shadow-lg hover:shadow-black ease-in duration-150 p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
-                    <img className='w-[80px]' src={AIRTELLOGO} alt="" />
-                    <p>AIRTEL DATA</p>
-                    {/* AIRTEL DATA PLANS */}
-                    <div className=''>
-                        {airtelDataPlans?.map((data, id)=> 
-                        <div id= {id} className='border-t-2 border-solid border-gray-500 flex my-2 py-3 items-center text-center min-w-[275px]' >
-                            <p className='basis-1/3'>{data.Data}</p>
-                            <p className='basis-1/3'>{data.Price}</p>
-                            <p className='basis-1/3'>{data.Duration}</p>
-                        </div>
-                        )}
-                    </div>
-                    <a href="" className='w-full flex justify-center items-center rounded-xl py-3 bg-gradient-to-tr from-teal-800 to-teal-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><HiOutlineShoppingCart className='mr-1'/><p>Buy now</p></a>
-                </div>
-                {/* 9mobile DIV */}
-                <div className='hover:shadow-lg hover:shadow-black ease-in duration-150 p-4 m-3 bg-gray-200 flex flex-col items-center basis-1/4 h-fit'>
-                    <img className='w-[80px]' src={NINEMOBILELOGO} alt="" />
-                    <p>9MOBILE DATA</p>
-                    {/*9MOBILE  DATA PLANS */}
-                    <div className=''>
-                        {nineMobileData?.map((data, id)=> 
-                        <div id= {id} className='border-t-2 border-solid border-gray-500 flex my-2 py-3 items-center text-center min-w-[275px]' >
-                            <p className='basis-1/3'>{data.Data}</p>
-                            <p className='basis-1/3'>{data.Price}</p>
-                            <p className='basis-1/3'>{data.Duration}</p>
-                        </div>
-                        )}
-                    </div>
-                    <a href="" className='w-full flex justify-center items-center rounded-xl py-3 bg-gradient-to-tr from-teal-800 to-teal-500 text-center font-bold text-xl my-3 hover:shadow-lg hover:shadow-black duration-75 ease-in'><HiOutlineShoppingCart className='mr-1'/><p>Buy now</p></a>
-                </div>
-            </div>
+    <div id='DataPlans' className='w-100 mx-auto'>
+    <div className='w-100 px-4 mx-auto'>
+          {/* Title */}
+     <h1 className='text-center mt-5' style={{color: "#1171ef", fontSize: "50px"}}>Affordable Data Plans And Prices</h1>
+     {/* Data Plans Div */}
+     <div className='dataplandiv d-flex w-100 mx-auto justify-content-center p-4 my-2 flex-xl-nowrap flex-wrap'>
+         {/* MTN DIV */}
+         <div className='col-12 col-md-8 col-xl-3 my-3 mx-2 py-5' style={{backgroundColor: "rgb(229 231 235)", height: "fit-content"}}>
+             {/* MTN LOGO */}
+             <div className='text-center'><img className='' src={MTNLOGO} style={{width: "80px"}} alt="" />
+             <h4>MTN DATA</h4>
+             </div>
+             {/* MTN DATA PLANS */}
+             <div className='text-center my-5'>
+                 {mtnDataPlans?.map((data, id) => 
+                 <div className='d-flex my-3 align-items-center text-center w-100 justify-content-between border-2 border-bottom border-dark' style={{minWidth: "275px"}}>
+                     <p className='col-4'>{data.Data}</p>
+                     <p className='col-4'>{data.Price}</p>
+                     <p className='col-4'>{data.Duration}</p>
+                 </div>
+                 )}
+             </div>
+             <div className='d-flex justify-content-center align-items-center  mx-auto w-50 py-2' style={{cursor: "pointer", background:"#1171ef", color: "white"}}><HiOutlineShoppingCart size={25} /><p className='m-0 mx-1' style={{fontSize: '20px'}}>Buy now</p></div>
+         </div>
+         {/* GLO DIV */}
+         <div className='col-12 col-md-8 col-xl-3 my-3 mx-2 py-5' style={{backgroundColor: "rgb(229 231 235)", height: "fit-content"}}>
+         {/* GLO LOGO */}
+        <div className='text-center'>
+        <img src={GLOLOGO} style={{width:"80px"}} alt="" />
+         <h4>GLO DATA</h4>
         </div>
+         {/* GLO DATA PLANS */}
+         <div className='text-center my-5'>
+             {gloDataPlans?.map((data, id)=> 
+             <div className='d-flex my-3 align-items-center text-center w-100 justify-content-between border-2 border-bottom border-dark' style={{minWidth: "275px"}}>
+                 <p className='col-4'>{data.Data}</p>
+                 <p className='col-4'>{data.Price}</p>
+                 <p className='col-4'>{data.Duration}</p>
+             </div>
+             )}
+         </div>
+         <div className='d-flex justify-content-center align-items-center mx-auto w-50 py-2' style={{cursor: "pointer", background:"#1171ef", color: "white"}}><HiOutlineShoppingCart size={25} /><p className='m-0 mx-1' style={{fontSize: '20px'}}>Buy now</p></div>
+         </div>
+         {/* AIRTEL DIV */}
+         <div className='col-12 col-md-8 col-xl-3 my-3 mx-2 py-5' style={{backgroundColor: "rgb(229 231 235)", height: "fit-content"}}>
+             {/* AIRTEL LOGO */}
+             <div className='text-center'>
+             <img src={AIRTELLOGO} style={{width: "80px"}} alt="" />
+             <h4>AIRTEL DATA</h4>
+             </div>
+             {/* AIRTEL DATA PLANS */}
+             <div className='text-center my-5'>
+                 {airtelDataPlans?.map((data, id)=>
+                 <div className='d-flex my-3 align-items-center text-center justify-content-between border-2 border-bottom border-dark' style={{minWidth: "275px"}}>
+                     <p className='col-4'>{data.Data}</p>
+                     <p className='col-4'>{data.Price}</p>
+                     <p className='col-4'>{data.Duration}</p>
+                 </div>
+                 )}
+             </div>
+             <div className='d-flex justify-content-center align-items-center  mx-auto w-50 py-2' style={{cursor: "pointer", background:"#1171ef", color: "white"}}><HiOutlineShoppingCart size={25} /><p className='m-0 mx-1' style={{fontSize: '20px'}}>Buy now</p></div>
+         </div>
+         {/* 9mobile DIV */}
+         <div className='col-12 col-md-8 col-xl-3 my-3 mx-2 py-5' style={{backgroundColor: "rgb(229 231 235)", height: "fit-content"}}>
+             {/* 9mobile LOGO */}
+             <div className='text-center'>
+             <img src={NINEMOBILELOGO} style={{width: "80px"}} alt="" />
+             <h4>9MOBILE DATA</h4>
+             </div>
+             {/*9MOBILE  DATA PLANS */}
+             <div className='text-center my-5'>
+                 {nineMobileData.map((data, id)=> 
+                 <div id={id} className='d-flex my-3 align-items-center justify-content-between border-2 border-bottom border-dark' style={{minWidth: "275px"}}>
+                     <p className='col-3'>{data.Data}</p>
+                     <p className='col-3'>{data.Price}</p>
+                     <p className='col-5'>{data.Duration}</p>
+                 </div>
+                 )}
+             </div>
+             <div className='d-flex justify-content-center align-items-center mx-auto w-50 py-2' style={{cursor: "pointer", background:"#1171ef", color: "white"}}><HiOutlineShoppingCart size={25} /><p className='m-0 mx-1' style={{fontSize: '20px'}}>Buy now</p></div>
+         </div>
+     </div>
     </div>
+ </div>
   )
 }
 

@@ -1,7 +1,5 @@
 
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&family=Urbanist:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
 *{
   border: 0;
   margin: 0;
@@ -11,16 +9,12 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-/* img {
-  display: block;
-  object-fit: contain;
-  width: 100%;
-  height: 100%;
+a{
+  text-decoration: none;
 }
 
-*/
 :root {
-  --animate-duration: 3s;
+  --animate-duration: 4s;
 }
 
 .loadingSpinnerContainer {
@@ -64,12 +58,77 @@ html {
 }
 
 /* For Webkit-based browsers (Chrome, Safari and Opera) */
-.scrollbar-hide::-webkit-scrollbar {
+.servicediv::-webkit-scrollbar {
   display: none;
 }
 
 /* For IE, Edge and Firefox */
-.scrollbar-hide {
+.servicediv {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+.servicediv {
+  margin-top: 2rem;
+  white-space: nowrap;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+.mdchevronright, .mdchevronleft {
+  opacity: 0.5;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.services:hover .mdchevronright, .services:hover .mdchevronleft{
+  background-color: rgb(156 163 175);;
+  opacity: 1;
+}
+.eachservice > h4{
+  background-color: rgb(156 163 175);
+  border-radius: 2rem;
+}
+.eachservice{
+  box-shadow: 0 10px 15px -3px black, 0 4px 6px -4px black;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+.eachservice:hover{
+  background-color: black;
+  color: white; 
+  transform: scaleX(1.05);
+}
+.eachservice:hover >h3{
+  color: white;
+}
+
+.eachservice:hover >h4 {
+  background: white;
+}
+.dataplandiv >div:hover {
+  box-shadow: 0 10px 15px -3px black, 0 4px 6px -4px black;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+@media screen and (max-width: 991.98px){
+  .whyusimg {
+    display: none !important;
+  }
+  .whyusheader {
+    font-size: 40px !important;
+  }
+  .whyusmsg {
+    width: 90% !important;
+    font-size: 18px !important;
+  }
+  .awesomeservimg {
+    display: none !important;
+  }
+  .awesomeservmsg {
+    font-size: 18px !important;
+  }
+  .agent > img{
+    display: none !important;
+  }
 }

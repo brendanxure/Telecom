@@ -13,25 +13,7 @@ const Navbar = () => {
     const user = useSelector(getUser)
     console.log(user.user)
 
-    const [check, setcheck] = useState(false)
-    const [windowSize, setWindowSize] = useState({
-        width: undefined,
-    })
-    useEffect(() => {
-        const windsize = () => {
-            setWindowSize({
-                width: window.innerWidth
-            })
-        }
-        windsize()
-        window.addEventListener('resize', windsize)
-}, [])
-
-   useEffect(()=> {
-    if(windowSize.width > 1024) {
-        setcheck(false)
-    }
-   },[windowSize.width])
+  
 
    
 
@@ -41,25 +23,39 @@ const Navbar = () => {
 
 
   return (
-    <div className='px-6 z-30 flex justify-between items-center w-full py-4 bg-gradient-to-tr from-teal-800 to-teal-500 text-white'>
-        {/* left-side */}
-        <div className='basis-1/2 text-3xl'>
-            <a href='#'>TELECOM</a>
-        </div>
-        <input type="checkbox"  className='hidden' checked={check} name="" id="nav-check" />
-        {/* mobile menu/right-side */}
-        <ul className='xure-nav flex flex-col absolute left-[0%] top-[-100%] z-10 bg-teal-400 w-full text-black lg:relative lg:z-0 lg:p-0 lg:left-0 lg:bg-inherit lg:flex-row lg:text-white basis-1/2 justify-between'>
-            <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><a href='/'>Home</a></li>
-            <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><a href='#Whyus'>About Us</a></li>
-            <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><a href="#Services">Services</a></li>
-            <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><a href="#DataPlans">Pricing</a></li>            
-            {!user?.user && <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><Link to='/login'><a href="">Login</a></Link></li>}
-            {user?.user && <li onClick={onLogout} className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><a href="">Logout</a></li>}
-            <li className='py-3 lg:py-2 border-t-2 border-solid border-teal-900 px-3 lg:px-0 lg:hover:text-teal-400 lg:border-none'><Link to='/Signup'><a href="">Register</a></Link></li>
-        </ul>
-        {!check && <label onClick={()=> setcheck(!check)} htmlFor="nav-check" className='lg:hidden cursor-pointer '><GiHamburgerMenu size={40} /></label>}
-        {check && <label onClick={()=> setcheck(!check)} htmlFor="nav-check" className='lg:hidden cursor-pointer '><AiOutlineClose size={40} /></label>}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">TELECOM</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#Whyus">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#Services">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#DataPlans">Pricing</a>
+        </li>
+        {!user?.user && <li class="nav-item">
+          <Link to='/auth/login'><a class="nav-link" href="">Login</a></Link>
+        </li>}
+        {user?.user && <li class="nav-item" onClick={onLogout}>
+          <a class="nav-link" href="">Logout</a>
+        </li>}
+        <li class="nav-item">
+          <Link to='/auth/register'><a class="nav-link" href="#Services">Register</a></Link>
+        </li>
+      </ul>
     </div>
+  </div>
+</nav>
   )
 }
 

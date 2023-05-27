@@ -23,6 +23,10 @@ const Header = () => {
   return (
     <>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
+        <div class="w-100 d-flex justify-content-between align-items-center px-5 my-5">
+          <h2 className="fs-2">Welcome to Telecom</h2>
+          <div style={{background: "#ff5722", borderRadius: "5rem"}} className='text-white px-4 py-2'>Fund Wallet</div>
+        </div>
         <Container fluid>
           <div className="header-body">
             {/* Card stats */}

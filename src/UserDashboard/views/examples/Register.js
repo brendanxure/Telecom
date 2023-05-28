@@ -20,6 +20,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   Button,
   Card,
@@ -58,7 +59,7 @@ const {user, isLoading, isError, isSuccess, message} = useSelector(getUser)
 
 useEffect(()=>{
   if(isError) {
-      alert(message)
+      toast.error(message)
   }
   if(isSuccess) {
     setFormData({
@@ -70,14 +71,15 @@ useEffect(()=>{
       password: "",
       confirmpassword: ""
   })
-      alert('Account Created Successfully')
+      toast.success('Account Created Successfully')
       //navigate to your dash if you are logged in
       navigate('/auth/login')
-      dispatch(reset())
+      
   }
   if(user) {
       navigate('/admin')
   }
+  dispatch(reset())
   
 },[user, isError, isSuccess, message, navigate, dispatch])
 
@@ -94,10 +96,10 @@ const onSubmit = (e) => {
   console.log(userData)
   e.preventDefault()
   if (confirmpassword !== password) {
-    alert('password doesnt match')
+    toast.info('password doesnt match')
   }
   else if(username === referral) {
-    alert('Username and referral cannot be the same')
+    toast.info('Username and referral cannot be the same')
   }
   else {
     dispatch(register(userData))

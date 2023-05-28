@@ -20,6 +20,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   Button,
   Card,
@@ -37,6 +38,7 @@ import {
 import Spinner from "../../../Component/Spinner";
 import { getUser, login, reset } from "../../../features/Auth/AuthSlice";
 
+
 const Login = () => {
 
   const dispatch = useDispatch()
@@ -53,21 +55,22 @@ const {user, isLoading, isError, isSuccess, message} = useSelector(getUser)
 
 useEffect(()=>{
   if(isError) {
-      alert(message)
+      toast.error(message)
   }
   if(isSuccess) {
     setFormData({
       email: "",
       password: ""
   })
-      alert('Logged in Successfully')
+      toast.success('Logged in Successfully')
       //navigate to your dash if you are logged in
       navigate('/admin')
-      dispatch(reset())
+      
   }
   if(user) {
     navigate('/admin')
   }
+  dispatch(reset())
   
 },[user, isError, isSuccess, message, navigate, dispatch])
 

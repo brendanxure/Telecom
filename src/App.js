@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 // import Dashboard from './Component/Dashboard';
 import Home from './Pages/Home';
 import LoginPage from './Pages/LoginPage';
@@ -19,6 +21,7 @@ function App() {
   return (
     <HelmetProvider context={helmetContext}>
       <BrowserRouter>
+      <ToastContainer />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path = 'dashboard' element={<DashboardPage />} />

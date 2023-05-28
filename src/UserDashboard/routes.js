@@ -35,14 +35,14 @@ var routes = [
     path: "/icons",
     name: "Buy Data",
     icon: "ni ni-planet text-blue",
-    component: <Icons />,
+    // component: <Icons />,
     layout: "/admin",
   },
   {
     path: "/maps",
     name: "Buy Airtime",
     icon: "ni ni-pin-3 text-orange",
-    component: <Maps />,
+    // component: <Maps />,
     layout: "/admin",
   },
   // {
@@ -52,13 +52,13 @@ var routes = [
   //   component: <Profile />,
   //   layout: "/admin",
   // },
-  // {
-  //   path: "/tables",
-  //   name: "Tables",
-  //   icon: "ni ni-bullet-list-67 text-red",
-  //   component: <Tables />,
-  //   layout: "/admin",
-  // },
+  {
+    path: "/tables",
+    name: "Fund Wallet",
+    icon: "ni ni-bullet-list-67 text-red",
+    // component: <Tables />,
+    layout: "/admin",
+  },
   {
     path: "/login",
     name: "Login",

@@ -14,7 +14,7 @@ a{
 }
 
 :root {
-  --animate-duration: 4s;
+  --animate-duration: 3s;
 }
 
 .loadingSpinnerContainer {

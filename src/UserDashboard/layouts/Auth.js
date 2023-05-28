@@ -88,7 +88,7 @@ const Auth = (props) => {
           </div>
         </div>
         {/* Page content */}
-        <Container className="pb-5" style={{marginTop: "-12rem"}}>
+        <Container className="pb-5" style={{marginTop: "-10rem"}}>
           <Row className="justify-content-center">
             <Routes>
               {getRoutes(routes)}

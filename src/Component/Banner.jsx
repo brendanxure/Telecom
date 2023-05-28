@@ -12,7 +12,7 @@ const Banner = () => {
             </div>
             <div className='position-absolute top-0 start-0 w-100 justify-content-center h-100 align-items-center d-flex flex-column'>
             <h1 className='animate__animated animate__backInLeft animate__slower animate__delay-1s animate__infinite animate__slower fs-1' style={{color: "white"}}>Welcome to<span className='mx-2' style={{color: "#1171ef"}}> TELECOM!</span></h1>
-            <p className='my-3' style={{color: "white", fontSize: "20px"}}>At TELECOM, we are dedicated to providing you with the most affordable and cheapest data, airtime.</p>
+            <p className='my-3 text-center' style={{color: "white", fontSize: "20px"}}>At TELECOM, we are dedicated to providing you with the most affordable and cheapest data, airtime.</p>
             <div className='px-3 py-2' style={{background: "#1171ef", fontSize: "20px", fontWeight: "lighter", color: "white", cursor:"pointer"}}><Link to='/auth/register' style={{color: "white"}}><FiLogIn />   REGISTER</Link></div>
             </div>
         </section>

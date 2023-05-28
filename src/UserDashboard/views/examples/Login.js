@@ -37,6 +37,7 @@ import {
 } from "reactstrap";
 import Spinner from "../../../Component/Spinner";
 import { getUser, login, reset } from "../../../features/Auth/AuthSlice";
+import { Helmet } from 'react-helmet-async'
 
 
 const Login = () => {
@@ -91,6 +92,9 @@ const onSubmit = (e) => {
 }
   return (
     <>
+    <Helmet defer={false}>
+      <title>Telcom || Login</title>
+    </Helmet>
     {isLoading && <Spinner />}
       <Col lg="5" md="7">
         <Card className="bg-secondary shadow border-0">

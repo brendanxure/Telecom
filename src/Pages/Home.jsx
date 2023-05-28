@@ -6,7 +6,7 @@ import DataPlans from '../Component/DataPlans'
 import Footer from '../Component/Footer'
 import Navbar from '../Component/Navbar'
 import Services from '../Component/Services'
-import Stat from '../Component/Stat'
+
 
 import WhyUS from '../Component/WhyUS'
 

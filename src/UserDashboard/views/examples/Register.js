@@ -18,6 +18,7 @@
 
 // reactstrap components
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -108,6 +109,9 @@ const onSubmit = (e) => {
 }
   return (
     <>
+    <Helmet defer={false}>
+      <title>Telecom || Register</title>
+    </Helmet>
     {isLoading && <Spinner />}
       <Col lg="6" md="8">
         <Card className="bg-secondary shadow border-0">
@@ -158,6 +162,7 @@ const onSubmit = (e) => {
                     name="phonenumber"
                     value={phonenumber}
                     onChange={onChange}
+                    maxLength={11}
                   />
                 </InputGroup>
               </FormGroup>

@@ -49,10 +49,11 @@ const AdminNavbar = () => {
               <Row>
                 <Col className="collapse-brand" xs="6">
                   <Link to="/">
-                    <img
+                    {/* <img
                       alt="..."
                       src={require("../../assets/img/brand/argon-react.png")}
-                    />
+                    /> */}
+                    TELECOM
                   </Link>
                 </Col>
                 <Col className="collapse-close" xs="6">

@@ -69,7 +69,7 @@ var routes = [
   {
     path: "/user-profile",
     name: "Report",
-    icon: "ni ni-single-02 text-yellow",
+    icon: "ni ni-support-16 text-teal",
     // component: <Profile />,
     layout: "/admin",
   },

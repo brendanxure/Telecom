@@ -66,9 +66,12 @@ const Navbar = () => {
         {user?.user && <li class="nav-item" onClick={onLogout}>
           <a class="nav-link" href="">Logout</a>
         </li>}
-        <li class="nav-item">
+        {!user?.user && <li class="nav-item">
           <Link to='/auth/register'><a class="nav-link" href="#Services">Register</a></Link>
-        </li>
+        </li>}
+        {user?.user && <li class="nav-item">
+          <Link to='/admin'><a class="nav-link" href="#Services">Dashboard</a></Link>
+        </li>}
       </ul>
     </div>
   </div>

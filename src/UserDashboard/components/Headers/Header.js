@@ -17,9 +17,12 @@
 */
 
 // reactstrap components
+import { useSelector } from "react-redux";
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
+import { getUser } from "../../../features/Auth/AuthSlice";
 
 const Header = () => {
+  const {user} = useSelector(getUser)
   return (
     <>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
@@ -43,7 +46,7 @@ const Header = () => {
                           Wallet Balance
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                          350,897
+                        ₦{user?.walletBalance}
                         </span>
                       </div>
                       <Col className="col-auto">

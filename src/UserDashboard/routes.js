@@ -41,7 +41,7 @@ var routes = [
   {
     path: "/maps",
     name: "Buy Airtime",
-    icon: "ni ni-pin-3 text-orange",
+    icon: "ni ni-mobile-button text-orange",
     // component: <Maps />,
     layout: "/admin",
   },
@@ -54,11 +54,40 @@ var routes = [
   // },
   {
     path: "/tables",
-    name: "Fund Wallet",
-    icon: "ni ni-bullet-list-67 text-red",
+    name: "Pay bills",
+    icon: "ni ni-money-coins text-red",
     // component: <Tables />,
     layout: "/admin",
   },
+  {
+    path: "/table",
+    name: "Send bulk SMS",
+    icon: "ni ni-email-83 text-pink",
+    // component: <Tables />,
+    layout: "/admin",
+  },
+  {
+    path: "/user-profile",
+    name: "Report",
+    icon: "ni ni-single-02 text-yellow",
+    // component: <Profile />,
+    layout: "/admin",
+  },
+  {
+    path: "/user-profil",
+    name: "Referer code",
+    icon: "ni ni-single-02 text-yellow",
+    // component: <Profile />,
+    layout: "/admin",
+  },
+  {
+    path: "/user-profi",
+    name: "Wallet",
+    icon: "ni ni-credit-card text-blue",
+    // component: <Profile />,
+    layout: "/admin",
+  },
+
   {
     path: "/login",
     name: "Login",

@@ -47,6 +47,7 @@ import {
 // } from "variables/charts.js";
 
 import Header from "../components/Headers/Header";
+import { Helmet } from 'react-helmet-async'
 
 const Index = (props) => {
   const [activeNav, setActiveNav] = useState(1);
@@ -63,6 +64,9 @@ const Index = (props) => {
   };
   return (
     <>
+    <Helmet defer={false}>
+        <title>Telecom || Dashoard</title>
+      </Helmet>
       <Header />
       {/* Page content */}
      

@@ -29,11 +29,15 @@ import {
 // core components
 import Header from "../../components/Headers/Header.js";
 import { Button, Form, Input, Select } from 'antd'
+import { Helmet } from 'react-helmet-async'
 
 const Maps = () => {
   
   return (
     <>
+      <Helmet defer={false}>
+        <title>Telecom || Buy Airtime</title>
+      </Helmet>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{height : "70vh"}}></div>
       {/* Page content */}
       <Container className="" style={{marginTop: "-22rem"}} fluid>
@@ -76,7 +80,7 @@ const Maps = () => {
             <Input />
           </Form.Item>
           <Form.Item>
-            <Button className=''>Buy Now</Button>
+            <Button className="bg-gradient-info text-white">Buy now</Button>
           </Form.Item>
         </Form>
               </CardBody>

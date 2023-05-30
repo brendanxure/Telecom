@@ -23,7 +23,7 @@ import { Container } from "reactstrap";
 import AdminNavbar from "../components/Navbars/AdminNavbar";
 import AdminFooter from "../components/Footers/AdminFooter";
 import Sidebar from "../components/Sidebar/Sidebar";
-import { Helmet } from 'react-helmet-async'
+
 
 
 // import "assets/plugins/nucleo/css/nucleo.css";
@@ -83,9 +83,6 @@ const Admin = (props) => {
 
   return (
     <>
-      <Helmet defer={false}>
-        <title>Telecom || Dashoard</title>
-      </Helmet>
       <Sidebar
         {...props}
         routes={routes}

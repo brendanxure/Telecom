@@ -17,118 +17,74 @@
 */
 import React from "react";
 
-// reactstrap components
-import { Card, Container, Row } from "reactstrap";
-
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Container,
+  Row,
+  Col,
+  UncontrolledTooltip,
+} from "reactstrap";
 // core components
 import Header from "../../components/Headers/Header.js";
-
-const MapWrapper = () => {
-  const mapRef = React.useRef(null);
-  React.useEffect(() => {
-    let google = window.google;
-    let map = mapRef.current;
-    let lat = "40.748817";
-    let lng = "-73.985428";
-    const myLatlng = new google.maps.LatLng(lat, lng);
-    const mapOptions = {
-      zoom: 12,
-      center: myLatlng,
-      scrollwheel: false,
-      zoomControl: true,
-      styles: [
-        {
-          featureType: "administrative",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#444444" }],
-        },
-        {
-          featureType: "landscape",
-          elementType: "all",
-          stylers: [{ color: "#f2f2f2" }],
-        },
-        {
-          featureType: "poi",
-          elementType: "all",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "road",
-          elementType: "all",
-          stylers: [{ saturation: -100 }, { lightness: 45 }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "all",
-          stylers: [{ visibility: "simplified" }],
-        },
-        {
-          featureType: "road.arterial",
-          elementType: "labels.icon",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "transit",
-          elementType: "all",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "water",
-          elementType: "all",
-          stylers: [{ color: "#5e72e4" }, { visibility: "on" }],
-        },
-      ],
-    };
-
-    map = new google.maps.Map(map, mapOptions);
-
-    const marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      animation: google.maps.Animation.DROP,
-      title: "Light Bootstrap Dashboard PRO React!",
-    });
-
-    const contentString =
-      '<div class="info-window-content"><h2>Light Bootstrap Dashboard PRO React</h2>' +
-      "<p>A premium Admin for React-Bootstrap, Bootstrap, React, and React Hooks.</p></div>";
-
-    const infowindow = new google.maps.InfoWindow({
-      content: contentString,
-    });
-
-    google.maps.event.addListener(marker, "click", function () {
-      infowindow.open(map, marker);
-    });
-  }, []);
-  return (
-    <>
-      <div
-        style={{ height: `600px` }}
-        className="map-canvas"
-        id="map-canvas"
-        ref={mapRef}
-      ></div>
-    </>
-  );
-};
+import { Button, Form, Input, Select } from 'antd'
 
 const Maps = () => {
+  
   return (
     <>
-      <Header />
+      <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{height : "70vh"}}></div>
       {/* Page content */}
-      <Container className="mt--7" fluid>
+      <Container className="" style={{marginTop: "-22rem"}} fluid>
+        {/* Table */}
         <Row>
           <div className="col">
-            <Card className="shadow border-0">
-              <MapWrapper />
+            <Card className="shadow">
+              <CardHeader className="bg-transparent">
+                <h3 className="mb-0">Buy Airtime</h3>
+              </CardHeader>
+              <CardBody>
+              <Form className='w-100 bg-white p-4 rounded-xl '>
+          <label htmlFor="">Name</label>
+          <Form.Item>
+            <Input disabled value='Brendan Xure'/>
+          </Form.Item>
+          <label htmlFor="">Network</label>
+          <Form.Item>
+            <Select>
+              <Select.Option>MTN</Select.Option>
+              <Select.Option>9Mobile</Select.Option>
+              <Select.Option>Glo</Select.Option>
+              <Select.Option>Airtel</Select.Option>
+            </Select>
+          </Form.Item>
+          <label htmlFor="">Data Type</label>
+          <Form.Item>
+            <Select>
+              <Select.Option>Gifting</Select.Option>
+              <Select.Option>SME</Select.Option>
+              <Select.Option>Corporate Gifting</Select.Option>
+            </Select>
+          </Form.Item>
+          <label htmlFor="">Mobile Number</label>
+          <Form.Item>
+            <Input />
+          </Form.Item>
+          <label htmlFor="">Amount</label>
+          <Form.Item>
+            <Input />
+          </Form.Item>
+          <Form.Item>
+            <Button className=''>Buy Now</Button>
+          </Form.Item>
+        </Form>
+              </CardBody>
             </Card>
           </div>
         </Row>
       </Container>
-    </>
-  );
+    </>)
 };
 
 export default Maps;

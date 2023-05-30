@@ -32,17 +32,17 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/icons",
+    path: "/buydata",
     name: "Buy Data",
     icon: "ni ni-planet text-blue",
-    // component: <Icons />,
+    component: <Icons />,
     layout: "/admin",
   },
   {
     path: "/maps",
     name: "Buy Airtime",
     icon: "ni ni-mobile-button text-orange",
-    // component: <Maps />,
+    component: <Maps />,
     layout: "/admin",
   },
   // {

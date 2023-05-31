@@ -15,10 +15,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { useState } from "react";
-// react component that copies the given text inside your clipboard
-import { CopyToClipboard } from "react-copy-to-clipboard";
-// reactstrap components
+import React from "react";
+
 import {
   Card,
   CardHeader,
@@ -32,17 +30,18 @@ import {
 import Header from "../../components/Headers/Header.js";
 import { Button, Form, Input, Select } from 'antd'
 import { Helmet } from 'react-helmet-async'
+import { useSelector } from "react-redux";
+import { getUser } from "../../../features/Auth/AuthSlice.jsx";
 
-
-
-const Icons = () => {
-  const [copiedText, setCopiedText] = useState();
+const Buy_Airtime = () => {
+  const {user} = useSelector(getUser)
+  
   return (
     <>
       <Helmet defer={false}>
-        <title>Telecom || Buy Data</title>
+        <title>Telecom || Buy Airtime</title>
       </Helmet>
-     <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{height : "70vh"}}></div>
+      <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{height : "70vh"}}></div>
       {/* Page content */}
       <Container className="" style={{marginTop: "-22rem"}} fluid>
         {/* Table */}
@@ -50,13 +49,13 @@ const Icons = () => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Buy Data</h3>
+                <h3 className="mb-0">Buy Airtime</h3>
               </CardHeader>
               <CardBody>
               <Form className='w-100 bg-white p-4 rounded-xl '>
           <label htmlFor="">Name</label>
           <Form.Item>
-            <Input disabled value='Brendan Xure'/>
+            <Input disabled value={user?.username}/>
           </Form.Item>
           <label htmlFor="">Network</label>
           <Form.Item>
@@ -84,7 +83,7 @@ const Icons = () => {
             <Input />
           </Form.Item>
           <Form.Item>
-          <Button className="bg-gradient-info text-white">Buy now</Button>
+            <Button className="bg-gradient-info text-white">Buy now</Button>
           </Form.Item>
         </Form>
               </CardBody>
@@ -92,8 +91,7 @@ const Icons = () => {
           </div>
         </Row>
       </Container>
-    </>
-  );
+    </>)
 };
 
-export default Icons;
+export default Buy_Airtime;

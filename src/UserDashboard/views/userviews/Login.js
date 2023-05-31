@@ -87,7 +87,7 @@ const onSubmit = (e) => {
   const userData = {
       email, password
   }
-  console.log(userData)
+  
   dispatch(login(userData))
 }
   return (

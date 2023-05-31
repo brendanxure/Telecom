@@ -4,14 +4,11 @@ import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 // import Dashboard from './Component/Dashboard';
 import Home from './Pages/Home';
-import LoginPage from './Pages/LoginPage';
-import SignUpPage from './Pages/SignUpPage';
 import {HelmetProvider} from 'react-helmet-async'
 import BuyDataPage from './Pages/BuyDataPage';
 import BuyAirtimePage from './Pages/BuyAirtimePage';
 import DashboardPage from './Pages/DashboardPage';
 import Admin from './UserDashboard/layouts/Admin';
-import Login from './UserDashboard/views/examples/Login';
 import Auth from './UserDashboard/layouts/Auth';
 
 

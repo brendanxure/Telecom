@@ -20,18 +20,30 @@
 import { useSelector } from "react-redux";
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 import { getUser } from "../../../features/Auth/AuthSlice";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faWallet, faUser, faPeopleArrows, faCreditCard } from '@fortawesome/free-solid-svg-icons'
+import { Modal } from "antd";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
   const {user} = useSelector(getUser)
+  const navigate = useNavigate()
+  const [isModalOpen, setIsModalOpen] = useState(false)
   return (
     <>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
         <div class="w-100 d-md-flex justify-content-between align-items-center px-5 my-5">
           <h2 className="col-12 col-md-8 fs-2 text-center text-md-left ">Welcome to Telecom</h2>
-          <div style={{background: "#ff5722", borderRadius: "5rem", cursor: "pointer"}} className='col-12 col-md-4 col-lg-3 col-xl-2 text-center text-white px-2 py-2'>Fund Wallet</div>
+          <div style={{background: "#ff5722", borderRadius: "5rem", cursor: "pointer"}} className='col-12 col-md-4 col-lg-3 col-xl-2 text-center text-white px-2 py-2' onClick={()=>setIsModalOpen(true)}>Fund Wallet</div>
         </div>
         <Container fluid>
           <div className="header-body">
+            <Modal open={isModalOpen} onCancel={()=>setIsModalOpen(false)} title='Fund Wallet' className="" style={{height: "60vh", top: "30vh"}} footer={null}>
+              <div className="bg-gradient-info p-2 rounded-3 d-flex align-items-center my-4" style={{cursor: "pointer"}} onClick={()=> navigate('/admin/fundwallet')}>
+               <i className="ni ni-credit-card text-white px-2 fs-1"></i> <h2 className="mx-2">Pay with Paystack</h2>
+              </div>
+            </Modal>
             {/* Card stats */}
             <Row>
               <Col lg="6" xl="3">
@@ -51,7 +63,8 @@ const Header = () => {
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-danger text-white rounded-circle shadow">
-                          <i className="fas fa-chart-bar" />
+                          {/* <i className="fas fa-chart-bar" /> */}
+                          <FontAwesomeIcon icon={faWallet}  />
                         </div>
                       </Col>
                     </Row>

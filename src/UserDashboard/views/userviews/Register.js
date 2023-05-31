@@ -38,6 +38,8 @@ import {
 } from "reactstrap";
 import Spinner from "../../../Component/Spinner";
 import { getUser, register, reset } from "../../../features/Auth/AuthSlice";
+import {faCheck, faTimes, faInfoCircle} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -53,10 +55,18 @@ const Register = () => {
     confirmpassword: ""
 })
 
+const [validEmail, setValidEmail] = useState(false)
+const Email_REGEX =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
 
 const {username, email, phonenumber, address, referral, password, confirmpassword} = formData
 
 const {user, isLoading, isError, isSuccess, message} = useSelector(getUser)
+
+useEffect(()=> {
+  const result = Email_REGEX.test(email)
+  setValidEmail(result)
+}, [email])
 
 useEffect(()=>{
   if(isError) {
@@ -94,7 +104,6 @@ const onSubmit = (e) => {
   const userData = {
     username, email, phonenumber, address, referral, password
   }
-  console.log(userData)
   e.preventDefault()
   if (confirmpassword !== password) {
     toast.info('password doesnt match')
@@ -131,7 +140,7 @@ const onSubmit = (e) => {
                 </InputGroup>
               </FormGroup>
               <FormGroup>
-                <InputGroup className="input-group-alternative mb-3">
+                <InputGroup className="input-group-alternative d-flex align-items-center h-100 mb-3 ">
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
                       <i className="ni ni-email-83" />
@@ -264,7 +273,7 @@ const onSubmit = (e) => {
                 </Col>
               </Row> */}
               <div className="text-center">
-                <Button className="mt-4" color="primary" onClick={onSubmit} type="button">
+                <Button className="mt-4" color="primary" onClick={onSubmit} type="button" disabled={!validEmail}>
                   Create account
                 </Button>
               </div>

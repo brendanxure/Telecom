@@ -16,12 +16,13 @@
 
 */
 import Index from "./views/Index.js";
-// import Profile from "./views/examples/Profile.js";
-import Maps from "./views/examples/Maps.js";
-import Register from "./views/examples/Register.js";
-import Login from "./views/examples/Login.js";
+import Profile from "./views/userviews/Profile.js";
+import Buy_Airtime from "./views/userviews/Buy_Airtime.js";
+import Register from "./views/userviews/Register.js";
+import Login from "./views/userviews/Login.js";
 // import Tables from "./views/examples/Tables.js";
-import Icons from "./views/examples/Icons.js";
+import Buy_Data from "./views/userviews/Buy_Data.js";
+import Fund_Wallet from "./views/userviews/Fund_Wallet.js";
 
 var routes = [
   {
@@ -35,14 +36,14 @@ var routes = [
     path: "/buydata",
     name: "Buy Data",
     icon: "ni ni-planet text-blue",
-    component: <Icons />,
+    component: <Buy_Data />,
     layout: "/admin",
   },
   {
-    path: "/maps",
+    path: "/buyairtime",
     name: "Buy Airtime",
     icon: "ni ni-mobile-button text-orange",
-    component: <Maps />,
+    component: <Buy_Airtime />,
     layout: "/admin",
   },
   // {
@@ -81,10 +82,10 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/user-profi",
-    name: "Wallet",
+    path: "/fundwallet",
+    name: "Fund Wallet",
     icon: "ni ni-credit-card text-blue",
-    // component: <Profile />,
+    component: <Fund_Wallet />,
     layout: "/admin",
   },
 

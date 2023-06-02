@@ -1,7 +1,7 @@
 import React from 'react'
-import DashNavbar from '../Component/DashNavbar'
+// import DashNavbar from '../Component/DashNavbar'
 import { Helmet } from 'react-helmet-async'
-import DashSidebar from '../Component/DashSidebar'
+// import DashSidebar from '../Component/DashSidebar'
 
 import BuyAirtime from '../Component/BuyAirtime'
 
@@ -27,9 +27,9 @@ const BuyAirtimePage = () => {
       <link rel="stylesheet" href="assest/css/custom.css" />
     </Helmet>
      <div className='inner_conatiner'>
-     <DashSidebar />
+     {/* <DashSidebar /> */}
      <div id="content">
-     <DashNavbar />
+     {/* <DashNavbar /> */}
      <BuyAirtime />
      </div>
      </div>

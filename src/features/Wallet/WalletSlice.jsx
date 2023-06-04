@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import InitializePayService from './InitializePayService'
+import WalletService from './WalletService'
 
 const initialState = {
-    payment : null,
+    wallet : null,
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -10,22 +10,22 @@ const initialState = {
 }
 
 //commence payment for funding wallet
-export const initializePaystackPayment = createAsyncThunk("initializePay/paystack", async(amount, thunkAPI) => {
+export const userWallet = createAsyncThunk("userwallet/get", async(_, thunkAPI) => {
     try {
         const accesstoken = thunkAPI.getState().auth.user.accessToken
-        return await InitializePayService.makePayment(amount, accesstoken)
+        return await WalletService.getWallet(accesstoken)
     } catch (error) {
         const message = error.response.data
         return thunkAPI.rejectWithValue(message)
     }
 })
 
-const InitializePaySlice = createSlice({
-  name: initializePay,
+const WalletSlice = createSlice({
+  name: "wallet",
   initialState,
   reducers: {
     reset: (state) => {
-        state.payment= null
+        state.wallet= null
         state.isLoading = false
         state.isError= false
         state.isSuccess= false
@@ -34,15 +34,15 @@ const InitializePaySlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    .addCase(initializePaystackPayment.pending, (state)=> {
+    .addCase(userWallet.pending, (state)=> {
         state.isLoading = true
     })
-    .addCase(initializePaystackPayment.fulfilled, (state, action)=> {
+    .addCase(userWallet.fulfilled, (state, action)=> {
         state.isLoading = false
         state.isSuccess = true
-        state.payment = action.payload
+        state.wallet = action.payload
     })
-    .addCase(initializePaystackPayment.rejected, (state, action)=> {
+    .addCase(userWallet.rejected, (state, action)=> {
         state.isLoading = false
         state.isError= true
         state.message= action.payload 
@@ -50,8 +50,8 @@ const InitializePaySlice = createSlice({
   }
 });
 
-export const makePayment = state => state.initializePay
+export const getUserWallet = state => state.wallet
 
-export const {reset} = InitializePaySlice.actions
+export const {reset} = WalletSlice.actions
 
-export default InitializePaySlice.reducer
+export default WalletSlice.reducer

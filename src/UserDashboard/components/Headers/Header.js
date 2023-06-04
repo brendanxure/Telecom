@@ -17,19 +17,26 @@
 */
 
 // reactstrap components
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 import { getUser } from "../../../features/Auth/AuthSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWallet, faUser, faPeopleArrows, faCreditCard } from '@fortawesome/free-solid-svg-icons'
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getUserWallet, userWallet } from "../../../features/Wallet/WalletSlice";
 
 const Header = () => {
+  const dispatch = useDispatch()
   const {user} = useSelector(getUser)
+  const wallet = useSelector(getUserWallet)
   const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  useEffect(()=> {
+    dispatch(userWallet())
+  }, [])
   return (
     <>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
@@ -58,7 +65,7 @@ const Header = () => {
                           Wallet Balance
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                        ₦{user?.walletBalance}
+                        ₦{wallet?.wallet?.balance}
                         </span>
                       </div>
                       <Col className="col-auto">

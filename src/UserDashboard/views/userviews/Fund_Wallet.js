@@ -15,8 +15,9 @@ import { useSelector } from "react-redux";
 import { getUser } from "../../../features/Auth/AuthSlice.jsx";
 import { baseApiUrl } from "../../../Utils/constants.js";
 import axios from 'axios';
-import { toast } from "react-toastify";
+
 import { json } from "react-router-dom";
+import {toast, ToastContainer} from 'react-toastify'
 
 const Fund_Wallet = () => {
   const { user } = useSelector(getUser)
@@ -34,7 +35,7 @@ const Fund_Wallet = () => {
         };
         const response = await axios.get(baseApiUrl + `/api/paystack/verify/${reference}`, { headers });
         if (response.status === 200) {
-          toast.success(" Wallet Funded Sucessfully ")
+          toast.success("Wallet Funded Sucessfully")
           window.location.href = "/admin/fundwallet";
         }
         else {
@@ -80,6 +81,7 @@ const Fund_Wallet = () => {
         <title>Telecom || Fund Wallet</title>
       </Helmet>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{ height: "70vh" }}></div>
+      <ToastContainer />
       {/* Page content */}
       <Container className="" style={{ marginTop: "-22rem" }} fluid>
         {/* Table */}

@@ -16,12 +16,13 @@ import { getUser } from "../../../features/Auth/AuthSlice.jsx";
 import { baseApiUrl } from "../../../Utils/constants.js";
 import axios from 'axios';
 
-import { json } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import {toast, ToastContainer} from 'react-toastify'
 
 const Fund_Wallet = () => {
   const { user } = useSelector(getUser)
   const [amount, setAmount] = useState(0)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -36,7 +37,8 @@ const Fund_Wallet = () => {
         const response = await axios.get(baseApiUrl + `/api/paystack/verify/${reference}`, { headers });
         if (response.status === 200) {
           toast.success("Wallet Funded Sucessfully")
-          window.location.href = "/admin/fundwallet";
+          // window.location.href = "/admin/fundwallet";
+          navigate('/admin/fundwallet')
         }
         else {
           toast.error(" Wallet Not  Funded Sucessfully due to " + response.data.message)
@@ -81,7 +83,7 @@ const Fund_Wallet = () => {
         <title>Telecom || Fund Wallet</title>
       </Helmet>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{ height: "70vh" }}></div>
-      <ToastContainer />
+      
       {/* Page content */}
       <Container className="" style={{ marginTop: "-22rem" }} fluid>
         {/* Table */}

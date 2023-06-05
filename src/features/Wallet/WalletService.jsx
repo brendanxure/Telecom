@@ -14,10 +14,19 @@ const getWallet = async(accesstoken)=> {
     return response.data
 } 
 
-
+//getWallet History
+const getWalletHistory = async(accesstoken)=> {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${accesstoken}`
+        }
+    }
+    const response = await axios.get(`${API}get-wallet-history`, config)
+    return response.data
+}
 
 const WalletService = {
-    getWallet
+    getWallet, getWalletHistory
 }
 
 export default WalletService

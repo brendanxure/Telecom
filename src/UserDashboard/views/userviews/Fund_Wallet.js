@@ -11,18 +11,20 @@ import {
 // core components
 import { Button, Form, Input } from 'antd'
 import { Helmet } from 'react-helmet-async'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../../features/Auth/AuthSlice.jsx";
 import { baseApiUrl } from "../../../Utils/constants.js";
 import axios from 'axios';
 
 import { json, useNavigate } from "react-router-dom";
 import {toast, ToastContainer} from 'react-toastify'
+import { reset } from "../../../features/Wallet/WalletSlice.jsx";
 
 const Fund_Wallet = () => {
   const { user } = useSelector(getUser)
   const [amount, setAmount] = useState(0)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -37,7 +39,6 @@ const Fund_Wallet = () => {
         const response = await axios.get(baseApiUrl + `/api/paystack/verify/${reference}`, { headers });
         if (response.status === 200) {
           toast.success("Wallet Funded Sucessfully")
-          // window.location.href = "/admin/fundwallet";
           navigate('/admin/fundwallet')
         }
         else {
@@ -46,6 +47,8 @@ const Fund_Wallet = () => {
       }
       catch (error) {
         console.log(error);
+      } finally {
+        dispatch(reset())
       }
     };
 

@@ -26,6 +26,7 @@ import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getUserWallet, userWallet } from "../../../features/Wallet/WalletSlice";
+import { userWalletHistory } from "../../../features/Wallet/WalletHistorySlice";
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -36,6 +37,7 @@ const Header = () => {
 
   useEffect(()=> {
     dispatch(userWallet())
+    dispatch(userWalletHistory())
   }, [])
   return (
     <>

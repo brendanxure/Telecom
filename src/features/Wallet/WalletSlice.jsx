@@ -9,7 +9,7 @@ const initialState = {
     message: ""
 }
 
-//commence payment for funding wallet
+//getting user wallet
 export const userWallet = createAsyncThunk("userwallet/get", async(_, thunkAPI) => {
     try {
         const accesstoken = thunkAPI.getState().auth.user.accessToken
@@ -25,7 +25,6 @@ const WalletSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-        state.wallet= null
         state.isLoading = false
         state.isError= false
         state.isSuccess= false

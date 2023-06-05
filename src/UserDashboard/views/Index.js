@@ -48,6 +48,7 @@ import {
 
 import Header from "../components/Headers/Header";
 import { Helmet } from 'react-helmet-async'
+import Wallet_History from "./userviews/Wallet_History";
 
 const Index = (props) => {
   const [activeNav, setActiveNav] = useState(1);
@@ -69,7 +70,7 @@ const Index = (props) => {
       </Helmet>
       <Header />
       {/* Page content */}
-     
+     <Wallet_History />
     </>
   );
 };

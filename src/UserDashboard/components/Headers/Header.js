@@ -25,20 +25,24 @@ import { faWallet, faUser, faPeopleArrows, faCreditCard } from '@fortawesome/fre
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getUserWallet, userWallet } from "../../../features/Wallet/WalletSlice";
-import { userWalletHistory } from "../../../features/Wallet/WalletHistorySlice";
+import { getUserWallet, reset, userWallet } from "../../../features/Wallet/WalletSlice";
 
 const Header = () => {
   const dispatch = useDispatch()
-  const {user} = useSelector(getUser)
   const wallet = useSelector(getUserWallet)
+  const {isError, isSuccess} = wallet
   const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(()=> {
-    dispatch(userWallet())
-    dispatch(userWalletHistory())
+      dispatch(userWallet())
   }, [])
+
+  useEffect(()=> {
+    if (isSuccess || isError){
+    dispatch(reset())
+    }
+  }, [isError, isSuccess])
   return (
     <>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">

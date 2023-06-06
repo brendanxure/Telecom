@@ -17,7 +17,7 @@ import { baseApiUrl } from "../../../Utils/constants.js";
 import axios from 'axios';
 
 import { json, useNavigate } from "react-router-dom";
-import {toast, ToastContainer} from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 import { reset } from "../../../features/Wallet/WalletSlice.jsx";
 
 const Fund_Wallet = () => {
@@ -86,7 +86,7 @@ const Fund_Wallet = () => {
         <title>Telecom || Fund Wallet</title>
       </Helmet>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{ height: "70vh" }}></div>
-      
+
       {/* Page content */}
       <Container className="" style={{ marginTop: "-22rem" }} fluid>
         {/* Table */}

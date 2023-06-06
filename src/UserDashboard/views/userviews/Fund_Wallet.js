@@ -18,14 +18,14 @@ import axios from 'axios';
 
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify'
-import { reset, updateWalletBalance } from "../../../features/Wallet/WalletSlice.jsx";
+import { reset, updateWalletBalance, walletBalance } from "../../../features/Wallet/WalletSlice.jsx";
 
 const Fund_Wallet = () => {
   const { user } = useSelector(getUser)
   const [amount, setAmount] = useState(0)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const walletBalance = useSelector((state) => state.wallet.balance);
+  const WalletBalance = useSelector(walletBalance)
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -99,7 +99,7 @@ const Fund_Wallet = () => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Fund Wallet(Paystack)  Wallet Balance: ₦{walletBalance}</h3>
+                <h3 className="mb-0">Fund Wallet(Paystack)  Wallet Balance: ₦{WalletBalance?.balance}</h3>
               </CardHeader>
               <CardBody>
                 <Form className='w-100 bg-white p-4 rounded-xl ' >

@@ -63,7 +63,7 @@ const Header = () => {
                           Wallet Balance
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                        ₦{WalletBalance.balance}
+                        ₦{WalletBalance?.balance}
                         </span>
                       </div>
                       <Col className="col-auto">
@@ -85,13 +85,13 @@ const Header = () => {
               <Col lg="6" xl="3">
                 <Card className="card-stats mb-4 mb-xl-0">
                   <CardBody>
-                    <Row>
+                    <Row style={{cursor: 'pointer'}}>
                       <div className="col">
                         <CardTitle
                           tag="h5"
                           className="text-uppercase text-muted mb-0"
                         >
-                          Wallet Summary
+                          Wallet History
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">2,356</span>
                       </div>

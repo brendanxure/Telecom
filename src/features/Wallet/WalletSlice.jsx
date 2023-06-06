@@ -22,14 +22,19 @@ export const userWallet = createAsyncThunk("userwallet/get", async(_, thunkAPI) 
 
 const WalletSlice = createSlice({
   name: "wallet",
-  initialState,
+  initialState : {
+    balance: 0,
+  },
   reducers: {
     reset: (state) => {
         state.isLoading = false
         state.isError= false
         state.isSuccess= false
         state.message=""
-    }
+    },
+    updateWalletBalance: (state, action) => {
+        state.balance = action.payload;
+      },
   },
   extraReducers: (builder) => {
     builder
@@ -51,6 +56,6 @@ const WalletSlice = createSlice({
 
 export const getUserWallet = state => state.wallet
 
-export const {reset} = WalletSlice.actions
+export const {reset,updateWalletBalance} = WalletSlice.actions
 
 export default WalletSlice.reducer

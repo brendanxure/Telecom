@@ -16,15 +16,16 @@ import { getUser } from "../../../features/Auth/AuthSlice.jsx";
 import { baseApiUrl } from "../../../Utils/constants.js";
 import axios from 'axios';
 
-import { json, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from 'react-toastify'
-import { reset } from "../../../features/Wallet/WalletSlice.jsx";
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify'
+import { reset, updateWalletBalance } from "../../../features/Wallet/WalletSlice.jsx";
 
 const Fund_Wallet = () => {
   const { user } = useSelector(getUser)
   const [amount, setAmount] = useState(0)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const walletBalance = useSelector((state) => state.wallet.balance);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -37,7 +38,11 @@ const Fund_Wallet = () => {
 
         };
         const response = await axios.get(baseApiUrl + `/api/paystack/verify/${reference}`, { headers });
+        console.log(response)
         if (response.status === 200) {
+
+          // Dispatch the action to update the wallet balance in Redux store
+          dispatch(updateWalletBalance(response.data.walletbalance));
           toast.success("Wallet Funded Sucessfully")
           navigate('/admin/fundwallet')
         }
@@ -48,7 +53,7 @@ const Fund_Wallet = () => {
       catch (error) {
         console.log(error);
       } finally {
-        dispatch(reset())
+        // dispatch(reset())
       }
     };
 
@@ -94,7 +99,7 @@ const Fund_Wallet = () => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Fund Wallet(Paystack)</h3>
+                <h3 className="mb-0">Fund Wallet(Paystack)  Wallet Balance: {walletBalance}</h3>
               </CardHeader>
               <CardBody>
                 <Form className='w-100 bg-white p-4 rounded-xl ' >

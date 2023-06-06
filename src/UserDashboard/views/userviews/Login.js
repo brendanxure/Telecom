@@ -38,6 +38,7 @@ import {
 import Spinner from "../../../Component/Spinner";
 import { getUser, login, reset } from "../../../features/Auth/AuthSlice";
 import { Helmet } from 'react-helmet-async'
+import { updateWalletBalance } from "../../../features/Wallet/WalletSlice";
 
 
 const Login = () => {
@@ -66,6 +67,7 @@ useEffect(()=>{
       toast.success('Logged in Successfully')
       //navigate to your dash if you are logged in
       navigate('/admin')
+      dispatch(updateWalletBalance(user?.walletBalance))
       
   }
   if(user) {

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import WalletService from './WalletService'
 
+
 const initialState = {
     wallet : null,
     isError: false,
@@ -55,6 +56,7 @@ const WalletSlice = createSlice({
 });
 
 export const getUserWallet = state => state.wallet
+export const walletBalance = state => state.wallet
 
 export const {reset,updateWalletBalance} = WalletSlice.actions
 

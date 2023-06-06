@@ -47,7 +47,7 @@ const Fund_Wallet = () => {
           navigate('/admin/fundwallet')
         }
         else {
-          toast.error(" Wallet Not  Funded Sucessfully due to " + response.data.message)
+          toast.error(" Wallet Not Funded Sucessfully due to " + response.data.message)
         }
       }
       catch (error) {
@@ -99,7 +99,7 @@ const Fund_Wallet = () => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Fund Wallet(Paystack)  Wallet Balance: {walletBalance}</h3>
+                <h3 className="mb-0">Fund Wallet(Paystack)  Wallet Balance: ₦{walletBalance}</h3>
               </CardHeader>
               <CardBody>
                 <Form className='w-100 bg-white p-4 rounded-xl ' >

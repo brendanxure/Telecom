@@ -25,24 +25,16 @@ import { faWallet, faUser, faPeopleArrows, faCreditCard } from '@fortawesome/fre
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getUserWallet, reset, userWallet } from "../../../features/Wallet/WalletSlice";
+import { updateWalletBalance, walletBalance } from "../../../features/Wallet/WalletSlice";
+
 
 const Header = () => {
-  const dispatch = useDispatch()
-  const wallet = useSelector(getUserWallet)
-  const {isError, isSuccess} = wallet
+  const {user} = useSelector(getUser)
   const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  useEffect(()=> {
-      dispatch(userWallet())
-  }, [])
-
-  useEffect(()=> {
-    if (isSuccess || isError){
-    dispatch(reset())
-    }
-  }, [isError, isSuccess])
+  const WalletBalance = useSelector(walletBalance)
+  
   return (
     <>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
@@ -71,7 +63,7 @@ const Header = () => {
                           Wallet Balance
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                        ₦{wallet?.wallet?.balance}
+                        ₦{WalletBalance.balance}
                         </span>
                       </div>
                       <Col className="col-auto">

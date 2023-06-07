@@ -7,14 +7,23 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserWalletHistory, reset, userWalletHistory } from '../../../features/Wallet/WalletHistorySlice'
 import "primereact/resources/themes/lara-light-indigo/theme.css";     
 import "primereact/resources/primereact.min.css";
-import { Card, CardHeader, } from 'reactstrap'
+import { Card, CardHeader, Container } from 'reactstrap'
+import { Helmet } from 'react-helmet-async'
 
 
 const Wallet_History = () => {
     const dispatch = useDispatch()
     const walletHistoryData = useSelector(getUserWalletHistory)
     const {walletHistory, isLoading, isError, isSuccess } = walletHistoryData
-    console.log(walletHistoryData)
+
+    const dateFormat = (date) => {
+        return date.substring(0, 10)
+    }
+
+    const dateFormatTemplate = (walletHistory)=> {
+        return dateFormat(walletHistory.timestamp)
+    }
+    
 
     const [filter, setFilter] = useState({
         global: {value: null, matchMode: FilterMatchMode.CONTAINS},
@@ -28,17 +37,27 @@ const Wallet_History = () => {
             dispatch(reset())
             }
     }, [isSuccess, isError])
+    
+    
   return (
-    <div className="card px-3 pb-3">
+    <div>
+        <Helmet defer={false}>
+        <title>Telecom || Wallet History</title>
+        </Helmet>
+        <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{ height: "70vh"}}></div>
+        <Container className="" style={{ marginTop: "-22rem" }} fluid>
+        <Card className="shadow px-3 pb-4">
         <CardHeader className="bg-transparent">
             <h3 className="mb-0">Wallet History</h3>
         </CardHeader>
-        <InputText placeholder='search' className='searchdrop p-2 border w-25 my-4' onInput={(e)=> setFilter({global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS},})} />
+        {isLoading ? <div className='alert alert-light'>......Loading</div> : <div><InputText placeholder='search' className='searchdrop p-2 border w-25 my-4' onInput={(e)=> setFilter({global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS},})} />
         <DataTable value={walletHistory} filters={filter} responsiveLayout='scroll' showGridlines paginator rows={5} rowsPerPageOptions={[5, 10, 20, 40]}>
-        <Column field='timestamp' header='Date' style={{width: '30%'}}></Column>
+        <Column field='timestamp' header='Date' body={dateFormatTemplate} style={{width: '30%'}}></Column>
         <Column field='transactionType' header='Transaction Type' style={{width: '30%'}}></Column>
         <Column field='amount' header='Amount' style={{width: '30%'}}></Column>
-        </DataTable>
+        </DataTable></div>}
+        </Card>
+        </Container>  
     </div>
   )
 }

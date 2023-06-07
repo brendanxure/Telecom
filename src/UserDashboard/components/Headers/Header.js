@@ -85,7 +85,7 @@ const Header = () => {
               <Col lg="6" xl="3">
                 <Card className="card-stats mb-4 mb-xl-0">
                   <CardBody>
-                    <Row style={{cursor: 'pointer'}}>
+                    <Row style={{cursor: 'pointer'}} onClick={()=> navigate("/admin/wallethistory")}>
                       <div className="col">
                         <CardTitle
                           tag="h5"

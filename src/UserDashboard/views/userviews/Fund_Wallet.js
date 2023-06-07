@@ -43,6 +43,7 @@ const Fund_Wallet = () => {
 
           // Dispatch the action to update the wallet balance in Redux store
           dispatch(updateWalletBalance(response.data.walletbalance));
+          localStorage.setItem("userTelecomBalance", JSON.stringify(response.data.walletbalance))
           toast.success("Wallet Funded Sucessfully")
           navigate('/admin/fundwallet')
         }

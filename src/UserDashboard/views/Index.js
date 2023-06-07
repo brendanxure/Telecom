@@ -70,7 +70,6 @@ const Index = (props) => {
       </Helmet>
       <Header />
       {/* Page content */}
-     <Wallet_History />
     </>
   );
 };

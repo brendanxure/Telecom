@@ -23,6 +23,7 @@ import Login from "./views/userviews/Login.js";
 // import Tables from "./views/examples/Tables.js";
 import Buy_Data from "./views/userviews/Buy_Data.js";
 import Fund_Wallet from "./views/userviews/Fund_Wallet.js";
+import Wallet_History from "./views/userviews/Wallet_History.js";
 
 var routes = [
   {
@@ -86,6 +87,13 @@ var routes = [
     name: "Fund Wallet",
     icon: "ni ni-credit-card text-blue",
     component: <Fund_Wallet />,
+    layout: "/admin",
+  },
+  {
+    path: "/wallethistory",
+    name: "Wallet History",
+    icon: "fas fa-chart-pie text-orange",
+    component: <Wallet_History />,
     layout: "/admin",
   },
 

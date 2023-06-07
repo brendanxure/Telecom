@@ -8,6 +8,7 @@ const register = async (userData)=> {
 
     if (response.data) {
         localStorage.setItem("userTelecom", JSON.stringify(response.data))
+        localStorage.setItem("userTelecomBalance", JSON.stringify(response.data.wallet))
     }
     return response.data
 }
@@ -18,13 +19,16 @@ const login = async (userData)=> {
 
     if (response.data) {
         localStorage.setItem("userTelecom", JSON.stringify(response.data))
+        localStorage.setItem("userTelecomBalance", JSON.stringify(response.data.walletBalance))
     }
     return response.data
 }
 
 //logout user
 const logout = async () => {
-    return localStorage.removeItem("userTelecom")
+    let keysToRemove = ["userTelecom", "userTelecomBalance"]
+    return keysToRemove.forEach(k=>
+    localStorage.removeItem(k))
 }
 
 const AuthService = {

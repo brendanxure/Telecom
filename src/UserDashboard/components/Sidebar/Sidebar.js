@@ -190,7 +190,7 @@ const Sidebar = (props) => {
             <Row>
               {logo ? (
                 <Col className="collapse-brand" xs="6">
-                  {logo.innerLink ? (
+                  {/* {logo.innerLink ? (
                     <Link to={logo.innerLink}>
                       <img alt={logo.imgAlt} src={logo.imgSrc} />
                     </Link>
@@ -198,7 +198,8 @@ const Sidebar = (props) => {
                     <a href={logo.outterLink}>
                       <img alt={logo.imgAlt} src={logo.imgSrc} />
                     </a>
-                  )}
+                  )} */}
+                  <h1>Telecom</h1>
                 </Col>
               ) : null}
               <Col className="collapse-close" xs="6">

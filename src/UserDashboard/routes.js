@@ -89,6 +89,7 @@ var routes = [
     component: <Fund_Wallet />,
     layout: "/admin",
   },
+  
   {
     path: "/wallethistory",
     name: "Wallet History",

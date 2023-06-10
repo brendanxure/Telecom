@@ -2,15 +2,17 @@
     position:relative !important;
     overflow: hidden !important; 
     transition: 300ms ease-in !important;
+    padding-left: 1rem !important;
+
 }
 .walletLinks{
     position: relative !important;
-    top: 0rem !important;
+    left: 0rem !important;
     transition: 300ms ease-in !important;
 }
 
 .noWalletLinks {
     position: absolute !important;
-    top: -5rem !important;
+    left: -5rem !important;
     transition: 500ms ease-in !important;  
 }

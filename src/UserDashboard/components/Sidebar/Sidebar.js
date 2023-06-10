@@ -99,9 +99,9 @@ const Sidebar = (props) => {
     })
     return (
       <NavItem>
-        <NavLink style={{cursor: 'pointer'}} onClick={()=> setWalletLinksOpen(!walletLinksOpen)}><i className=" " />Wallet</NavLink>
+        <NavLink style={{cursor: 'pointer'}} onClick={()=> setWalletLinksOpen(!walletLinksOpen)}><i className="fas fa-wallet text-danger" />Wallet{walletLinksOpen? <i className="fas fa-angle-down text-center"/> :<i className="fas fa-angle-right text-center" />}</NavLink>
         {walletlinks.map((eachWalletLink)=> 
-        <div className="walletLinksDiv">
+        <div className="walletLinksDiv bg-gradient-info">
           <NavLink className={walletLinksOpen ? "walletLinks" : "noWalletLinks"}
           to={eachWalletLink.layout + eachWalletLink.path} 
           tag={NavLinkRRD} 

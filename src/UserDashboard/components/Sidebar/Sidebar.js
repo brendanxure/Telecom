@@ -20,6 +20,7 @@ import { useState } from "react";
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
 // nodejs library to set properties for components
 import { PropTypes } from "prop-types";
+import './Sidebar.css'
 
 // reactstrap components
 import {
@@ -55,6 +56,8 @@ import {
 var ps;
 
 const Sidebar = (props) => {
+  //state for wallet links
+  const [walletLinksOpen, setWalletLinksOpen] = useState(false)
   const [collapseOpen, setCollapseOpen] = useState();
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
@@ -69,9 +72,10 @@ const Sidebar = (props) => {
     setCollapseOpen(false);
   };
   // creates the links that appear in the left menu / Sidebar
+  
   const createLinks = (routes) => {
     return routes.map((prop, key) => {
-      if (prop.path !== '/login' && prop.path !== "/register") {
+      if (prop.path !== '/login' && prop.path !== "/register" && prop.path !== '/fundwallet' && prop.path !== '/wallethistory') {
         return (
           <NavItem key={key}>
           <NavLink
@@ -86,6 +90,30 @@ const Sidebar = (props) => {
         )}
     });
   };
+
+  const createWalletLinks = (routes) => {
+    const walletlinks = routes.filter((eachfilter, key)=> {
+      if (eachfilter.path === '/fundwallet' || eachfilter.path === '/wallethistory') {
+        return eachfilter
+      }
+    })
+    return (
+      <NavItem>
+        <NavLink style={{cursor: 'pointer'}} onClick={()=> setWalletLinksOpen(!walletLinksOpen)}><i className=" " />Wallet</NavLink>
+        {walletlinks.map((eachWalletLink)=> 
+        <div className="walletLinksDiv">
+          <NavLink className={walletLinksOpen ? "walletLinks" : "noWalletLinks"}
+          to={eachWalletLink.layout + eachWalletLink.path} 
+          tag={NavLinkRRD} 
+          onClick={closeCollapse}>
+          <i className={eachWalletLink.icon} />
+          {eachWalletLink.name}
+        </NavLink>
+        </div>
+        )}
+      </NavItem>
+    )
+  }
 
   const { bgColor, routes, logo } = props;
   let navbarBrandProps;
@@ -232,6 +260,7 @@ const Sidebar = (props) => {
           </Form>
           {/* Navigation */}
           <Nav navbar>{createLinks(routes)}</Nav>
+          <Nav navbar>{createWalletLinks(routes)}</Nav>
           {/* <Nav>
             <NavItem>
             <NavLink to='/auth/login' onClick={closeCollapse} >Login</NavLink>n

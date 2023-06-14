@@ -359,3 +359,54 @@ export const dashboardGrid = [
         title: "Buy Airtime"
     },
 ]
+
+export const GloDataGiftingPackages = [
+    {
+        id: 1,
+        size: 200,
+        unit: "mb",
+        duration: 14
+    },
+    {
+        id: 2,
+        size: 500,
+        unit: "mb",
+        duration: 14
+    },
+    {
+        id: 3,
+        size: 500,
+        unit: "mb",
+        duration: 30
+    },
+    {
+        id: 4,
+        size: 1,
+        unit: "gb",
+        duration: 30
+    },
+    {
+        id: 5,
+        size: 2,
+        unit: "gb",
+        duration: 30
+    },
+    {
+        id: 6,
+        size: 3,
+        unit: "gb",
+        duration: 30,
+    },
+    {
+        id: 7,
+        size: 5,
+        unit: "gb",
+        duration: 30
+    },
+    {
+        id: 8,
+        size: 10,
+        unit: "gb",
+        duration: 30
+    }
+] 

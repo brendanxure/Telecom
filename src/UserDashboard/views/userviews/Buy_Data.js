@@ -38,6 +38,7 @@ import { getUser } from "../../../features/Auth/AuthSlice.jsx";
 
 
 const Buy_Data = () => {
+  const [dataPackage, setDataPackage] = useState()
   const [copiedText, setCopiedText] = useState();
   const {user} = useSelector(getUser)
   return (

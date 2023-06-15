@@ -99,8 +99,9 @@ const Fund_Wallet = () => {
         <Row>
           <div className="col">
             <Card className="shadow">
-              <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Fund Wallet(Paystack)  Wallet Balance: ₦{WalletBalance?.balance}</h3>
+              <CardHeader className="bg-transparent d-flex justify-content-between align-items-center">
+                <h3 className="mb-0">Fund Wallet(Paystack)</h3>
+                <h3 className="mb-0 bg-gradient-info px-4 py-2 rounded-lg text-white"> Wallet Balance: ₦{WalletBalance?.balance}</h3>
               </CardHeader>
               <CardBody>
                 <Form className='w-100 bg-white p-4 rounded-xl ' >

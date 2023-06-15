@@ -24,6 +24,7 @@ import Login from "./views/userviews/Login.js";
 import Buy_Data from "./views/userviews/Buy_Data.js";
 import Fund_Wallet from "./views/userviews/Fund_Wallet.js";
 import Wallet_History from "./views/userviews/Wallet_History.js";
+import Data_Plan from "./views/adminviews/Data_Plan.js";
 
 var routes = [
   {
@@ -96,6 +97,13 @@ var routes = [
     icon: "fas fa-chart-pie text-orange",
     component: <Wallet_History />,
     layout: "/admin",
+  },
+  {
+    path: "/dataplan",
+    name: "Data Plan",
+    icon: "fas fa-chart-pie text-green",
+    component: <Data_Plan />,
+    layout: "/admin"
   },
 
   {

@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { useState } from "react";
+import {useState } from "react";
 // react component that copies the given text inside your clipboard
 import { CopyToClipboard } from "react-copy-to-clipboard";
 // reactstrap components
@@ -34,30 +34,19 @@ import { Button, Form, Input, Select, Modal } from 'antd'
 import { Helmet } from 'react-helmet-async'
 import { useSelector } from "react-redux";
 import { getUser } from "../../../features/Auth/AuthSlice.jsx";
-import { GloDataGiftingPackages } from "../../../Data.jsx";
+
 
 
 
 const Buy_Data = () => {
-  const [dataPackage, setDataPackage] = useState(GloDataGiftingPackages)
-  const [network, setNetwork] = useState('')
-  const [type, setType] = useState('')
-  const [size, setSize] = useState()
-  const [unit, setUnit] = useState('')
-  const [duration, setDuration] = useState()
   const [copiedText, setCopiedText] = useState();
   const {user} = useSelector(getUser)
+  
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const onFinish = (e) => {
     console.log(e)
-    const dataPurchased = dataPackage.filter((data)=> data.id === e.size)
-    console.log(dataPurchased[0]?.duration)
-    setNetwork(e.network)
-    setType(e.type)
-    setSize(dataPurchased[0]?.size)
-    setUnit(dataPurchased[0]?.unit)
-    setDuration(dataPurchased[0]?.duration)
+    setIsModalOpen(false)
   }
   return (
     <>
@@ -75,7 +64,7 @@ const Buy_Data = () => {
                 <h3 className="mb-0">Buy Data</h3>
               </CardHeader>
               <CardBody>
-              <Form className='w-100 bg-white p-4 rounded-xl' onFinish={onFinish}>
+          <Form className='w-100 bg-white p-4 rounded-xl' onFinish={onFinish}>
           <label htmlFor="">Name</label>
           <Form.Item>
             <Input disabled value={user?.username}/>
@@ -100,11 +89,8 @@ const Buy_Data = () => {
           <label htmlFor="">Data Package</label>
           <Form.Item name="size" rules={[{required: 'true'}]}>
             <Select>
-              {dataPackage.map((eachPackage)=> 
-              <Select.Option value={eachPackage.id} key={eachPackage.id}>
-                {eachPackage?.size + eachPackage?.unit + ' for ' + eachPackage?.duration + ' days'}
+              <Select.Option>
               </Select.Option>
-              )}
             </Select>
           </Form.Item>
           <label htmlFor="">Mobile Number</label>
@@ -122,30 +108,6 @@ const Buy_Data = () => {
               </CardBody>
             </Card>
           </div>
-        </Row>
-      </Container>
-      <Container className="my-5 w-100" fluid>
-      <Modal open={isModalOpen} onCancel={()=>setIsModalOpen(false)} title='Buy Data' className="" style={{height: "60vh", top: "30vh"}} footer={null}></Modal>
-        <Row>
-        <Card className="shadow">
-        <div className='col'>
-          <CardHeader>
-            <h3>My Data</h3> 
-          </CardHeader>
-          <CardBody>
-            <div className="d-flex w-100 justify-content-between align-content-center">
-              <p>{network}</p>
-              <p>{type}</p>
-              <p>{size && size + unit}</p>
-              <p>{duration && duration + 'days'}</p>
-              {network && <div className="">
-                <i className="fas fa-pen-to-square me-4" style={{cursor: "pointer"}}  onClick={()=>setIsModalOpen(true)}/>
-                <i className="fa-sharp fa-solid fa-trash" style={{cursor: "pointer"}}/>
-              </div>}
-            </div>
-          </CardBody>
-        </div>
-        </Card>
         </Row>
       </Container>
     </>

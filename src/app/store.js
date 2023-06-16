@@ -3,12 +3,14 @@ import counterReducer from '../features/counter/counterSlice';
 import authReducer from '../features/Auth/AuthSlice'
 import walletReducer from '../features/Wallet/WalletSlice'
 import walletHistoryReducer from '../features/Wallet/WalletHistorySlice'
+import dataPlanReducer from '../features/DataPlan/DataPlanSlice'
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     auth: authReducer,
     wallet: walletReducer,
-    walletHistory: walletHistoryReducer
+    walletHistory: walletHistoryReducer,
+    dataPlan: dataPlanReducer
   },
 });

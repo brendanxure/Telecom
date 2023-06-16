@@ -1,4 +1,4 @@
-import {useState } from "react";
+import {useEffect, useRef, useState } from "react";
 // react component that copies the given text inside your clipboard
 import { CopyToClipboard } from "react-copy-to-clipboard";
 // reactstrap components
@@ -16,24 +16,61 @@ import Header from "../../components/Headers/Header.js";
 import { Button, Form, Input, Select, Modal, Tooltip } from 'antd'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import { Helmet } from 'react-helmet-async'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../../features/Auth/AuthSlice.jsx";
+import { createDataPlan, dataPackage, getAllDataPlan, reset } from "../../../features/DataPlan/DataPlanSlice.jsx";
+import { toast } from "react-toastify";
+import Modaldiv from "./Modaldiv.js";
 
 const Data_Plan = () => {
+    const formRef = useRef(null)
+    const gridRef = useRef(null)
+    const dispatch = useDispatch()
     const {user} = useSelector(getUser)
+    const {dataPlans, isError, isLoading, isSuccess, message} = useSelector(dataPackage)
   
 
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const onFinish = (e) => {
-        
-        console.log(e)
-        setIsModalOpen(false)
+    const [prompt, setPrompt] = useState(false)
+    const [editData, setEditData] = useState([])
+    const [deleteData, setDeleteData] = useState([])
+
+    useEffect(()=> {
+      if (isSuccess){
+        formRef.current.resetFields();
+        gridRef.current.scrollIntoView({behavior: "smooth"}) 
+      }
+      if (isError) {
+        toast.error(message)
+      }
+      dispatch(reset())
+    }, [isSuccess, isError])
+
+    useEffect(()=> {
+      dispatch(getAllDataPlan())
+    }, [])
+
+    const onFinish = (formData) => {
+        console.log(formData)
+        dispatch(createDataPlan(formData))
     }
-    const onEdit =()=> {
+
+    const onEdit =(dataId)=> {
+        const dataToEdit = dataPlans.filter((dataPlan)=> dataId === dataPlan?._id)
+        if(dataToEdit){
+          console.log(dataToEdit)
+        setEditData(dataToEdit)
         setIsModalOpen(true)
+        }
     }
-    const onDelete = ()=> {
-        
+
+    const onDelete = (dataId)=> {
+        const dataToDelete = dataPlans.filter((dataPlan)=> dataId === dataPlan?._id)
+        if(dataToDelete){
+          console.log(dataToDelete)
+          setDeleteData(dataToDelete)
+          setPrompt(true)
+        }
   }
   return (
     <div>
@@ -41,6 +78,19 @@ const Data_Plan = () => {
         <title>Telecom || Data Plan</title>
       </Helmet>
      <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{height : "70vh"}}></div>
+      <Modaldiv editData={editData} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
+      <Modal open={prompt} onCancel={()=>setPrompt(false)} title='' className="w-50" style={{height: "60vh", position: "fixed", top: "30vh", left: "25vw"}} centered  footer={null}>
+         {deleteData?.map(data=> 
+          <Card key={data?._id} className="shadow">
+              <CardHeader className="bg-transparent">
+                <h3 className="mb-0">Delete Data Plan</h3>
+              </CardHeader>
+              <CardBody>
+                <p>Are you sure you want to delete?</p>
+              </CardBody>
+          </Card>
+          )}
+       </Modal>  
       {/* Page content */}
       <Container className="" style={{marginTop: "-22rem"}} fluid>
         {/* Table */}
@@ -51,7 +101,7 @@ const Data_Plan = () => {
                 <h3 className="mb-0">Create Data Plan</h3>
               </CardHeader>
               <CardBody>
-          <Form className='w-100 bg-white p-4 rounded-xl' onFinish={onFinish}>
+          <Form ref={formRef} className='w-100 bg-white p-4 rounded-xl' onFinish={onFinish}>
           <label htmlFor="">Name</label>
           <Form.Item>
             <Input disabled value={user?.username}/>
@@ -115,15 +165,19 @@ const Data_Plan = () => {
             <h3>Data Plans</h3> 
           </CardHeader>
           <CardBody>
-            <div className="d-flex w-100 justify-content-between align-content-center">
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
+            <div ref={gridRef}>
+            {dataPlans && dataPlans.map(dataPlan=> 
+              <div key={dataPlan?._id} className="d-flex w-100 justify-content-between align-content-center">
+              <p>{dataPlan?.network}</p>
+              <p>{dataPlan?.type}</p>
+              <p>{dataPlan?.size + dataPlan?.unit}</p>
+              <p>{dataPlan?.duration + 'days'}</p>
               <div className="">
-                <i className="fas fa-pen-to-square me-4" style={{cursor: "pointer"}}  onClick={onEdit}/>
-                <i className="fa-sharp fa-solid fa-trash me-4" style={{cursor: "pointer"}} onClick={onDelete}/>
+                <i className="fas fa-pen-to-square me-4" style={{cursor: "pointer"}}  onClick={()=>onEdit(dataPlan?._id)}/>
+                <i className="fa-sharp fa-solid fa-trash me-4" style={{cursor: "pointer"}} onClick={()=>onDelete(dataPlan?._id)}/>
               </div>
+            </div>
+            )}
             </div>
           </CardBody>
         </div>

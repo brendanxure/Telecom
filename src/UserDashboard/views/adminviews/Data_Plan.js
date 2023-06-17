@@ -18,7 +18,7 @@ import { InfoCircleOutlined } from '@ant-design/icons'
 import { Helmet } from 'react-helmet-async'
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../../features/Auth/AuthSlice.jsx";
-import { createDataPlan, dataPackage, getAllDataPlan, reset } from "../../../features/DataPlan/DataPlanSlice.jsx";
+import { createDataPlan, dataPackage, deleteDataPlanById, getAllDataPlan, reset } from "../../../features/DataPlan/DataPlanSlice.jsx";
 import { toast } from "react-toastify";
 import Modaldiv from "./Modaldiv.js";
 
@@ -29,21 +29,35 @@ const Data_Plan = () => {
     const {user} = useSelector(getUser)
     const {dataPlans, isError, isLoading, isSuccess, message} = useSelector(dataPackage)
   
-
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [created, setCreated] = useState(false)
     const [prompt, setPrompt] = useState(false)
     const [editData, setEditData] = useState([])
     const [deleteData, setDeleteData] = useState([])
 
     useEffect(()=> {
-      if (isSuccess){
+      if (created && isSuccess){
+        dispatch(getAllDataPlan())
         formRef.current.resetFields();
         gridRef.current.scrollIntoView({behavior: "smooth"}) 
+        toast.success('Data Plan Created')
       }
-      if (isError) {
+      if (created && isLoading) {
+        toast.error(message)
+      }
+      if(prompt && isLoading) {
+        toast.info('Deleting...')
+      }
+      if(prompt && isSuccess) {
+        dispatch(getAllDataPlan())
+        setPrompt(false)
+        toast.success('Data Plan Deleted')
+      }
+      if(prompt && isError) {
         toast.error(message)
       }
       dispatch(reset())
+      setCreated(false)
     }, [isSuccess, isError])
 
     useEffect(()=> {
@@ -51,14 +65,13 @@ const Data_Plan = () => {
     }, [])
 
     const onFinish = (formData) => {
-        console.log(formData)
+        setCreated(true)
         dispatch(createDataPlan(formData))
     }
 
     const onEdit =(dataId)=> {
         const dataToEdit = dataPlans.filter((dataPlan)=> dataId === dataPlan?._id)
         if(dataToEdit){
-          console.log(dataToEdit)
         setEditData(dataToEdit)
         setIsModalOpen(true)
         }
@@ -67,10 +80,14 @@ const Data_Plan = () => {
     const onDelete = (dataId)=> {
         const dataToDelete = dataPlans.filter((dataPlan)=> dataId === dataPlan?._id)
         if(dataToDelete){
-          console.log(dataToDelete)
           setDeleteData(dataToDelete)
           setPrompt(true)
         }
+  }
+  const deleteButton = () => {
+    const data = deleteData.find(data=> data._id)
+    const dataId = data._id
+    dispatch(deleteDataPlanById(dataId))
   }
   return (
     <div>
@@ -79,14 +96,14 @@ const Data_Plan = () => {
       </Helmet>
      <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{height : "70vh"}}></div>
       <Modaldiv editData={editData} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
-      <Modal open={prompt} onCancel={()=>setPrompt(false)} title='' className="w-50" style={{height: "60vh", position: "fixed", top: "30vh", left: "25vw"}} centered  footer={null}>
+      <Modal open={prompt} onOk={deleteButton} onCancel={()=>setPrompt(false)} title='' className="w-50" style={{height: "60vh", position: "fixed", top: "30vh", left: "25vw"}} centered  >
          {deleteData?.map(data=> 
-          <Card key={data?._id} className="shadow">
+          <Card key={data?._id} className="shadow mt-4">
               <CardHeader className="bg-transparent">
                 <h3 className="mb-0">Delete Data Plan</h3>
               </CardHeader>
               <CardBody>
-                <p>Are you sure you want to delete?</p>
+                <p>{'Are you sure you want to delete this ' + data?.network.toUpperCase() + ' plan?'}</p>
               </CardBody>
           </Card>
           )}
@@ -168,7 +185,7 @@ const Data_Plan = () => {
             <div ref={gridRef}>
             {dataPlans && dataPlans.map(dataPlan=> 
               <div key={dataPlan?._id} className="d-flex w-100 justify-content-between align-content-center">
-              <p>{dataPlan?.network}</p>
+              <p>{dataPlan?.network.toUpperCase()}</p>
               <p>{dataPlan?.type}</p>
               <p>{dataPlan?.size + dataPlan?.unit}</p>
               <p>{dataPlan?.duration + 'days'}</p>

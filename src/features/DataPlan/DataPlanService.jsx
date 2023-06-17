@@ -11,7 +11,6 @@ const newDataPlan = async(dataPlan, accesstoken) => {
         }
     }
     const response = await axios.post(`${API}create-dataplan`, dataPlan, config)
-    console.log(response.data)
     return response.data
 }
 
@@ -55,14 +54,13 @@ const changeDataPlanById = async(newDataPlan, accesstoken) => {
 
 //delete data by ID
 
-const removeDataPlanById = async(dataPlan, accesstoken) => {
-   const {_id} = dataPlan
+const removeDataPlanById = async(dataPlanId, accesstoken) => {
    const config = {
         headers: {
             Authorization: `Bearer ${accesstoken}`
         }
     }
-    const response = await axios.delete(`${API}delete-dataplan/${_id}`, config)
+    const response = await axios.delete(`${API}delete-dataplan/${dataPlanId}`, config)
     return response.data
 }
 

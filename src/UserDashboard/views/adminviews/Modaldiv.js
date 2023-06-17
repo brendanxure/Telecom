@@ -6,22 +6,45 @@ import {
   Card,
   Container,
 } from "reactstrap";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { dataPackage, getAllDataPlan, reset, updateDataPlanById } from '../../../features/DataPlan/DataPlanSlice.jsx';
+import { toast } from 'react-toastify';
 
 const Modaldiv = ({editData, isModalOpen, setIsModalOpen}) => {
+  const {isLoading, isError, message, dataPlans, isSuccess} = useSelector(dataPackage)
+  const dispatch = useDispatch()
   const {user} = useSelector(getUser)
 
+  useEffect(()=> {
+    if(isModalOpen && isLoading) {
+      toast.info('Updating...')
+    }
+    if(isModalOpen && isSuccess) {
+      dispatch(getAllDataPlan())
+      setIsModalOpen(false)
+      toast.success('Updated Successfully')
+    }
+    if(isModalOpen && isError) {
+      toast.success(message)
+    }
+    dispatch(reset())
+  }, [dispatch, isError, isLoading, isSuccess])
 
   const onFinish = (formData) => {
-    console.log(formData)
+    const dataId = editData?.map(id=> id._id)
+    const dataID = dataId.toString()
+    const formDataWithID = {_id: dataID, network: formData.network, size: formData.size, unit: formData.unit, duration: formData.duration, type: formData.type, amount: formData.amount}
+    if (formDataWithID._id) {
+      dispatch(updateDataPlanById(formDataWithID))
+    }
   }
   return (
     <div>
-        <Modal open={isModalOpen} onCancel={()=>setIsModalOpen(false)} title='Update Data Plan' className="w-50" style={{height: "60vh", position: "fixed", top: "3vh", left: "25vw"}} centered  footer={null}>
+        <Modal open={isModalOpen} onCancel={()=>setIsModalOpen(false)} title='Update Data Plan' className="w-50" style={{height: "", position: "fixed", top: "2vh", left: "25vw"}} footer={null}>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{height : "20vh"}}></div>
       {editData.map((data)=> 
-      <Container key={data._id} className="col" style={{marginTop: "-13rem"}} fluid>
-      <Card className="shadow p-3">
+      <Container key={data._id} className="col" style={{marginTop: "-15rem"}} fluid>
+      <Card className="shadow px-3 py-2">
       <Form onFinish={onFinish}>
       <label htmlFor="">Name</label>
         <Form.Item>

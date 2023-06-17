@@ -54,10 +54,10 @@ export const updateDataPlanById = createAsyncThunk('updateData/admin', async(dat
 })
 
 //delete Data Plan
-export const deleteDataPlanById = createAsyncThunk('deleteData/admin', async(dataPlan, thunkAPI)=> {
+export const deleteDataPlanById = createAsyncThunk('deleteData/admin', async(dataPlanID, thunkAPI)=> {
     try {
         const accesstoken = thunkAPI.getState().auth.user.accessToken
-        return await DataPlanService.removeDataPlanById(dataPlan, accesstoken)
+        return await DataPlanService.removeDataPlanById(dataPlanID, accesstoken)
     } catch (error) {
         const message = error.response.data
         return thunkAPI.rejectWithValue(message)

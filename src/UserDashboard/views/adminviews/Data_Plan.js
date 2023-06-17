@@ -176,7 +176,7 @@ const Data_Plan = () => {
       </Container>
       <Container className="my-5 w-100" fluid>
         <Row>
-        <Card className="shadow">
+        <Card className="shadow" style={{width: '100%'}}>
         <div className='col'>
           <CardHeader>
             <h3>Data Plans</h3> 
@@ -184,15 +184,16 @@ const Data_Plan = () => {
           <CardBody>
             <div ref={gridRef}>
             {dataPlans && dataPlans.map(dataPlan=> 
-              <div key={dataPlan?._id} className="d-flex w-100 justify-content-between align-content-center">
-              <p>{dataPlan?.network.toUpperCase()}</p>
-              <p>{dataPlan?.type}</p>
-              <p>{dataPlan?.size + dataPlan?.unit}</p>
-              <p>{dataPlan?.duration + 'days'}</p>
-              <div className="">
-                <i className="fas fa-pen-to-square me-4" style={{cursor: "pointer"}}  onClick={()=>onEdit(dataPlan?._id)}/>
-                <i className="fa-sharp fa-solid fa-trash me-4" style={{cursor: "pointer"}} onClick={()=>onDelete(dataPlan?._id)}/>
+              <div key={dataPlan?._id} className="d-flex w-100 justify-content-between align-content-center mt-3 border-2 border-bottom border-gray">
+              <p style={{width: '25%'}}>{dataPlan?.network.toUpperCase()}</p>
+              <p style={{width: '25%'}}>{dataPlan?.type}</p>
+              <p style={{width: '25%'}}>{dataPlan?.size + dataPlan?.unit}</p>
+              <p style={{width: '20%'}}>{dataPlan?.duration + 'days'}</p>
+              <div className="d-flex mt-2" style={{width: ''}}>
+                <i className="fas fa-pen-to-square mx-4 text-primary" style={{cursor: "pointer"}}  onClick={()=>onEdit(dataPlan?._id)}/>
+                <i className="fa-sharp fa-solid fa-trash text-danger" style={{cursor: "pointer"}} onClick={()=>onDelete(dataPlan?._id)}/>
               </div>
+              
             </div>
             )}
             </div>

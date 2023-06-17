@@ -25,10 +25,11 @@ const Modaldiv = ({editData, isModalOpen, setIsModalOpen}) => {
       toast.success('Updated Successfully')
     }
     if(isModalOpen && isError) {
-      toast.success(message)
+      toast.error(message)
+      setIsModalOpen(false)
     }
     dispatch(reset())
-  }, [dispatch, isError, isLoading, isSuccess])
+  }, [isError, isLoading, isSuccess])
 
   const onFinish = (formData) => {
     const dataId = editData?.map(id=> id._id)

@@ -193,7 +193,6 @@ const Data_Plan = () => {
                 <i className="fas fa-pen-to-square mx-4 text-primary" style={{cursor: "pointer"}}  onClick={()=>onEdit(dataPlan?._id)}/>
                 <i className="fa-sharp fa-solid fa-trash text-danger" style={{cursor: "pointer"}} onClick={()=>onDelete(dataPlan?._id)}/>
               </div>
-              
             </div>
             )}
             </div>

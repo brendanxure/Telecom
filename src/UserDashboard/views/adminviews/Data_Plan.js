@@ -21,6 +21,7 @@ import { getUser } from "../../../features/Auth/AuthSlice.jsx";
 import { createDataPlan, dataPackage, deleteDataPlanById, getAllDataPlan, reset } from "../../../features/DataPlan/DataPlanSlice.jsx";
 import { toast } from "react-toastify";
 import Modaldiv from "./Modaldiv.js";
+import Spinner from "../../../Component/Spinner.jsx";
 
 const Data_Plan = () => {
     const formRef = useRef(null)
@@ -34,6 +35,7 @@ const Data_Plan = () => {
     const [prompt, setPrompt] = useState(false)
     const [editData, setEditData] = useState([])
     const [deleteData, setDeleteData] = useState([])
+    const [isAddPlanOpen, setIsAddPlanOpen] = useState(false)
 
     useEffect(()=> {
       if (created && isSuccess){
@@ -94,6 +96,7 @@ const Data_Plan = () => {
         <Helmet defer={false}>
         <title>Telecom || Data Plan</title>
       </Helmet>
+      {isLoading && <Spinner />}
      <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{height : "70vh"}}></div>
       <Modaldiv editData={editData} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
       <Modal open={prompt} onOk={deleteButton} onCancel={()=>setPrompt(false)} title='' className="w-50" style={{height: "60vh", position: "fixed", top: "30vh", left: "25vw"}} centered  >
@@ -109,11 +112,12 @@ const Data_Plan = () => {
           )}
        </Modal>  
       {/* Page content */}
-      <Container className="" style={{marginTop: "-22rem"}} fluid>
+      <Modal open={isAddPlanOpen} footer={null} onCancel={()=> setIsAddPlanOpen(false)} title='' className="w-50" style={{position: "fixed", top: "0vh", left: "25vw"}}>
+      <Container className="mx-0" style={{marginTop: ""}} fluid>
         {/* Table */}
         <Row>
           <div className="col">
-            <Card className="shadow">
+            <Card className="">
               <CardHeader className="bg-transparent">
                 <h3 className="mb-0">Create Data Plan</h3>
               </CardHeader>
@@ -174,6 +178,7 @@ const Data_Plan = () => {
           </div>
         </Row>
       </Container>
+      </Modal>
       <Container className="my-5 w-100" fluid>
         <Row>
         <Card className="shadow" style={{width: '100%'}}>

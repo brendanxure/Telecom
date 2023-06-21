@@ -99,7 +99,7 @@ const Data_Plan = () => {
       {isLoading && <Spinner />}
      <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{height : "70vh"}}></div>
       <Modaldiv editData={editData} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
-      <Modal open={prompt} onOk={deleteButton} onCancel={()=>setPrompt(false)} title='' className="w-50" style={{height: "60vh", position: "fixed", top: "30vh", left: "25vw"}} centered  >
+      <Modal open={prompt} onOk={deleteButton} onCancel={()=>setPrompt(false)} title='' className="" style={{width: "300px", height: "60vh", position: "fixed", top: "30vh", left: "25vw"}} centered  >
          {deleteData?.map(data=> 
           <Card key={data?._id} className="shadow mt-4">
               <CardHeader className="bg-transparent">
@@ -112,17 +112,18 @@ const Data_Plan = () => {
           )}
        </Modal>  
       {/* Page content */}
-      <Modal open={isAddPlanOpen} footer={null} onCancel={()=> setIsAddPlanOpen(false)} title='' className="w-50" style={{position: "fixed", top: "0vh", left: "25vw"}}>
-      <Container className="mx-0" style={{marginTop: ""}} fluid>
+      <Container className="alert alert-success mx-auto" onClick={()=>setIsAddPlanOpen(true)} style={{marginTop: "-22rem", width: "90%", cursor: "pointer"}}  fluid><i className="fas fa-solid fa-plus text-white mr-2"></i>Add a new Data Plan</Container>
+      <Modal open={isAddPlanOpen} footer={null} onCancel={()=> setIsAddPlanOpen(false)} width={700} title='' className="my-3"  centered>
+      <Container className="mx-0" style={{marginTop:''}} fluid>
         {/* Table */}
         <Row>
           <div className="col">
-            <Card className="">
+            <Card className="my-4">
               <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Create Data Plan</h3>
+                <h3 className="mb-0">Add Data Plan</h3>
               </CardHeader>
               <CardBody>
-          <Form ref={formRef} className='w-100 bg-white p-4 rounded-xl' onFinish={onFinish}>
+          <Form ref={formRef} className='w-100 bg-white p-2 rounded-xl' onFinish={onFinish}>
           <label htmlFor="">Name</label>
           <Form.Item>
             <Input disabled value={user?.username}/>
@@ -136,8 +137,16 @@ const Data_Plan = () => {
               <Select.Option value='airtel'>Airtel</Select.Option>
             </Select>
           </Form.Item>
-          <label htmlFor="">Size</label>
-          <Form.Item name="size" rules={[{required: 'true'}]}>
+          <label htmlFor="">Plan Name</label>
+          <Form.Item name="planName" rules={[{required: "true"}]}>
+            <Input />
+          </Form.Item>
+          <label htmlFor="">Plan ID</label>
+          <Form.Item name="planId" rules={[{required: "true"}]}>
+            <Input type="number" />
+          </Form.Item>
+          <label htmlFor="">Volume</label>
+          <Form.Item name="volume" rules={[{required: 'true'}]}>
             <Input type="number"/>
           </Form.Item>
           <label htmlFor="">Unit</label>
@@ -155,8 +164,8 @@ const Data_Plan = () => {
               <Select.Option value='corporate gifting'>Corporate Gifting</Select.Option>
             </Select>
           </Form.Item>
-          <label htmlFor="">Duration</label>
-          <Form.Item name="duration" rules={[{required: 'true'}]}>
+          <label htmlFor="">Validity</label>
+          <Form.Item name="validity" rules={[{required: 'true'}]}>
             <Input type="number" placeholder="Duration in days" 
               suffix={
                 <Tooltip title="Duration in days">
@@ -170,7 +179,7 @@ const Data_Plan = () => {
             <Input type="number" />
           </Form.Item>
           <Form.Item>
-          <Button className="bg-gradient-info text-white" htmlType="submit">Create</Button>
+          <Button className="bg-gradient-info text-white" htmlType="submit">Submit</Button>
           </Form.Item>
         </Form>
               </CardBody>
@@ -179,7 +188,7 @@ const Data_Plan = () => {
         </Row>
       </Container>
       </Modal>
-      <Container className="my-5 w-100" fluid>
+      <Container className="mb-5 mx-auto" style={{width: "94%"}} fluid>
         <Row>
         <Card className="shadow" style={{width: '100%'}}>
         <div className='col'>
@@ -192,8 +201,8 @@ const Data_Plan = () => {
               <div key={dataPlan?._id} className="d-flex w-100 justify-content-between align-content-center mt-3 border-2 border-bottom border-gray">
               <p style={{width: '25%'}}>{dataPlan?.network.toUpperCase()}</p>
               <p style={{width: '25%'}}>{dataPlan?.type}</p>
-              <p style={{width: '25%'}}>{dataPlan?.size + dataPlan?.unit}</p>
-              <p style={{width: '20%'}}>{dataPlan?.duration + 'days'}</p>
+              <p style={{width: '25%'}}>{dataPlan?.volume + dataPlan?.unit}</p>
+              <p style={{width: '20%'}}>{dataPlan?.validity + 'days'}</p>
               <div className="d-flex mt-2" style={{width: ''}}>
                 <i className="fas fa-pen-to-square mx-4 text-primary" style={{cursor: "pointer"}}  onClick={()=>onEdit(dataPlan?._id)}/>
                 <i className="fa-sharp fa-solid fa-trash text-danger" style={{cursor: "pointer"}} onClick={()=>onDelete(dataPlan?._id)}/>

@@ -35,7 +35,7 @@ const Modaldiv = ({editData, isModalOpen, setIsModalOpen}) => {
   const onFinish = (formData) => {
     const dataId = editData?.map(id=> id._id)
     const dataID = dataId.toString()
-    const formDataWithID = {_id: dataID, network: formData.network, size: formData.size, unit: formData.unit, duration: formData.duration, type: formData.type, amount: formData.amount}
+    const formDataWithID = {_id: dataID, network: formData.network, volume: formData.volume, unit: formData.unit, validity: formData.validity, type: formData.type, amount: formData.amount}
     if (formDataWithID._id) {
       dispatch(updateDataPlanById(formDataWithID))
     }
@@ -61,8 +61,8 @@ const Modaldiv = ({editData, isModalOpen, setIsModalOpen}) => {
             <Select.Option value='airtel'>Airtel</Select.Option>
           </Select>
         </Form.Item>
-        <label htmlFor="">Size</label>
-        <Form.Item initialValue={data?.size} name="size" rules={[{required: 'true'}]}>
+        <label htmlFor="">Volume</label>
+        <Form.Item initialValue={data?.volume} name="volume" rules={[{required: 'true'}]}>
           <Input type="number"/>
         </Form.Item>
         <label htmlFor="">Unit</label>
@@ -80,8 +80,8 @@ const Modaldiv = ({editData, isModalOpen, setIsModalOpen}) => {
             <Select.Option value='corporate gifting'>Corporate Gifting</Select.Option>
           </Select>
         </Form.Item>
-        <label htmlFor="">Duration</label>
-        <Form.Item initialValue={data?.duration} name="duration" rules={[{required: 'true'}]}>
+        <label htmlFor="">Validity</label>
+        <Form.Item initialValue={data?.validity} name="validity" rules={[{required: 'true'}]}>
           <Input type="number" placeholder="Duration in days" 
             suffix={
               <Tooltip title="Duration in days">

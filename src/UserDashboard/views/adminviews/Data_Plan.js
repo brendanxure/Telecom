@@ -42,6 +42,7 @@ const Data_Plan = () => {
         dispatch(getAllDataPlan())
         formRef.current.resetFields();
         gridRef.current.scrollIntoView({behavior: "smooth"}) 
+        setIsAddPlanOpen(false)
         toast.success('Data Plan Created')
       }
       if (created && isLoading) {
@@ -99,7 +100,7 @@ const Data_Plan = () => {
       {isLoading && <Spinner />}
      <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{height : "70vh"}}></div>
       <Modaldiv editData={editData} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
-      <Modal open={prompt} onOk={deleteButton} onCancel={()=>setPrompt(false)} title='' className="" style={{width: "300px", height: "60vh", position: "fixed", top: "30vh", left: "25vw"}} centered  >
+      <Modal open={prompt} onOk={deleteButton} onCancel={()=>setPrompt(false)} title='' className="" width={700} centered  >
          {deleteData?.map(data=> 
           <Card key={data?._id} className="shadow mt-4">
               <CardHeader className="bg-transparent">

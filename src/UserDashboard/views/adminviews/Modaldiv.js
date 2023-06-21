@@ -42,11 +42,11 @@ const Modaldiv = ({editData, isModalOpen, setIsModalOpen}) => {
   }
   return (
     <div>
-        <Modal open={isModalOpen} onCancel={()=>setIsModalOpen(false)} title='Update Data Plan' className="w-50" style={{height: "", position: "fixed", top: "2vh", left: "25vw"}} footer={null}>
+        <Modal open={isModalOpen} onCancel={()=>setIsModalOpen(false)} width={700} title='Update Data Plan' className="my-3" centered footer={null}>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{height : "20vh"}}></div>
       {editData.map((data)=> 
       <Container key={data._id} className="col" style={{marginTop: "-15rem"}} fluid>
-      <Card className="shadow px-3 py-2">
+      <Card className="shadow px-3 py-3 my-7 my-md-0">
       <Form onFinish={onFinish}>
       <label htmlFor="">Name</label>
         <Form.Item>
@@ -61,6 +61,14 @@ const Modaldiv = ({editData, isModalOpen, setIsModalOpen}) => {
             <Select.Option value='airtel'>Airtel</Select.Option>
           </Select>
         </Form.Item>
+        <label htmlFor="">Plan Name</label>
+          <Form.Item initialValue={data?.planName} name="planName" rules={[{required: "true"}]}>
+            <Input />
+          </Form.Item>
+          <label htmlFor="">Plan ID</label>
+          <Form.Item name="planId" initialValue={data?.planId} rules={[{required: "true"}]}>
+            <Input type="number" />
+          </Form.Item>
         <label htmlFor="">Volume</label>
         <Form.Item initialValue={data?.volume} name="volume" rules={[{required: 'true'}]}>
           <Input type="number"/>

@@ -19,21 +19,36 @@
 // reactstrap components
 import { useDispatch, useSelector } from "react-redux";
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
-import { getUser } from "../../../features/Auth/AuthSlice";
+import { getUser, logout } from "../../../features/Auth/AuthSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWallet, faUser, faPeopleArrows, faCreditCard } from '@fortawesome/free-solid-svg-icons'
 import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { updateWalletBalance, walletBalance } from "../../../features/Wallet/WalletSlice";
+import { getUserWalletHistory, reset, userWalletHistory } from "../../../features/Wallet/WalletHistorySlice";
+import { toast } from "react-toastify";
 
 
 const Header = () => {
   const {user} = useSelector(getUser)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const WalletBalance = useSelector(walletBalance)
+  const { message } = useSelector(getUserWalletHistory) 
+
+  useEffect(()=> {
+    dispatch(userWalletHistory())
+    if(message === 'token expired') {
+      dispatch(logout())
+      toast.info('Please Login')
+    }
+    dispatch(reset()) 
+  },[])
+
+  console.log(message)
   
   return (
     <>

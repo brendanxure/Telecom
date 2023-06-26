@@ -25,7 +25,7 @@ function App() {
           <Route path='buydata' element={<BuyDataPage /> } />
           <Route path='buyairtime' element={<BuyAirtimePage />} />
           <Route path='/auth/*' element={<Auth />} />
-          <Route path='/admin/*' element={<Admin />} />
+          <Route path='/user/*' element={<Admin />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

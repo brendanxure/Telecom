@@ -52,10 +52,13 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { useSelector } from "react-redux";
+import { getUser } from "../../../features/Auth/AuthSlice";
 
 var ps;
 
 const Sidebar = (props) => {
+  const {user} = useSelector(getUser)
   //state for wallet links
   const [walletLinksOpen, setWalletLinksOpen] = useState(false)
   const [collapseOpen, setCollapseOpen] = useState();
@@ -73,9 +76,9 @@ const Sidebar = (props) => {
   };
   // creates the links that appear in the left menu / Sidebar
   
-  const createLinks = (routes) => {
+  const createUserLinks = (routes) => {
     return routes.map((prop, key) => {
-      if (prop.path !== '/login' && prop.path !== "/register" && prop.path !== '/fundwallet' && prop.path !== '/wallethistory') {
+      if (prop.path === '/' || prop.path === "/buy-data" || prop.path === '/user-report') {
         return (
           <NavItem key={key}>
           <NavLink
@@ -91,9 +94,28 @@ const Sidebar = (props) => {
     });
   };
 
-  const createWalletLinks = (routes) => {
+  const createAdminLinks = (routes) => {
+    return routes.map((prop, key)=> {
+      if (prop.path === '/' || prop.path === '/data-plan' || prop.path === '/wallet-histories' || prop.path === '/all-payments' || prop.path === '/wallet-transactions') {
+        return (
+          <NavItem key={key}>
+            <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            onClick={closeCollapse}
+            >
+              <i className={prop.icon} />
+              {prop.name}
+            </NavLink>
+          </NavItem>
+        )
+      }
+    })
+  }
+
+  const createUserWalletLinks = (routes) => {
     const walletlinks = routes.filter((eachfilter, key)=> {
-      if (eachfilter.path === '/fundwallet' || eachfilter.path === '/wallethistory') {
+      if (eachfilter.path === '/fund-wallet' || eachfilter.path === '/wallet-history') {
         return eachfilter
       }
     })
@@ -259,8 +281,9 @@ const Sidebar = (props) => {
             </InputGroup>
           </Form>
           {/* Navigation */}
-          <Nav navbar>{createLinks(routes)}</Nav>
-          <Nav navbar>{createWalletLinks(routes)}</Nav>
+          <Nav navbar>{!user?.isAdmin && createUserLinks(routes)}</Nav>
+          <Nav navbar>{!user?.isAdmin && createUserWalletLinks(routes)}</Nav>
+          <Nav navbar>{user?.isAdmin && createAdminLinks(routes)}</Nav>
           {/* <Nav>
             <NavItem>
             <NavLink to='/auth/login' onClick={closeCollapse} >Login</NavLink>n

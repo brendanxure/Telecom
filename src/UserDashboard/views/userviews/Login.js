@@ -66,12 +66,12 @@ useEffect(()=>{
   })
       toast.success('Logged in Successfully')
       //navigate to your dash if you are logged in
-      navigate('/admin')
+      navigate('/user')
       dispatch(updateWalletBalance(user?.walletBalance))
       
   }
   if(user) {
-    navigate('/admin')
+    navigate('/user')
   }
   dispatch(reset())
   

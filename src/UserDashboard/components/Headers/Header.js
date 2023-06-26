@@ -40,15 +40,16 @@ const Header = () => {
   const { message } = useSelector(getUserWalletHistory) 
 
   useEffect(()=> {
-    dispatch(userWalletHistory())
-    if(message === 'token expired') {
-      dispatch(logout())
-      toast.info('Please Login')
+    if(user){
+      dispatch(userWalletHistory())
+      if(message === 'token expired') {
+        dispatch(logout())
+        toast.info('Please Login')
+      }
+      dispatch(reset()) 
     }
-    dispatch(reset()) 
-  },[])
+  },[message])
 
-  console.log(message)
   
   return (
     <>

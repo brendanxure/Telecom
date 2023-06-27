@@ -16,3 +16,10 @@
     left: -5rem !important;
     transition: 500ms ease-in !important;  
 }
+
+.dataTransLinks {
+    position:relative !important;
+    overflow: hidden !important; 
+    transition: 300ms ease-in !important;
+    padding-left: 3rem !important; 
+}

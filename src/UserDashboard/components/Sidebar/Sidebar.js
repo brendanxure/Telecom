@@ -55,6 +55,8 @@ import {
 import { useSelector } from "react-redux";
 import { getUser } from "../../../features/Auth/AuthSlice";
 
+
+
 var ps;
 
 const Sidebar = (props) => {
@@ -160,13 +162,15 @@ const Sidebar = (props) => {
       <NavItem>
         <NavLink style={{cursor: 'pointer'}} onClick={reportOnclick}><i className="ni ni-support-16 text-teal" /> Report {reportLinksOpen ? <i className="fas fa-angle-down text-center"/> :<i className="fas fa-angle-right text-center" />}</NavLink>
         <div className="walletLinksDiv bg-gradient-info">
-        <NavLink style={{cursor: 'pointer'}} className={reportLinksOpen ? "walletLinks" : "noWalletLinks"}  onClick={()=> setDataTransLinksOpen(!dataTransLinksOpen)}><i className="ni ni-support-16 text-teal" /> Data Transactions {dataTransLinksOpen ? <i className="fas fa-angle-down text-center"/> :<i className="fas fa-angle-right text-center" />}</NavLink>
+        <NavLink style={{cursor: 'pointer'}} className={reportLinksOpen ? "walletLinks" : "noWalletLinks"}  onClick={()=> setDataTransLinksOpen(!dataTransLinksOpen)}><i className="fas fa-arrows-rotate text-white" /> Data Transactions {dataTransLinksOpen ? <i className="fas fa-angle-down text-center"/> :<i className="fas fa-angle-right text-center" />}</NavLink>
         </div>
         {dataTransactionLinks?.map((eachTransactionLink)=>
-        <div className="walletLinksDiv">
+        <div className="dataTransLinks">
           <NavLink className={dataTransLinksOpen ? "walletLinks" : "noWalletLinks"}
-          to={eachTransactionLink?.layout + eachTransactionLink?.path}>
-            <i className={eachTransactionLink?.icon} />
+          to={eachTransactionLink?.layout + eachTransactionLink?.path}
+          tag={NavLinkRRD}
+          onClick={closeCollapse}>
+            <img className='' src={eachTransactionLink?.icon} style={{width: "20px", marginRight: "10px"}} alt="" />
             {eachTransactionLink?.name}
           </NavLink>
         </div>

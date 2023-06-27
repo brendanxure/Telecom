@@ -17,14 +17,15 @@
 */
 import Index from "./views/Index.js";
 import Profile from "./views/userviews/Profile.js";
-import Buy_Airtime from "./views/userviews/Buy_Airtime.js";
 import Register from "./views/userviews/Register.js";
 import Login from "./views/userviews/Login.js";
-// import Tables from "./views/examples/Tables.js";
 import Buy_Data from "./views/userviews/Buy_Data.js";
 import Fund_Wallet from "./views/userviews/Fund_Wallet.js";
 import Wallet_History from "./views/userviews/Wallet_History.js";
 import Data_Plan from "./views/adminviews/Data_Plan.js";
+import Wallet_Histories from "./views/adminviews/Wallet_Histories.js";
+import All_Payments from "./views/adminviews/All_Payments.js";
+import Data_Transactions from "./views/adminviews/Data_Transactions.js";
 
 var routes = [
   {
@@ -45,7 +46,7 @@ var routes = [
     path: "/wallet-histories",
     name: "Wallet Histories",
     icon: "ni ni-mobile-button text-orange",
-    component: <Buy_Airtime />,
+    // component: <Wallet_Histories />,
     layout: "/user",
   },
   // {
@@ -59,27 +60,20 @@ var routes = [
     path: "/all-payments",
     name: "All Payments",
     icon: "ni ni-money-coins text-red",
-    // component: <Tables />,
+    // component: <All_Payments />,
     layout: "/user",
   },
   {
-    path: "/wallet-transactions",
-    name: "Wallet Transactions",
+    path: "/data-transactions",
+    name: "Data Transactions",
     icon: "ni ni-email-83 text-pink",
-    // component: <Tables />,
-    layout: "/user",
-  },
-  {
-    path: "/user-report",
-    name: "Report",
-    icon: "ni ni-support-16 text-teal",
-    // component: <Profile />,
+    component: <Data_Transactions />,
     layout: "/user",
   },
   // {
-  //   path: "/user-profil",
-  //   name: "Referer code",
-  //   icon: "ni ni-single-02 text-yellow",
+  //   path: "/user-report",
+  //   name: "Report",
+  //   icon: "ni ni-support-16 text-teal",
   //   // component: <Profile />,
   //   layout: "/user",
   // },
@@ -105,7 +99,27 @@ var routes = [
     component: <Data_Plan />,
     layout: "/user"
   },
-
+  {
+    path: "/user-glo-transactions",
+    name: "Glo",
+    icon: "ni ni-single-02 text-yellow",
+    // component: <Profile />,
+    layout: "/user",
+  },
+  {
+    path: "/user-mtn-transactions",
+    name: "MTN",
+    icon: "ni ni-single-02 text-yellow",
+    // component: <Profile />,
+    layout: "/user",
+  },
+  {
+    path: "/user-payments",
+    name: "Payments",
+    icon: "ni ni-single-02 text-yellow",
+    // component: <Profile />,
+    layout: "/user",
+  },
   {
     path: "/login",
     name: "Login",

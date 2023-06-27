@@ -33,7 +33,7 @@ import { Helmet } from 'react-helmet-async'
 import { useSelector } from "react-redux";
 import { getUser } from "../../../features/Auth/AuthSlice.jsx";
 
-const Buy_Airtime = () => {
+const Wallet_Histories = () => {
   const {user} = useSelector(getUser)
   
   return (
@@ -94,4 +94,4 @@ const Buy_Airtime = () => {
     </>)
 };
 
-export default Buy_Airtime;
+export default Wallet_Histories;

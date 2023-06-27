@@ -61,6 +61,8 @@ const Sidebar = (props) => {
   const {user} = useSelector(getUser)
   //state for wallet links
   const [walletLinksOpen, setWalletLinksOpen] = useState(false)
+  const [reportLinksOpen, setReportLinksOpen] = useState(false)
+  const [dataTransLinksOpen, setDataTransLinksOpen] = useState(false)
   const [collapseOpen, setCollapseOpen] = useState();
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
@@ -74,11 +76,17 @@ const Sidebar = (props) => {
   const closeCollapse = () => {
     setCollapseOpen(false);
   };
+
+  //report onClick handler
+  const reportOnclick = () => {
+    setReportLinksOpen(!reportLinksOpen)
+    setDataTransLinksOpen(false)
+  }
   // creates the links that appear in the left menu / Sidebar
   
   const createUserLinks = (routes) => {
     return routes.map((prop, key) => {
-      if (prop.path === '/' || prop.path === "/buy-data" || prop.path === '/user-report') {
+      if (prop.path === '/' || prop.path === "/buy-data") {
         return (
           <NavItem key={key}>
           <NavLink
@@ -96,7 +104,7 @@ const Sidebar = (props) => {
 
   const createAdminLinks = (routes) => {
     return routes.map((prop, key)=> {
-      if (prop.path === '/' || prop.path === '/data-plan' || prop.path === '/wallet-histories' || prop.path === '/all-payments' || prop.path === '/wallet-transactions') {
+      if (prop.path === '/' || prop.path === '/data-plan' || prop.path === '/wallet-histories' || prop.path === '/all-payments' || prop.path === '/data-transactions') {
         return (
           <NavItem key={key}>
             <NavLink
@@ -122,7 +130,7 @@ const Sidebar = (props) => {
     return (
       <NavItem>
         <NavLink style={{cursor: 'pointer'}} onClick={()=> setWalletLinksOpen(!walletLinksOpen)}><i className="fas fa-wallet text-danger" />Wallet{walletLinksOpen? <i className="fas fa-angle-down text-center"/> :<i className="fas fa-angle-right text-center" />}</NavLink>
-        {walletlinks.map((eachWalletLink)=> 
+        {walletlinks?.map((eachWalletLink)=> 
         <div className="walletLinksDiv bg-gradient-info">
           <NavLink className={walletLinksOpen ? "walletLinks" : "noWalletLinks"}
           to={eachWalletLink.layout + eachWalletLink.path} 
@@ -131,6 +139,47 @@ const Sidebar = (props) => {
           <i className={eachWalletLink.icon} />
           {eachWalletLink.name}
         </NavLink>
+        </div>
+        )}
+      </NavItem>
+    )
+  }
+
+  const createUserReportLinks = (routes) => {
+    const reportLinks = routes?.filter((eachfilter, key)=> {
+      if(eachfilter.path === '/user-payments') {
+        return eachfilter
+      }
+    })
+      const dataTransactionLinks = routes?.filter((eachfilter, key)=> {
+        if(eachfilter?.path === '/user-glo-transactions' || eachfilter?.path === '/user-mtn-transactions'){
+          return eachfilter
+        }
+      })
+    return (
+      <NavItem>
+        <NavLink style={{cursor: 'pointer'}} onClick={reportOnclick}><i className="ni ni-support-16 text-teal" /> Report {reportLinksOpen ? <i className="fas fa-angle-down text-center"/> :<i className="fas fa-angle-right text-center" />}</NavLink>
+        <div className="walletLinksDiv bg-gradient-info">
+        <NavLink style={{cursor: 'pointer'}} className={reportLinksOpen ? "walletLinks" : "noWalletLinks"}  onClick={()=> setDataTransLinksOpen(!dataTransLinksOpen)}><i className="ni ni-support-16 text-teal" /> Data Transactions {dataTransLinksOpen ? <i className="fas fa-angle-down text-center"/> :<i className="fas fa-angle-right text-center" />}</NavLink>
+        </div>
+        {dataTransactionLinks?.map((eachTransactionLink)=>
+        <div className="walletLinksDiv">
+          <NavLink className={dataTransLinksOpen ? "walletLinks" : "noWalletLinks"}
+          to={eachTransactionLink?.layout + eachTransactionLink?.path}>
+            <i className={eachTransactionLink?.icon} />
+            {eachTransactionLink?.name}
+          </NavLink>
+        </div>
+        )}
+        {reportLinks?.map((eachReportLink)=>
+        <div className="walletLinksDiv bg-gradient-info">
+          <NavLink className={reportLinksOpen ? "walletLinks" : "noWalletLinks"}
+          to={eachReportLink.layout + eachReportLink.path}
+          tag={NavLinkRRD}
+          onClick={closeCollapse}>
+            <i className={eachReportLink?.icon} />
+            {eachReportLink?.name}
+          </NavLink>
         </div>
         )}
       </NavItem>
@@ -283,6 +332,7 @@ const Sidebar = (props) => {
           {/* Navigation */}
           <Nav navbar>{!user?.isAdmin && createUserLinks(routes)}</Nav>
           <Nav navbar>{!user?.isAdmin && createUserWalletLinks(routes)}</Nav>
+          <Nav navbar>{!user?.isAdmin && createUserReportLinks(routes)}</Nav>
           <Nav navbar>{user?.isAdmin && createAdminLinks(routes)}</Nav>
           {/* <Nav>
             <NavItem>

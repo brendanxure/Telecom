@@ -86,13 +86,6 @@ const Buy_Data = () => {
               <Select.Option value='corporate gifting'>Corporate Gifting</Select.Option>
             </Select>
           </Form.Item>
-          <label htmlFor="">Data Package</label>
-          <Form.Item name="size" rules={[{required: 'true'}]}>
-            <Select>
-              <Select.Option>
-              </Select.Option>
-            </Select>
-          </Form.Item>
           <label htmlFor="">Mobile Number</label>
           <Form.Item name="number" rules={[{required: 'true'}]}>
             <Input />

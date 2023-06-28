@@ -63,7 +63,7 @@ var routes = [
     path: "/all-payments",
     name: "All Payments",
     icon: "ni ni-money-coins text-red",
-    // component: <All_Payments />,
+    component: <All_Payments />,
     layout: "/user",
   },
   {

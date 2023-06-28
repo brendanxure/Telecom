@@ -113,7 +113,9 @@ const Data_Plan = () => {
           )}
        </Modal>  
       {/* Page content */}
-      <Container className="alert alert-success mx-auto" onClick={()=>setIsAddPlanOpen(true)} style={{marginTop: "-22rem", width: "90%", cursor: "pointer"}}  fluid><i className="fas fa-solid fa-plus text-white mr-2"></i>Add a new Data Plan</Container>
+      <div className="mx-auto px-md-4" style={{width: "94%"}}>
+      <Container className="mx-0 alert alert-success col d-flex justify-content-center align-items-center" onClick={()=>setIsAddPlanOpen(true)} style={{marginTop: "-22rem", width: "18rem", cursor: "pointer"}}  fluid><i className="fas fa-solid fa-plus text-white mr-2"></i>Add a new Data Plan</Container>
+      </div>
       <Modal open={isAddPlanOpen} footer={null} onCancel={()=> setIsAddPlanOpen(false)} width={700} title='' className="my-3"  centered>
       <Container className="mx-0" style={{marginTop:''}} fluid>
         {/* Table */}

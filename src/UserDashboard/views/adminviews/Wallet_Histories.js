@@ -28,10 +28,14 @@ import {
 } from "reactstrap";
 // core components
 import Header from "../../components/Headers/Header.js";
-import { Button, Form, Input, Select } from 'antd'
+
 import { Helmet } from 'react-helmet-async'
 import { useSelector } from "react-redux";
 import { getUser } from "../../../features/Auth/AuthSlice.jsx";
+import {DataTable} from 'primereact/datatable'
+import {Column} from 'primereact/column'
+import {InputText} from 'primereact/inputtext'
+import {FilterMatchMode} from 'primereact/api'
 
 const Wallet_Histories = () => {
   const {user} = useSelector(getUser)
@@ -39,7 +43,7 @@ const Wallet_Histories = () => {
   return (
     <>
       <Helmet defer={false}>
-        <title>Telecom || Buy Airtime</title>
+        <title>Telecom || Wallet Histories</title>
       </Helmet>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{height : "70vh"}}></div>
       {/* Page content */}
@@ -49,44 +53,15 @@ const Wallet_Histories = () => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Buy Airtime</h3>
+                <h3 className="mb-0">All Wallet Histories</h3>
               </CardHeader>
-              <CardBody>
-              <Form className='w-100 bg-white p-4 rounded-xl '>
-          <label htmlFor="">Name</label>
-          <Form.Item>
-            <Input disabled value={user?.username}/>
-          </Form.Item>
-          <label htmlFor="">Network</label>
-          <Form.Item>
-            <Select>
-              <Select.Option>MTN</Select.Option>
-              <Select.Option>9Mobile</Select.Option>
-              <Select.Option>Glo</Select.Option>
-              <Select.Option>Airtel</Select.Option>
-            </Select>
-          </Form.Item>
-          <label htmlFor="">Data Type</label>
-          <Form.Item>
-            <Select>
-              <Select.Option>Gifting</Select.Option>
-              <Select.Option>SME</Select.Option>
-              <Select.Option>Corporate Gifting</Select.Option>
-            </Select>
-          </Form.Item>
-          <label htmlFor="">Mobile Number</label>
-          <Form.Item>
-            <Input />
-          </Form.Item>
-          <label htmlFor="">Amount</label>
-          <Form.Item>
-            <Input />
-          </Form.Item>
-          <Form.Item>
-            <Button className="bg-gradient-info text-white">Buy now</Button>
-          </Form.Item>
-        </Form>
-              </CardBody>
+              <div style={{background: 'orange'}}>
+                <DataTable responsiveLayout='scroll' showGridlines paginator rows={5} rowsPerPageOptions={[5, 10, 20, 40]}>
+                  <Column></Column>
+                  <Column></Column>
+                  <Column></Column>
+                </DataTable>
+              </div>
             </Card>
           </div>
         </Row>

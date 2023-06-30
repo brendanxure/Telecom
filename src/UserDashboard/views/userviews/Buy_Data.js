@@ -88,7 +88,7 @@ const Buy_Data = () => {
           </Form.Item>
           <label htmlFor="">Mobile Number</label>
           <Form.Item name="number" rules={[{required: 'true'}]}>
-            <Input />
+            <Input maxLength={11}/>
           </Form.Item>
           <label htmlFor="">Amount</label>
           <Form.Item name="amount" rules={[{required: 'true'}]}>

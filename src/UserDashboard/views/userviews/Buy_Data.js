@@ -43,10 +43,13 @@ const Buy_Data = () => {
   const {user} = useSelector(getUser)
   
 
-  const [isModalOpen, setIsModalOpen] = useState(false)
+
   const onFinish = (e) => {
-    console.log(e)
-    setIsModalOpen(false)
+    if(e.number[0] !== 0 && e.number.length !== 11){
+      console.log('Please the format is not correct') 
+    } else{
+      console.log(e)
+    }
   }
   return (
     <>

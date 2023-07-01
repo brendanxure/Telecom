@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import WalletService from './WalletService'
 
 const initialState = {
-    walletHistory: null,
+    walletHistory: [],
     isError: false,
     isSuccess: false,
     isLoading: false,

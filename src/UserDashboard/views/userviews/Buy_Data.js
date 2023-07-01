@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import {useState } from "react";
+import {useEffect, useState } from "react";
 // react component that copies the given text inside your clipboard
 import { CopyToClipboard } from "react-copy-to-clipboard";
 // reactstrap components
@@ -32,23 +32,82 @@ import {
 import Header from "../../components/Headers/Header.js";
 import { Button, Form, Input, Select, Modal } from 'antd'
 import { Helmet } from 'react-helmet-async'
-import { useSelector } from "react-redux";
-import { getUser } from "../../../features/Auth/AuthSlice.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, logout } from "../../../features/Auth/AuthSlice.jsx";
+import { dataPackage, getAllDataPlan, reset } from "../../../features/DataPlan/DataPlanSlice.jsx";
+import { toast } from "react-toastify";
+
 
 
 
 
 const Buy_Data = () => {
+  const dispatch = useDispatch()
   const [copiedText, setCopiedText] = useState();
   const {user} = useSelector(getUser)
-  
+  const {dataPlans, isError, isSuccess, message, isLoading} = useSelector(dataPackage)
+  const [network, setNetwork] = useState('')
+  const [dataOptions, setDataOptions] = useState([])
+  const [dataPlanId, setDataPlanId] = useState('')
+  const [amount, setAmount] = useState(0)
 
+  const [form] = Form.useForm();
+
+  useEffect(()=> {
+      dispatch(getAllDataPlan())
+  }, [])
+
+  useEffect(()=> {
+   if(isError){
+    if(message === 'token expired') {
+      dispatch(logout())
+    } else {
+      toast.error(message)
+    }
+   }
+   if(!isLoading){
+    dispatch(reset())
+   }
+  }, [isSuccess, isError])
+
+  console.log(dataPlans)
+
+
+  const networkOnChange = (value) => {
+    setNetwork(value)
+  }
+
+  const dataPlanOnChange = (value) => {
+    setDataPlanId(value)
+    console.log(dataPlanId)
+  }
+
+  console.log(network)
+  useEffect(()=> {
+      form.resetFields(['dataplanId']);
+      if(network === 'glo'){
+        const gloDataPlans = dataPlans?.filter((gloData)=> gloData?.network === 'glo')
+        setDataOptions(gloDataPlans) 
+      }
+      if(network === 'mtn'){
+        const mtnDataPlans = dataPlans?.filter((mtnData)=> mtnData?.network === 'mtn')
+        setDataOptions(mtnDataPlans)
+      }
+      console.log('Change in network')
+  }, [network])
+
+  useEffect(()=> {
+    form.resetFields(['amount']);
+    const dataPrice = dataPlans?.find((data)=> data?._id === dataPlanId)
+    setAmount(dataPrice?.amount)
+  }, [dataPlanId])
 
   const onFinish = (e) => {
-    if(e.number[0] !== 0 && e.number.length !== 11){
-      console.log('Please the format is not correct') 
+    console.log(e.number[0])
+    if(e.number[0] === '0' && e.number.length === 11){
+      console.log(e) 
     } else{
-      console.log(e)
+      console.log('Please the format is not correct')
     }
   }
   return (
@@ -67,35 +126,35 @@ const Buy_Data = () => {
                 <h3 className="mb-0">Buy Data</h3>
               </CardHeader>
               <CardBody>
-          <Form className='w-100 bg-white p-4 rounded-xl' onFinish={onFinish}>
+          <Form form={form} className='w-100 bg-white p-4 rounded-xl' onFinish={onFinish}>
           <label htmlFor="">Name</label>
           <Form.Item>
             <Input disabled value={user?.username}/>
           </Form.Item>
           <label htmlFor="">Network</label>
           <Form.Item name="network" rules={[{required: 'true'}]}>
-            <Select>
+            <Select value={network} onChange={networkOnChange}>
               <Select.Option value='mtn'>MTN</Select.Option>
               <Select.Option value='9mobile'>9Mobile</Select.Option>
               <Select.Option value='glo'>Glo</Select.Option>
               <Select.Option value='airtel'>Airtel</Select.Option>
             </Select>
           </Form.Item>
-          <label htmlFor="">Data Type</label>
-          <Form.Item name="type" rules={[{required: 'true'}]}>
-            <Select>
-              <Select.Option value='gifting'>Gifting</Select.Option>
-              <Select.Option value='sme'>SME</Select.Option>
-              <Select.Option value='corporate gifting'>Corporate Gifting</Select.Option>
+          <label htmlFor="">Data Plans</label>
+          <Form.Item name="dataplanId" rules={[{required: 'true'}]}>
+            <Select value={dataPlanId} onChange={dataPlanOnChange}>
+              {dataOptions?.map((dataOption, key)=> 
+                <Select.Option value={dataOption?._id} key={key} >{dataOption?.network.toUpperCase()} {dataOption?.volume + dataOption?.unit} {dataOption?.validity + 'days'}</Select.Option>
+              )}
             </Select>
           </Form.Item>
           <label htmlFor="">Mobile Number</label>
-          <Form.Item name="number" rules={[{required: 'true'}]}>
+          <Form.Item name="msisdn" rules={[{required: 'true'}]}>
             <Input maxLength={11}/>
           </Form.Item>
           <label htmlFor="">Amount</label>
           <Form.Item name="amount" rules={[{required: 'true'}]}>
-            <Input />
+            <Input value={amount} type='number'/>
           </Form.Item>
           <Form.Item>
           <Button className="bg-gradient-info text-white" htmlType="submit">Buy now</Button>

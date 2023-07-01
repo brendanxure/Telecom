@@ -14,7 +14,8 @@ import { Helmet } from 'react-helmet-async'
 const Wallet_History = () => {
     const dispatch = useDispatch()
     const walletHistoryData = useSelector(getUserWalletHistory)
-    const {walletHistory, isLoading, isError, isSuccess } = walletHistoryData
+    const {walletHistory, isLoading, isError, isSuccess, message } = walletHistoryData
+    console.log(walletHistory)
 
     const dateFormat = (date) => {
         return date.substring(0, 10)
@@ -30,9 +31,12 @@ const Wallet_History = () => {
     })
     useEffect(()=> {
         dispatch(userWalletHistory())
-    },[])
+    }, [])
 
     useEffect(()=> {
+        if(message === 'token expired') {
+            console.log(message)
+        }
         if(isSuccess || isError){
             dispatch(reset())
             }

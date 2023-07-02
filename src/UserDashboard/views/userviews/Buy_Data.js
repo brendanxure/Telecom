@@ -36,6 +36,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser, logout } from "../../../features/Auth/AuthSlice.jsx";
 import { dataPackage, getAllDataPlan, reset } from "../../../features/DataPlan/DataPlanSlice.jsx";
 import { toast } from "react-toastify";
+import axios from "axios";
+import { baseApiUrl } from "../../../Utils/constants.js";
 
 
 
@@ -49,7 +51,8 @@ const Buy_Data = () => {
   const [network, setNetwork] = useState('')
   const [dataOptions, setDataOptions] = useState([])
   const [dataPlanId, setDataPlanId] = useState('')
-  const [amount, setAmount] = useState(0)
+  const [planId, setPlanId] = useState()
+  const [amount, setAmount] = useState()
 
   const [form] = Form.useForm();
 
@@ -68,7 +71,7 @@ const Buy_Data = () => {
    if(!isLoading){
     dispatch(reset())
    }
-  }, [isSuccess, isError])
+  }, [isError])
 
   console.log(dataPlans)
 
@@ -79,12 +82,16 @@ const Buy_Data = () => {
 
   const dataPlanOnChange = (value) => {
     setDataPlanId(value)
-    console.log(dataPlanId)
   }
 
-  console.log(network)
+  const mobileNumberFormat = (number) => {
+    let numberFormat = '234' + number.substring(1)
+    return numberFormat
+  }
+  
   useEffect(()=> {
       form.resetFields(['dataplanId']);
+      setAmount(0)
       if(network === 'glo'){
         const gloDataPlans = dataPlans?.filter((gloData)=> gloData?.network === 'glo')
         setDataOptions(gloDataPlans) 
@@ -93,21 +100,29 @@ const Buy_Data = () => {
         const mtnDataPlans = dataPlans?.filter((mtnData)=> mtnData?.network === 'mtn')
         setDataOptions(mtnDataPlans)
       }
-      console.log('Change in network')
   }, [network])
 
   useEffect(()=> {
-    form.resetFields(['amount']);
-    const dataPrice = dataPlans?.find((data)=> data?._id === dataPlanId)
-    setAmount(dataPrice?.amount)
+    const dataSelect = dataPlans?.find((data)=> data?._id === dataPlanId)
+    setPlanId(dataSelect?.planId)
+    setAmount(dataSelect?.amount)
   }, [dataPlanId])
 
+  const buyData = async(formData) => {
+    
+  }
+
   const onFinish = (e) => {
-    console.log(e.number[0])
-    if(e.number[0] === '0' && e.number.length === 11){
-      console.log(e) 
-    } else{
-      console.log('Please the format is not correct')
+    if(e.msisdn[0] === '0' && e.msisdn.length === 11){
+      const phoneNumber = mobileNumberFormat(e.msisdn)
+      const FormData = {dataplanId: e.dataplanId, msisdn: phoneNumber, amount, planId}
+      console.log(FormData) 
+      buyData(FormData)
+      toast.info('Processing....')
+    } else if (e.msisdn.length !== 11){
+      toast.info('Mobile Number is Incomplete')
+    } else {
+      toast.info('Mobile Number Format is incorrect')
     }
   }
   return (
@@ -127,12 +142,8 @@ const Buy_Data = () => {
               </CardHeader>
               <CardBody>
           <Form form={form} className='w-100 bg-white p-4 rounded-xl' onFinish={onFinish}>
-          <label htmlFor="">Name</label>
-          <Form.Item>
-            <Input disabled value={user?.username}/>
-          </Form.Item>
           <label htmlFor="">Network</label>
-          <Form.Item name="network" rules={[{required: 'true'}]}>
+          <Form.Item name="network" rules={[{required: 'true', message: "Please select a network"}]}>
             <Select value={network} onChange={networkOnChange}>
               <Select.Option value='mtn'>MTN</Select.Option>
               <Select.Option value='9mobile'>9Mobile</Select.Option>
@@ -141,26 +152,26 @@ const Buy_Data = () => {
             </Select>
           </Form.Item>
           <label htmlFor="">Data Plans</label>
-          <Form.Item name="dataplanId" rules={[{required: 'true'}]}>
+          <Form.Item name="dataplanId" rules={[{required: 'true', message: "Please select a data plan"}]}>
             <Select value={dataPlanId} onChange={dataPlanOnChange}>
               {dataOptions?.map((dataOption, key)=> 
-                <Select.Option value={dataOption?._id} key={key} >{dataOption?.network.toUpperCase()} {dataOption?.volume + dataOption?.unit} {dataOption?.validity + 'days'}</Select.Option>
+                <Select.Option value={dataOption?._id} key={key}>{dataOption?.network.toUpperCase()} {dataOption?.volume + dataOption?.unit} {dataOption?.validity + 'days'}</Select.Option>
               )}
             </Select>
           </Form.Item>
           <label htmlFor="">Mobile Number</label>
-          <Form.Item name="msisdn" rules={[{required: 'true'}]}>
+          <Form.Item name="msisdn" rules={[{required: 'true', message: "Please input your Mobile Number"}]}>
             <Input maxLength={11}/>
           </Form.Item>
           <label htmlFor="">Amount</label>
-          <Form.Item name="amount" rules={[{required: 'true'}]}>
-            <Input value={amount} type='number'/>
+          <Form.Item>
+            <Input value={amount} disabled type='number' />
           </Form.Item>
           <Form.Item>
           <Button className="bg-gradient-info text-white" htmlType="submit">Buy now</Button>
           </Form.Item>
         </Form>
-              </CardBody>
+            </CardBody>
             </Card>
           </div>
         </Row>

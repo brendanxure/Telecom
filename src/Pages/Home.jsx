@@ -16,17 +16,20 @@ import { getUserWalletHistory, reset, userWalletHistory } from '../features/Wall
 const Home = () => {
   const dispatch = useDispatch()
   const {user} = useSelector(getUser)
-  const {message} = useSelector(getUserWalletHistory)
+  const {message, isSuccess} = useSelector(getUserWalletHistory)
 
   useEffect(()=> {
       if(user) {
-        dispatch(userWalletHistory())
         if(message === 'token expired') {
           dispatch(logout())
         }
-        dispatch(reset())
       }
-  },[message])
+      dispatch(reset())
+  },[message, isSuccess])
+
+  useEffect(()=> {
+    dispatch(userWalletHistory())
+  }, [])
   return (
     <div>
         <Navbar />

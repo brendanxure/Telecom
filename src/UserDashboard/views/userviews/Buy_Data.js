@@ -61,17 +61,13 @@ const Buy_Data = () => {
   }, [])
 
   useEffect(()=> {
-   if(isError){
-    if(message === 'token expired') {
-      dispatch(logout())
-    } else {
-      toast.error(message)
-    }
-   }
-   if(!isLoading){
-    dispatch(reset())
-   }
-  }, [isError])
+      if(user) {
+        if(message === 'token expired') {
+          dispatch(logout())
+        }
+      }
+      dispatch(reset())
+  },[message, isSuccess])
 
   console.log(dataPlans)
 
@@ -109,16 +105,39 @@ const Buy_Data = () => {
   }, [dataPlanId])
 
   const buyData = async(formData) => {
-    
+    const headers = {
+      'Authorization': `Bearer ${user?.accessToken}`,
+      'Content-Type': 'application/json'
+    };
+      try {
+        toast.info('Processing....')
+        const response = await axios.post(baseApiUrl + '/api/data' + '/buy-data', formData, {headers} )
+        if(response.data){
+        console.log(response.data)
+        form.resetFields()
+        setAmount(0)
+        toast.success('Data Purchase Successful')
+        }
+      } catch (error) {
+        if(error.response.data === 'token expired') {
+          toast.error('Error!! Please Login again')
+          dispatch(logout())
+        } else {
+        console.log(error.response.data)
+        toast.error(error.response.data)
+        }
+      }
   }
 
   const onFinish = (e) => {
-    if(e.msisdn[0] === '0' && e.msisdn.length === 11){
+    if(!amount){
+     toast.info('No amount!! Please select data plan again')
+    }
+    else if(e.msisdn[0] === '0' && e.msisdn.length === 11){
       const phoneNumber = mobileNumberFormat(e.msisdn)
       const FormData = {dataplanId: e.dataplanId, msisdn: phoneNumber, amount, planId}
       console.log(FormData) 
       buyData(FormData)
-      toast.info('Processing....')
     } else if (e.msisdn.length !== 11){
       toast.info('Mobile Number is Incomplete')
     } else {

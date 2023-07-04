@@ -9,6 +9,8 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { Card, CardHeader, Container } from 'reactstrap'
 import { Helmet } from 'react-helmet-async'
+import { toast } from 'react-toastify'
+import { logout } from '../../../features/Auth/AuthSlice'
 
 
 const Wallet_History = () => {
@@ -35,7 +37,8 @@ const Wallet_History = () => {
 
     useEffect(()=> {
         if(message === 'token expired') {
-            console.log(message)
+            toast.error('Error!! Please Login again')
+            dispatch(logout())
         }
         if(isSuccess || isError){
             dispatch(reset())

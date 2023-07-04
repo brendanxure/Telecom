@@ -12,13 +12,14 @@ import {
 import { Button, Form, Input } from 'antd'
 import { Helmet } from 'react-helmet-async'
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../../features/Auth/AuthSlice.jsx";
+import { getUser, logout } from "../../../features/Auth/AuthSlice.jsx";
 import { baseApiUrl } from "../../../Utils/constants.js";
 import axios from 'axios';
 
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify'
 import { reset, updateWalletBalance, walletBalance } from "../../../features/Wallet/WalletSlice.jsx";
+import Spinner from "../../../Component/Spinner.jsx";
 
 const Fund_Wallet = () => {
   const { user } = useSelector(getUser)
@@ -26,6 +27,7 @@ const Fund_Wallet = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const WalletBalance = useSelector(walletBalance)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -37,6 +39,7 @@ const Fund_Wallet = () => {
           'Content-Type': 'application/json'
 
         };
+        setLoading(true)
         const response = await axios.get(baseApiUrl + `/api/paystack/verify/${reference}`, { headers });
         console.log(response)
         if (response.status === 200) {
@@ -45,7 +48,7 @@ const Fund_Wallet = () => {
           dispatch(updateWalletBalance(response.data.walletbalance));
           localStorage.setItem("userTelecomBalance", JSON.stringify(response.data.walletbalance))
           toast.success("Wallet Funded Sucessfully")
-          navigate('/admin/fundwallet')
+          navigate('/user/fund-wallet')
         }
         else {
           toast.error(" Wallet Not Funded Sucessfully due to " + response.data.message)
@@ -54,6 +57,7 @@ const Fund_Wallet = () => {
       catch (error) {
         console.log(error);
       } finally {
+        setLoading(false)
         // dispatch(reset())
       }
     };
@@ -75,13 +79,21 @@ const Fund_Wallet = () => {
     }
 
     try {
+      setLoading(true)
       const response = await axios.post(baseApiUrl + "/api/paystack/initialize", data, { headers });
       if (response.data.status) {
         window.location.href = response.data.data.authorization_url;
       }
     }
     catch (error) {
-      console.log(error);
+      if(error.response.data === 'token expired') {
+        toast.error('Error!! Please Login again')
+        dispatch(logout())
+      } else{
+      console.log(error.response.data);
+      }
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -91,6 +103,7 @@ const Fund_Wallet = () => {
       <Helmet defer={false}>
         <title>Telecom || Fund Wallet</title>
       </Helmet>
+      {loading && <Spinner />}
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{ height: "70vh" }}></div>
 
       {/* Page content */}

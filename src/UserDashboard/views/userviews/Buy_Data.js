@@ -30,7 +30,8 @@ import {
 } from "reactstrap";
 // core components
 import Header from "../../components/Headers/Header.js";
-import { Button, Form, Input, Select, Modal } from 'antd'
+import { Button, Form, Input, Select, Modal, Tooltip } from 'antd'
+import { InfoCircleOutlined } from '@ant-design/icons'
 import { Helmet } from 'react-helmet-async'
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, logout } from "../../../features/Auth/AuthSlice.jsx";
@@ -38,6 +39,8 @@ import { dataPackage, getAllDataPlan, reset } from "../../../features/DataPlan/D
 import { toast } from "react-toastify";
 import axios from "axios";
 import { baseApiUrl } from "../../../Utils/constants.js";
+import { walletBalance } from "../../../features/Wallet/WalletSlice.jsx";
+import Spinner from "../../../Component/Spinner.jsx";
 
 
 
@@ -48,11 +51,13 @@ const Buy_Data = () => {
   const [copiedText, setCopiedText] = useState();
   const {user} = useSelector(getUser)
   const {dataPlans, isError, isSuccess, message, isLoading} = useSelector(dataPackage)
+  const {balance} = useSelector(walletBalance)
   const [network, setNetwork] = useState('')
   const [dataOptions, setDataOptions] = useState([])
   const [dataPlanId, setDataPlanId] = useState('')
   const [planId, setPlanId] = useState()
   const [amount, setAmount] = useState()
+  const [Loading, setLoading] = useState(false)
 
   const [form] = Form.useForm();
 
@@ -110,7 +115,7 @@ const Buy_Data = () => {
       'Content-Type': 'application/json'
     };
       try {
-        toast.info('Processing....')
+        setLoading(true)
         const response = await axios.post(baseApiUrl + '/api/data' + '/buy-data', formData, {headers} )
         if(response.data){
         console.log(response.data)
@@ -126,14 +131,17 @@ const Buy_Data = () => {
         console.log(error.response.data)
         toast.error(error.response.data)
         }
+      } finally {
+        setLoading(false)
       }
   }
 
   const onFinish = (e) => {
     if(!amount){
      toast.info('No amount!! Please select data plan again')
-    }
-    else if(e.msisdn[0] === '0' && e.msisdn.length === 11){
+    } else if( amount >  balance) {
+      toast.error('Insufficient Funds in Wallet')
+    } else if(e.msisdn[0] === '0' && e.msisdn.length === 11){
       const phoneNumber = mobileNumberFormat(e.msisdn)
       const FormData = {dataplanId: e.dataplanId, msisdn: phoneNumber, amount, planId}
       console.log(FormData) 
@@ -149,6 +157,7 @@ const Buy_Data = () => {
       <Helmet defer={false}>
         <title>Telecom || Buy Data</title>
       </Helmet>
+      {Loading && <Spinner />}
      <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{height : "70vh"}}></div>
       {/* Page content */}
       <Container className="" style={{marginTop: "-22rem"}} fluid>
@@ -174,13 +183,19 @@ const Buy_Data = () => {
           <Form.Item name="dataplanId" rules={[{required: 'true', message: "Please select a data plan"}]}>
             <Select value={dataPlanId} onChange={dataPlanOnChange}>
               {dataOptions?.map((dataOption, key)=> 
-                <Select.Option value={dataOption?._id} key={key}>{dataOption?.network.toUpperCase()} {dataOption?.volume + dataOption?.unit} {dataOption?.validity + 'days'}</Select.Option>
+                <Select.Option value={dataOption?._id} key={key}>{dataOption?.network.toUpperCase()} - {dataOption?.volume + dataOption?.unit} for {dataOption?.validity + 'days'}</Select.Option>
               )}
             </Select>
           </Form.Item>
           <label htmlFor="">Mobile Number</label>
           <Form.Item name="msisdn" rules={[{required: 'true', message: "Please input your Mobile Number"}]}>
-            <Input maxLength={11}/>
+            <Input maxLength={11}
+            suffix={
+              <Tooltip title="Eg: 0812345678">
+                <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
+              </Tooltip>
+            }
+            />
           </Form.Item>
           <label htmlFor="">Amount</label>
           <Form.Item>

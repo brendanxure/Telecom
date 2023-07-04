@@ -70,7 +70,7 @@ const Navbar = () => {
           <Link to='/auth/register'><a class="nav-link" href="#Services">Register</a></Link>
         </li>}
         {user?.user && <li class="nav-item">
-          <Link to='/admin'><a class="nav-link" href="#Services">Dashboard</a></Link>
+          <Link to='/user'><a class="nav-link" href="#Services">Dashboard</a></Link>
         </li>}
       </ul>
     </div>

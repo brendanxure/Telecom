@@ -41,7 +41,7 @@ const Fund_Wallet = () => {
         };
         setLoading(true)
         const response = await axios.get(baseApiUrl + `/api/paystack/verify/${reference}`, { headers });
-        console.log(response)
+        console.log(response.data)
         if (response.status === 200) {
 
           // Dispatch the action to update the wallet balance in Redux store
@@ -55,7 +55,7 @@ const Fund_Wallet = () => {
         }
       }
       catch (error) {
-        console.log(error);
+        console.log(error.response.data);
       } finally {
         setLoading(false)
         // dispatch(reset())
@@ -81,6 +81,7 @@ const Fund_Wallet = () => {
     try {
       setLoading(true)
       const response = await axios.post(baseApiUrl + "/api/paystack/initialize", data, { headers });
+      console.log(response.data)
       if (response.data.status) {
         window.location.href = response.data.data.authorization_url;
       }
@@ -91,6 +92,7 @@ const Fund_Wallet = () => {
         dispatch(logout())
       } else{
       console.log(error.response.data);
+      toast.error(error.response.data.error)
       }
     } finally {
       setLoading(false)

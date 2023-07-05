@@ -39,7 +39,7 @@ import { dataPackage, getAllDataPlan, reset } from "../../../features/DataPlan/D
 import { toast } from "react-toastify";
 import axios from "axios";
 import { baseApiUrl } from "../../../Utils/constants.js";
-import { walletBalance } from "../../../features/Wallet/WalletSlice.jsx";
+import { updateWalletBalance, walletBalance } from "../../../features/Wallet/WalletSlice.jsx";
 import Spinner from "../../../Component/Spinner.jsx";
 
 
@@ -101,6 +101,14 @@ const Buy_Data = () => {
         const mtnDataPlans = dataPlans?.filter((mtnData)=> mtnData?.network === 'mtn')
         setDataOptions(mtnDataPlans)
       }
+      if(network === '9mobile') {
+        const nineMobileDataPlans = dataPlans?.filter((nineMobileData)=> nineMobileData?.network === '9mobile')
+        setDataOptions(nineMobileDataPlans)
+      }
+      if(network === 'airtel') {
+        const airtelDataPlans = dataPlans?.filter((airtelData)=> airtelData?.network === 'airtel')
+        setDataOptions(null)
+      }
   }, [network])
 
   useEffect(()=> {
@@ -117,19 +125,33 @@ const Buy_Data = () => {
       try {
         setLoading(true)
         const response = await axios.post(baseApiUrl + '/api/data' + '/buy-data', formData, {headers} )
-        if(response.data){
-        console.log(response.data)
-        form.resetFields()
-        setAmount(0)
-        toast.success('Data Purchase Successful')
+        console.log(response.data.message)
+        if(response.data.message !== 'Data Purchased Successfully' ){
+          if(response.data.walletBalance){
+            form.resetFields()
+            setAmount(0)
+            dispatch(updateWalletBalance(response.data.walletBalance))
+            toast.info(response.data.message)
+          } else {
+            toast.error(response.data.message)
+          }
+        } 
+        if (response.data.message === 'Data Purchased Successfully') {
+          form.resetFields()
+          setAmount(0)
+          dispatch(updateWalletBalance(response.data.walletBalance))
+          toast.success(response.data.message)
         }
       } catch (error) {
         if(error.response.data === 'token expired') {
           toast.error('Error!! Please Login again')
           dispatch(logout())
-        } else {
+        } else if (error.response.data){
         console.log(error.response.data)
-        toast.error(error.response.data)
+        toast.error(error.response.data.message)
+        } else{
+          console.log(error)
+          toast.error(error)
         }
       } finally {
         setLoading(false)
@@ -138,7 +160,7 @@ const Buy_Data = () => {
 
   const onFinish = (e) => {
     if(!amount){
-     toast.info('No amount!! Please select data plan again')
+     toast.info('No amount!! Please refresh page')
     } else if( amount >  balance) {
       toast.error('Insufficient Funds in Wallet')
     } else if(e.msisdn[0] === '0' && e.msisdn.length === 11){

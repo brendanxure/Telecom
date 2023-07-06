@@ -4,6 +4,7 @@ import authReducer from '../features/Auth/AuthSlice'
 import walletReducer from '../features/Wallet/WalletSlice'
 import walletHistoryReducer from '../features/Wallet/WalletHistorySlice'
 import dataPlanReducer from '../features/DataPlan/DataPlanSlice'
+import dataTransactionReducer from '../features/DataTransaction/DataTransactionSlice'
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     auth: authReducer,
     wallet: walletReducer,
     walletHistory: walletHistoryReducer,
-    dataPlan: dataPlanReducer
+    dataPlan: dataPlanReducer,
+    dataTransaction: dataTransactionReducer
   },
 });

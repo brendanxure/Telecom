@@ -25,9 +25,9 @@ import Wallet_History from "./views/userviews/Wallet_History.js";
 import Data_Plan from "./views/adminviews/Data_Plan.js";
 import Wallet_Histories from "./views/adminviews/Wallet_Histories.js";
 import All_Payments from "./views/adminviews/All_Payments.js";
-import Data_Transactions from "./views/adminviews/Data_Transactions.js";
 import MTNLOGO from '../Logos/New-mtn-logo.jpg';
 import GLOLOGO from '../Logos/Glo-Logo.png'
+import Data_Transactions from "./views/userviews/Data_Transactions.js";
 
 
 var routes = [
@@ -66,13 +66,13 @@ var routes = [
     component: <All_Payments />,
     layout: "/user",
   },
-  {
-    path: "/data-transactions",
-    name: "Data Transactions",
-    icon: "ni ni-email-83 text-pink",
-    component: <Data_Transactions />,
-    layout: "/user",
-  },
+  // {
+  //   path: "/data-transactions",
+  //   name: "Data Transactions",
+  //   icon: "ni ni-email-83 text-pink",
+  //   component: <Data_Transactions />,
+  //   layout: "/user",
+  // },
   // {
   //   path: "/user-report",
   //   name: "Report",
@@ -106,7 +106,7 @@ var routes = [
     path: "/user-glo-transactions",
     name: "Glo",
     icon: GLOLOGO,
-    // component: <Profile />,
+    component: <Data_Transactions />,
     layout: "/user",
     
   },
@@ -114,7 +114,7 @@ var routes = [
     path: "/user-mtn-transactions",
     name: "MTN",
     icon: MTNLOGO,
-    // component: <Profile />,
+    component: <Data_Transactions />,
     layout: "/user",
   },
   {

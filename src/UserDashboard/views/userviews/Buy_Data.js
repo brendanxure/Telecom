@@ -68,7 +68,11 @@ const Buy_Data = () => {
   useEffect(()=> {
       if(user) {
         if(message === 'token expired') {
+          toast.error('Error!! Please Login again')
           dispatch(logout())
+        }
+        if(message !== 'token expired') {
+          toast.error(message)
         }
       }
       dispatch(reset())

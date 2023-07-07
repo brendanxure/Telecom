@@ -18,7 +18,7 @@ import axios from 'axios';
 
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify'
-import { reset, updateWalletBalance, walletBalance } from "../../../features/Wallet/WalletSlice.jsx";
+import { updateWalletBalance, walletBalance } from "../../../features/Wallet/WalletSlice.jsx";
 import Spinner from "../../../Component/Spinner.jsx";
 
 const Fund_Wallet = () => {
@@ -58,7 +58,6 @@ const Fund_Wallet = () => {
         console.log(error.response.data);
       } finally {
         setLoading(false)
-        // dispatch(reset())
       }
     };
 

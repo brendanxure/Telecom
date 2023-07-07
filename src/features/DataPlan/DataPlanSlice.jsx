@@ -68,7 +68,7 @@ const DataPlanSlice = createSlice({
   name: "dataPlan",
   initialState,
   reducers: {
-    reset: (state) => {
+    resetDataPlan: (state) => {
         state.isLoading = false
         state.isError= false
         state.isSuccess= false
@@ -151,6 +151,6 @@ const DataPlanSlice = createSlice({
 
 export const dataPackage = state => state.dataPlan 
 
-export const {reset} = DataPlanSlice.actions
+export const {resetDataPlan} = DataPlanSlice.actions
 
 export default DataPlanSlice.reducer

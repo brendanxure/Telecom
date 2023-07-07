@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice} from '@reduxjs/toolkit'
 
 
 
@@ -19,6 +19,6 @@ const WalletSlice = createSlice({
 
 export const walletBalance = state => state.wallet
 
-export const {reset,updateWalletBalance} = WalletSlice.actions
+export const {updateWalletBalance} = WalletSlice.actions
 
 export default WalletSlice.reducer

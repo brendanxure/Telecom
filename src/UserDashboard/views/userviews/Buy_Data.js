@@ -35,7 +35,7 @@ import { InfoCircleOutlined } from '@ant-design/icons'
 import { Helmet } from 'react-helmet-async'
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, logout } from "../../../features/Auth/AuthSlice.jsx";
-import { dataPackage, getAllDataPlan, reset } from "../../../features/DataPlan/DataPlanSlice.jsx";
+import { dataPackage, getAllDataPlan, resetDataPlan } from "../../../features/DataPlan/DataPlanSlice.jsx";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { baseApiUrl } from "../../../Utils/constants.js";
@@ -70,12 +70,11 @@ const Buy_Data = () => {
         if(message === 'token expired') {
           toast.error('Error!! Please Login again')
           dispatch(logout())
-        }
-        if(message !== 'token expired') {
+        } else if(message !== '') {
           toast.error(message)
         }
       }
-      dispatch(reset())
+      dispatch(resetDataPlan())
   },[message, isSuccess])
 
   console.log(dataPlans)

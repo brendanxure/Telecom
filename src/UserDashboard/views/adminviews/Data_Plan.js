@@ -18,7 +18,7 @@ import { InfoCircleOutlined } from '@ant-design/icons'
 import { Helmet } from 'react-helmet-async'
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../../features/Auth/AuthSlice.jsx";
-import { createDataPlan, dataPackage, deleteDataPlanById, getAllDataPlan, reset } from "../../../features/DataPlan/DataPlanSlice.jsx";
+import { createDataPlan, dataPackage, deleteDataPlanById, getAllDataPlan, resetDataPlan } from "../../../features/DataPlan/DataPlanSlice.jsx";
 import { toast } from "react-toastify";
 import Modaldiv from "./Modaldiv.js";
 import Spinner from "../../../Component/Spinner.jsx";
@@ -59,7 +59,7 @@ const Data_Plan = () => {
       if(prompt && isError) {
         toast.error(message)
       }
-      dispatch(reset())
+      dispatch(resetDataPlan())
       setCreated(false)
     }, [isSuccess, isError])
 

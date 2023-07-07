@@ -11,7 +11,7 @@ import Services from '../Component/Services'
 
 import WhyUS from '../Component/WhyUS'
 import { getUser, logout } from '../features/Auth/AuthSlice'
-import { getUserWalletHistory, reset, userWalletHistory } from '../features/Wallet/WalletHistorySlice'
+import { getUserWalletHistory, resetWalletHistory, userWalletHistory } from '../features/Wallet/WalletHistorySlice'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -24,7 +24,7 @@ const Home = () => {
           dispatch(logout())
         }
       }
-      dispatch(reset())
+      dispatch(resetWalletHistory())
   },[message, isSuccess])
 
   useEffect(()=> {

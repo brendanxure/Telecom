@@ -8,28 +8,52 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { Card, CardHeader, Container } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { dataTransactions, getAllDataTransaction, reset } from '../../../features/DataTransaction/DataTransactionSlice'
+import { dataTransactionByDates, dataTransactions, getAllDataTransaction, resetDataTransactions, } from '../../../features/DataTransaction/DataTransactionSlice'
 import { toast } from 'react-toastify'
-import { logout } from '../../../features/Auth/AuthSlice'
+import { getUser, logout } from '../../../features/Auth/AuthSlice'
 import {DatePicker} from 'antd'
-import moment from 'moment'
+import axios from 'axios'
+import { baseApiUrl } from '../../../Utils/constants'
+import { dataPackage, getAllDataPlan, resetDataPlan } from '../../../features/DataPlan/DataPlanSlice'
 
 
 const Data_Transactions = () => {
   const {RangePicker} = DatePicker
   const dispatch = useDispatch()
-  const [dates, setDates] = useState(null)
+  const {user} = useSelector(getUser)
+  const [dates, setDates] = useState([])
   const { dataTransaction, isError, isSuccess, isLoading, message} = useSelector(dataTransactions)
+  const {dataPlans} = useSelector(dataPackage)
 
   
   console.log(dates)
 
-  const searchDates = () => {
+  const searchDates = async() => {
     if(dates === null) {
       toast.error('Please Select dates')
     } else {
-      const formData = {startDate: dates[0], endDate: dates[0]}
+      const formData = {startDate: dates[0], endDate: dates[1]}
       console.log(formData)
+      try {
+        const headers = {
+          'Authorization': `Bearer ${user?.accessToken}`,
+          'Content-Type': 'application/json'
+
+        };
+        const response = await axios.post(baseApiUrl + "/api/data/data-transactions-by-dates", formData, {headers})
+        if(response.data){
+          console.log(response.data)
+          dispatch(dataTransactionByDates(response.data))
+        }
+      } catch (error) {
+        if(error.response.data !== 'token expired'){
+          console.log(error.response.data)
+          toast.error(error.response.data)
+        } else {
+          dispatch(logout())
+          toast.error('Error!! Please Login')
+        }
+      }
     }
   }
 
@@ -53,11 +77,12 @@ const [filter, setFilter] = useState({
   global: {value: null, matchMode: FilterMatchMode.CONTAINS},
 })
 
-  console.log(dataTransaction)
-  console.log(message)
+  // console.log(dataTransaction)
+  // console.log(message)
 
   useEffect(()=> {
     dispatch(getAllDataTransaction())
+    dispatch(getAllDataPlan())
   }, [])
 
   useEffect(()=> {
@@ -69,7 +94,8 @@ const [filter, setFilter] = useState({
     }
     
     if(isSuccess || isError){
-        dispatch(reset())
+        dispatch(resetDataTransactions())
+        dispatch(resetDataPlan())
         }
 }, [isSuccess, isError])
 
@@ -86,12 +112,12 @@ const [filter, setFilter] = useState({
       </CardHeader>
       <div className='d-flex justify-content-between mt-5'>
       <RangePicker 
-      className='w-75'
-        onChange={(values)=> {
-          setDates(values?.map(item=> {
-            return moment(item).format('YYYY-MM-DD')
-          }))
-        }}
+        className='w-75'
+        onChange={(values) =>
+           setDates(values?.map(item=> 
+             item.format("YYYY-MM-DD")
+          ))
+        }
       />
       <button onClick={searchDates} disabled={!dates} className='btn btn-primary w-25 mx-5' type='submit'>Search</button> 
       </div>

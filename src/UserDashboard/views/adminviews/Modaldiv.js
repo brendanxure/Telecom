@@ -7,7 +7,7 @@ import {
   Container,
 } from "reactstrap";
 import { useDispatch, useSelector } from 'react-redux';
-import { dataPackage, getAllDataPlan, reset, updateDataPlanById } from '../../../features/DataPlan/DataPlanSlice.jsx';
+import { dataPackage, getAllDataPlan, resetDataPlan, updateDataPlanById } from '../../../features/DataPlan/DataPlanSlice.jsx';
 import { toast } from 'react-toastify';
 import Spinner from '../../../Component/Spinner.jsx';
 
@@ -29,7 +29,7 @@ const Modaldiv = ({editData, isModalOpen, setIsModalOpen}) => {
       toast.error(message)
       setIsModalOpen(false)
     }
-    dispatch(reset())
+    dispatch(resetDataPlan())
   }, [isError, isLoading, isSuccess])
 
   const onFinish = (formData) => {

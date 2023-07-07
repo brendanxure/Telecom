@@ -24,11 +24,14 @@ const DataTransactionSlice = createSlice({
   name: "dataTransaction",
   initialState,
   reducers: {
-    reset: (state) => {
+    resetDataTransactions: (state) => {
         state.isLoading = false
         state.isError= false
         state.isSuccess= false
         state.message=""
+    },
+    dataTransactionByDates: (state, action) => {
+        state.dataTransaction = action.payload
     }
   },
   extraReducers: (builder) => {
@@ -51,6 +54,6 @@ const DataTransactionSlice = createSlice({
 
 export const dataTransactions = state => state.dataTransaction
 
-export const {reset} = DataTransactionSlice.actions
+export const {resetDataTransactions, dataTransactionByDates} = DataTransactionSlice.actions
 
 export default DataTransactionSlice.reducer

@@ -4,7 +4,7 @@ import {Column} from 'primereact/column'
 import {InputText} from 'primereact/inputtext'
 import {FilterMatchMode} from 'primereact/api'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserWalletHistory, reset, userWalletHistory } from '../../../features/Wallet/WalletHistorySlice'
+import { getUserWalletHistory, resetWalletHistory, userWalletHistory } from '../../../features/Wallet/WalletHistorySlice'
 import "primereact/resources/themes/lara-light-indigo/theme.css";     
 import "primereact/resources/primereact.min.css";
 import { Card, CardHeader, Container } from 'reactstrap'
@@ -41,7 +41,7 @@ const Wallet_History = () => {
             dispatch(logout())
         }
         if(isSuccess || isError){
-            dispatch(reset())
+            dispatch(resetWalletHistory())
             }
     }, [isSuccess, isError])
     

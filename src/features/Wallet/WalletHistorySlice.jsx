@@ -25,7 +25,7 @@ const WalletHistorySlice = createSlice({
   name: "walletHistory",
   initialState,
   reducers: {
-    reset: (state) => {
+    resetWalletHistory: (state) => {
         state.isLoading = false
         state.isError= false
         state.isSuccess= false
@@ -52,6 +52,6 @@ const WalletHistorySlice = createSlice({
 
 export const getUserWalletHistory = state => state.walletHistory
 
-export const {reset} = WalletHistorySlice.actions
+export const {resetWalletHistory} = WalletHistorySlice.actions
 
 export default WalletHistorySlice.reducer

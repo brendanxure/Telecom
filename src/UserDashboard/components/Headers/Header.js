@@ -26,7 +26,7 @@ import { Modal } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { updateWalletBalance, walletBalance } from "../../../features/Wallet/WalletSlice";
-import { getUserWalletHistory, reset, userWalletHistory } from "../../../features/Wallet/WalletHistorySlice";
+import { getUserWalletHistory, resetWalletHistory, userWalletHistory } from "../../../features/Wallet/WalletHistorySlice";
 import { toast } from "react-toastify";
 
 
@@ -46,7 +46,7 @@ const Header = () => {
         toast.info('Please Login')
       }
     }
-    dispatch(reset())
+    dispatch(resetWalletHistory())
   },[message, isSuccess])
 
   useEffect(()=> {

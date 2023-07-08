@@ -52,14 +52,16 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../../features/Auth/AuthSlice";
+import { setDataTransactionNetwork } from "../../../features/DataTransaction/DataTransactionSlice";
 
 
 
 var ps;
 
 const Sidebar = (props) => {
+  const dispatch = useDispatch()
   const {user} = useSelector(getUser)
   //state for wallet links
   const [walletLinksOpen, setWalletLinksOpen] = useState(false)
@@ -169,7 +171,11 @@ const Sidebar = (props) => {
           <NavLink className={dataTransLinksOpen ? "walletLinks" : "noWalletLinks"}
           to={eachTransactionLink?.layout + eachTransactionLink?.path}
           tag={NavLinkRRD}
-          onClick={closeCollapse}>
+          // tag={NavLinkRRD ? dispatch(setDataTransactionNetwork(eachTransactionLink?.path)) : dispatch(setDataTransactionNetwork(''))}
+          onClick={()=> {
+            dispatch(setDataTransactionNetwork(eachTransactionLink?.path)), 
+            setCollapseOpen(false)
+            }}>
             <img className='' src={eachTransactionLink?.icon} style={{width: "20px", marginRight: "10px"}} alt="" />
             {eachTransactionLink?.name}
           </NavLink>

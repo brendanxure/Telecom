@@ -22,12 +22,18 @@ const Data_Transactions = () => {
   const dispatch = useDispatch()
   const {user} = useSelector(getUser)
   const [dates, setDates] = useState([])
-  const { dataTransaction, isError, isSuccess, isLoading, message} = useSelector(dataTransactions)
+  const { dataTransaction, isError, isSuccess, isLoading, message, dataTransactionNetwork} = useSelector(dataTransactions)
+  const {networkTransaction, setNetworkTransaction} = useState([])
   const {dataPlans} = useSelector(dataPackage)
-
   
-  console.log(dates)
-  console.log(dataPlans)
+
+
+  useEffect(()=> {
+    if(dataTransactionNetwork === '/user-glo-transactions'){
+      
+    }
+  }, [dataTransactionNetwork])
+  
   
   const dataPlanFormat = (dataTransaction) => {
    return dataPlans?.map((data)=> {

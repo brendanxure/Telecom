@@ -27,6 +27,15 @@ const Data_Transactions = () => {
 
   
   console.log(dates)
+  console.log(dataPlans)
+  
+  const dataPlanFormat = (dataTransaction) => {
+   return dataPlans?.map((data)=> {
+      if(dataTransaction?.dataPlan === data?._id) {
+        return data?.volume + data?.unit + ' for ' + data?.validity + 'days'
+      }
+    })
+  }
 
   const searchDates = async() => {
     if(dates === null) {
@@ -124,9 +133,9 @@ const [filter, setFilter] = useState({
       {isLoading ? <div className='alert alert-light mt-2'>......Loading</div> : <div><InputText placeholder='search' className='searchdrop p-2 border w-25 my-4' onInput={(e)=> setFilter({global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS},})} />
         <DataTable value={dataTransaction} filters={filter} responsiveLayout='scroll' showGridlines paginator rows={5} rowsPerPageOptions={[5, 10, 20, 40]}>
         <Column field='createdAt' header='Date' body={dateFormatTemplate} style={{width: '30%'}}></Column>
-        <Column field='dataPlan' header='Data Plan'></Column>
+        <Column field='dataPlan' header='Data Plan' body={dataPlanFormat} style={{width: '30%'}}></Column>
         <Column field='msisdn' header='Mobile Number' body={numberFormatTemplate} style={{width: '30%'}}></Column>
-        <Column field='status' header='Status' style={{width: '30%'}}></Column>
+        <Column field='status' header='Status' ></Column>
         </DataTable></div>}
       </Card>
       </Container>

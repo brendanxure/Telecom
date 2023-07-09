@@ -26,13 +26,6 @@ const Data_Transactions = () => {
   const {networkTransaction, setNetworkTransaction} = useState([])
   const {dataPlans} = useSelector(dataPackage)
   
-
-
-  useEffect(()=> {
-    if(dataTransactionNetwork === '/user-glo-transactions'){
-      
-    }
-  }, [dataTransactionNetwork])
   
   
   const dataPlanFormat = (dataTransaction) => {
@@ -96,9 +89,11 @@ const [filter, setFilter] = useState({
   // console.log(message)
 
   useEffect(()=> {
-    dispatch(getAllDataTransaction())
-    dispatch(getAllDataPlan())
-  }, [])
+    if(dataTransactionNetwork === '/user-glo-transactions'){
+      dispatch(getAllDataTransaction())
+      dispatch(getAllDataPlan()) 
+    }
+  }, [dataTransactionNetwork])
 
   useEffect(()=> {
     if(message === 'token expired') {
@@ -106,6 +101,9 @@ const [filter, setFilter] = useState({
         dispatch(logout())
     } else if(message !== '') {
       toast.error(message)
+    }
+    if(dataPlans && dataTransaction){
+      dataPlans?.filter((data)=> detectDataNetwork(data._id, data.network))
     }
     
     if(isSuccess || isError){

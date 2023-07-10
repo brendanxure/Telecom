@@ -102,9 +102,6 @@ const [filter, setFilter] = useState({
     } else if(message !== '') {
       toast.error(message)
     }
-    if(dataPlans && dataTransaction){
-      dataPlans?.filter((data)=> detectDataNetwork(data._id, data.network))
-    }
     
     if(isSuccess || isError){
         dispatch(resetDataTransactions())

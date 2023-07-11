@@ -22,9 +22,10 @@ const Data_Transactions = () => {
   const dispatch = useDispatch()
   const {user} = useSelector(getUser)
   const [dates, setDates] = useState([])
+  const mtnTras = []
   const { dataTransaction, isError, isSuccess, isLoading, message, dataTransactionNetwork} = useSelector(dataTransactions)
-  const {networkTransaction, setNetworkTransaction} = useState([])
   const {dataPlans} = useSelector(dataPackage)
+
   
   
   
@@ -35,7 +36,21 @@ const Data_Transactions = () => {
       }
     })
   }
-
+ 
+ 
+  const detectDataNetwork = (dataNetwork) => {
+    // console.log(dataNetwork)
+    return dataTransaction?.map((data)=> {
+      if(data?.dataPlan === dataNetwork?._id) {
+       mtnTras.push(data)
+       console.log(mtnTras)
+      }
+    })
+  }
+  console.log(mtnTras)
+ 
+ 
+  
   const searchDates = async() => {
     if(dates === null) {
       toast.error('Please Select dates')
@@ -104,6 +119,7 @@ const [filter, setFilter] = useState({
     }
     
     if(isSuccess || isError){
+      dataPlans?.filter((data)=> data?.network === 'glo' ? detectDataNetwork(data) : null)
         dispatch(resetDataTransactions())
         dispatch(resetDataPlan())
         }

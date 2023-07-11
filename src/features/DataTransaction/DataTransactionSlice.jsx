@@ -7,7 +7,8 @@ const initialState = {
     isSuccess: false,
     isLoading: false,
     message: "",
-    dataTransactionNetwork: ""
+    dataTransactionNetwork: "",
+    networkTransaction: []
 }
 
 //get all data transactions
@@ -36,7 +37,7 @@ const DataTransactionSlice = createSlice({
     },
     setDataTransactionNetwork: (state, action) => {
         state.dataTransactionNetwork = action.payload
-    }
+    }, 
   },
   extraReducers: (builder) => {
     builder

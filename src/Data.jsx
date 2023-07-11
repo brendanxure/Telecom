@@ -80,240 +80,372 @@ export const strengths = [
 export const MTNDATA = [
     {
         id: 1,
-        Data: "500.0MB",
-        Price: "₦135",
-        Duration: "30 days" 
+        Data: "50.0MB",
+        Price: "₦50",
+        Duration: "1 day" 
     },
     {
         id: 2,
-        Data: "1.0GB",
-        Price: "₦270",
-        Duration: "30 days" 
+        Data: "100.0MB",
+        Price: "₦100",
+        Duration: "1day" 
     },
     {
         id: 3,
-        Data: "2.0GB",
-        Price: "₦540",
-        Duration: "30 days" 
+        Data: "200.0MB",
+        Price: "₦200",
+        Duration: "3days" 
     },
     {
         id: 4,
-        Data: "3.0GB",
-        Price: "₦805",
-        Duration: "30 days" 
+        Data: "350.0MB",
+        Price: "₦300",
+        Duration: "7days" 
     },
     {
         id: 5,
-        Data: "5.0GB",
-        Price: "₦1350",
-        Duration: "30days" 
+        Data: "1.0GB",
+        Price: "₦300",
+        Duration: "1day" 
     },
     {
         id: 6,
-        Data: "10.0GB",
-        Price: "₦2650",
-        Duration: "30days" 
+        Data: "750.0MB",
+        Price: "₦500",
+        Duration: "14days" 
     },
     {
         id: 7,
-        Data: "20.0GB",
-        Price: "₦5150",
-        Duration: "30days" 
+        Data: "2.5GB",
+        Price: "₦500",
+        Duration: "2days" 
     },
     {
         id: 8,
-        Data: "40.0GB",
-        Price: "₦9950",
-        Duration: "30days" 
+        Data: "1.0GB",
+        Price: "₦500",
+        Duration: "7days" 
+    },
+    {
+        id: 9,
+        Data: "1.5GB",
+        Price: "₦1000",
+        Duration: "30days"
+    },
+    {
+        id: 10,
+        Data: "2.0GB",
+        Price: "₦1200",
+        Duration: "30days"
+    },
+    {
+        id: 11,
+        Data: "3.0GB",
+        Price: "₦1500",
+        Duration: "30days"
+    },
+    {
+        id: 12,
+        Data: "6.0GB",
+        Price: "₦1500",
+        Duration: "7days"
+    },
+    {
+        id: 13,
+        Data: "4.5GB",
+        Price: "₦2000",
+        Duration: "30days"
+    },
+    {
+        id: 14,
+        Data: "6.0GB",
+        Price: "₦2500",
+        Duration: "30days"
+    },
+    {
+        id: 15,
+        Data: "10.0GB",
+        Price: "₦3000",
+        Duration: "30days"
     },
 ]
 
 export const GLODATA = [
     {
         id: 1,
-        Data: "500.0MB",
-        Price: "₦160",
-        Duration: "30days" 
+        Data: "50.0MB",
+        Price: "₦50",
+        Duration: "1day" 
     },
     {
         id: 2,
-        Data: "1.0GB",
-        Price: "₦290",
-        Duration: "30days" 
+        Data: "150.0MB",
+        Price: "₦100",
+        Duration: "2days" 
     },
     {
         id: 3,
-        Data: "2.0GB",
-        Price: "₦580",
-        Duration: "30days" 
+        Data: "350.0MB",
+        Price: "₦200",
+        Duration: "2days" 
     },
     {
         id: 4,
-        Data: "3.0GB",
-        Price: "₦850",
-        Duration: "30days" 
+        Data: "1.8GB",
+        Price: "₦500",
+        Duration: "14days" 
     },
     {
         id: 5,
         Data: "3.9GB",
-        Price: "₦920",
-        Duration: "30 days (1.9GB + 2GB NIGHT)" 
+        Price: "₦1000",
+        Duration: "30days" 
     },
     {
         id: 6,
-        Data: "5.0GB",
-        Price: "₦1400",
+        Data: "7.5GB",
+        Price: "₦1500",
         Duration: "30days" 
     },
     {
         id: 7,
-        Data: "7.5GB",
-        Price: "₦1430",
-        Duration: "30 days (3.5GB + 4GB NIGHT)" 
+        Data: "9.2GB",
+        Price: "₦2000",
+        Duration: "30days" 
     },
     {
         id: 8,
-        Data: "9.2GB",
-        Price: "₦1800",
-        Duration: "30days (5.2GB + 4GB NIGHT)" 
+        Data: "10.8GB",
+        Price: "₦2500",
+        Duration: "30days" 
     },
     {
         id: 9,
-        Data: "10.0GB",
-        Price: "₦2400",
-        Duration: "30 days" 
+        Data: "14.0GB",
+        Price: "₦3000",
+        Duration: "30days" 
     },
     {
         id: 10,
-        Data: "29.5GB",
-        Price: "₦7500",
-        Duration: "30 days" 
+        Data: "18.0GB",
+        Price: "₦4000",
+        Duration: "30days" 
     },
     {
         id: 11,
+        Data: "24.0GB",
+        Price: "₦5000",
+        Duration: "30days" 
+    },
+    {
+        id: 12,
+        Data: "29.5GB",
+        Price: "₦8000",
+        Duration: "30days"
+    },
+    {
+        id: 13,
         Data: "50.0GB",
-        Price: "₦9500",
-        Duration: "30 days" 
+        Price: "₦10000",
+        Duration: "30days"
+    },
+    {
+        id: 14,
+        Data: "93.0GB",
+        Price: "₦15000",
+        Duration: "30days"
+    },
+    {
+        id: 15,
+        Data: "119.0GB",
+        Price: "₦18000",
+        Duration: "30days"
     },
 ]
 
 export const AIRTELDATA = [
     {
         id: 1,
-        Data: "500.0MB",
-        Price: "₦170",
-        Duration: "30days" 
+        Data: "40.0MB",
+        Price: "₦49.99",
+        Duration: "1day" 
     },
     {
         id: 2,
-        Data: "1.0GB",
-        Price: "₦290",
-        Duration: "30days" 
+        Data: "100.0MB",
+        Price: "₦99",
+        Duration: "1day" 
     },
     {
         id: 3,
-        Data: "2.0GB",
-        Price: "₦580",
-        Duration: "30days" 
+        Data: "200.0MB",
+        Price: "₦199.03",
+        Duration: "3days" 
     },
     {
         id: 4,
-        Data: "5.0GB",
-        Price: "₦1450",
-        Duration: "30days" 
+        Data: "350.0MB",
+        Price: "₦299.02",
+        Duration: "7days" 
     },
     {
         id: 5,
-        Data: "10.0GB",
-        Price: "₦2950",
-        Duration: "30days" 
+        Data: "1.0GB",
+        Price: "₦299.03",
+        Duration: "1day" 
     },
     {
         id: 6,
-        Data: "11.0GB",
-        Price: "₦3950",
-        Duration: "30days" 
+        Data: "750.0MB",
+        Price: "₦499",
+        Duration: "14days" 
     },
     {
         id: 7,
-        Data: "20.0GB",
-        Price: "₦4850",
-        Duration: "30 days" 
+        Data: "2.0GB",
+        Price: "₦499.03",
+        Duration: "1day" 
     },
     {
         id: 8,
-        Data: "40.0GB",
-        Price: "₦9700",
-        Duration: "30 days" 
+        Data: "1.5GB",
+        Price: "₦999",
+        Duration: "30days" 
     },
     {
         id: 9,
-        Data: "75.0GB",
-        Price: "₦14500",
-        Duration: "30 days" 
+        Data: "2.0GB",
+        Price: "₦1199",
+        Duration: "30days" 
     },
     {
         id: 10,
-        Data: "120.0GB30 days",
-        Price: "₦19300",
-        Duration: "30 days" 
+        Data: "3.0GB",
+        Price: "₦1499.01",
+        Duration: "30days" 
+    },
+    {
+        id: 11,
+        Data: "6.0GB",
+        Price: "₦1499.03",
+        Duration: "7days"
+    },
+    {
+        id: 12,
+        Data: "4.5GB",
+        Price: "₦1999",
+        Duration: "30days"
+    },
+    {
+        id: 13,
+        Data: "6.0GB",
+        Price: "₦2499.01",
+        Duration: "30days"
+    },
+    {
+        id: 14,
+        Data: "10.0GB",
+        Price: "₦2999.02",
+        Duration: "30days"
+    },
+    {
+        id: 15,
+        Data: "11.0GB",
+        Price: "₦3999.01",
+        Duration: "30days"
     },
 ]
 
 export const NINEMOBILEDATA = [
     {
         id: 1,
-        Data: "500.0MB",
-        Price: "₦490",
-        Duration: "30 days{Gifting}" 
+        Data: "25.0MB",
+        Price: "₦50",
+        Duration: "1day" 
     },
     {
         id: 2,
-        Data: "1.5GB",
-        Price: "₦950",
-        Duration: "30 days{Gifting}" 
+        Data: "100.0MB",
+        Price: "₦100",
+        Duration: "1day" 
     },
     {
         id: 3,
-        Data: "2.0GB",
-        Price: "₦1200",
-        Duration: "30 days{Gifting}" 
+        Data: "300.0MB",
+        Price: "₦150",
+        Duration: "3days" 
     },
     {
         id: 4,
-        Data: "3.0GB",
-        Price: "₦1400",
-        Duration: "30 days{Gifting}" 
+        Data: "650.0MB",
+        Price: "₦200",
+        Duration: "1day" 
     },
     {
         id: 5,
-        Data: "4.5GB",
-        Price: "₦1950",
-        Duration: "30 days{Gifting}" 
+        Data: "1.0GB",
+        Price: "₦300",
+        Duration: "1day" 
     },
     {
         id: 6,
-        Data: "11.0GB",
-        Price: "₦3850",
-        Duration: "30 days{Gifting}" 
+        Data: "2.0GB",
+        Price: "₦500",
+        Duration: "30days" 
     },
     {
         id: 7,
-        Data: "15.0GB",
-        Price: "₦4800",
-        Duration: "30 days{Gifting}" 
+        Data: "1.5GB",
+        Price: "₦1000",
+        Duration: "30days" 
     },
     {
         id: 8,
-        Data: "40.0GB",
-        Price: "₦9300",
-        Duration: "30 days{Gifting}" 
+        Data: "2.0GB",
+        Price: "₦1200",
+        Duration: "30days" 
     },
     {
         id: 9,
+        Data: "7.0GB",
+        Price: "₦1500",
+        Duration: "7days" 
+    },
+    {
+        id: 10,
+        Data: "4.5GB",
+        Price: "₦2500",
+        Duration: "30days"
+    },
+    {
+        id: 11,
+        Data: "12.0GB",
+        Price: "₦3000",
+        Duration: "30days"
+    },
+    {
+        id: 12,
+        Data: "11.0GB",
+        Price: "₦4000",
+        Duration: "30days"
+    },
+    {
+        id: 13,
+        Data: "15.0GB",
+        Price: "₦5000",
+        Duration: "30days"
+    },
+    {
+        id: 14,
+        Data: "40.0GB",
+        Price: "₦10000",
+        Duration: "30days"
+    },
+    {
+        id: 15,
         Data: "75.0GB",
-        Price: "₦13900",
-        Duration: "30 days{Gifting}" 
+        Price: "₦15000",
+        Duration: "30days"
     },
 ]
 

@@ -108,7 +108,7 @@ const Sidebar = (props) => {
 
   const createAdminLinks = (routes) => {
     return routes.map((prop, key)=> {
-      if (prop.path === '/' || prop.path === '/data-plan' || prop.path === '/wallet-histories' || prop.path === '/all-payments' || prop.path === '/data-transactions') {
+      if (prop.path === '/' || prop.path === '/data-plan' || prop.path === '/wallet-transactions' || prop.path === '/all-payments' || prop.path === '/data-transactions' || prop.path === '/all-users') {
         return (
           <NavItem key={key}>
             <NavLink

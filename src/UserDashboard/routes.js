@@ -39,6 +39,13 @@ var routes = [
     layout: "/user",
   },
   {
+    path: "/all-users",
+    name: "Users",
+    icon: "",
+    component: "",
+    layout: "/user",
+  },
+  {
     path: "/buy-data",
     name: "Buy Data",
     icon: "fas fa-solid fa-signal text-blue",
@@ -46,8 +53,8 @@ var routes = [
     layout: "/user",
   },
   {
-    path: "/wallet-histories",
-    name: "Wallet Histories",
+    path: "/wallet-transactions",
+    name: "Wallet Transactions",
     icon: "ni ni-mobile-button text-orange",
     // component: <Wallet_Histories />,
     layout: "/user",

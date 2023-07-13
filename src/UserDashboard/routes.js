@@ -23,11 +23,12 @@ import Buy_Data from "./views/userviews/Buy_Data.js";
 import Fund_Wallet from "./views/userviews/Fund_Wallet.js";
 import Wallet_History from "./views/userviews/Wallet_History.js";
 import Data_Plan from "./views/adminviews/Data_Plan.js";
-import Wallet_Histories from "./views/adminviews/Wallet_Histories.js";
 import All_Payments from "./views/adminviews/All_Payments.js";
 import MTNLOGO from '../Logos/New-mtn-logo.jpg';
 import GLOLOGO from '../Logos/Glo-Logo.png'
 import Data_Transactions from "./views/userviews/Data_Transactions.js";
+import All_Users from "./views/adminviews/All_Users.js";
+import Wallet_Transactions from "./views/adminviews/Wallet_Transactions.js";
 
 
 var routes = [
@@ -41,8 +42,8 @@ var routes = [
   {
     path: "/all-users",
     name: "Users",
-    icon: "",
-    component: "",
+    icon: "ni ni-single-02 text-yellow",
+    component: <All_Users />,
     layout: "/user",
   },
   {
@@ -56,7 +57,7 @@ var routes = [
     path: "/wallet-transactions",
     name: "Wallet Transactions",
     icon: "ni ni-mobile-button text-orange",
-    // component: <Wallet_Histories />,
+    component: <Wallet_Transactions />,
     layout: "/user",
   },
   // {

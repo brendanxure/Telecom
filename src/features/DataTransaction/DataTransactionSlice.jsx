@@ -8,7 +8,6 @@ const initialState = {
     isLoading: false,
     message: "",
     dataTransactionNetwork: "",
-    networkTransaction: []
 }
 
 //get all data transactions

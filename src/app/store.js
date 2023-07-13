@@ -5,6 +5,7 @@ import walletReducer from '../features/Wallet/WalletSlice'
 import walletHistoryReducer from '../features/Wallet/WalletHistorySlice'
 import dataPlanReducer from '../features/DataPlan/DataPlanSlice'
 import dataTransactionReducer from '../features/DataTransaction/DataTransactionSlice'
+import allUserReducer from '../features/Users/UsersSlice'
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     wallet: walletReducer,
     walletHistory: walletHistoryReducer,
     dataPlan: dataPlanReducer,
-    dataTransaction: dataTransactionReducer
+    dataTransaction: dataTransactionReducer,
+    allUser: allUserReducer
   },
 });

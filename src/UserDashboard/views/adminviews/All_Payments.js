@@ -37,13 +37,42 @@ import {
 } from "reactstrap";
 // core components
 // import Header from "../../components/Headers/Header.js";
+import {DataTable} from 'primereact/datatable'
+import {Column} from 'primereact/column'
+import {InputText} from 'primereact/inputtext'
+import {FilterMatchMode} from 'primereact/api'
+import { Helmet } from 'react-helmet-async'
 
 const All_Payments = () => {
   return (
     <>
       {/* <Header /> */}
+      <Helmet defer={false}>
+        <title>Telecom || All Payments</title>
+      </Helmet>
+      <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{height : "70vh"}}></div>
       {/* Page content */}
-      <Container className="mt--7" fluid>
+      <Container className="" style={{marginTop: "-22rem"}} fluid>
+        {/* Table */}
+        <Row>
+          <div className="col">
+            <Card className="shadow">
+              <CardHeader className="bg-transparent">
+                <h3 className="mb-0">All Payments</h3>
+              </CardHeader>
+              <div style={{background: 'orange'}}>
+                <DataTable responsiveLayout='scroll' showGridlines paginator rows={5} rowsPerPageOptions={[5, 10, 20, 40]}>
+                  <Column></Column>
+                  <Column></Column>
+                  <Column></Column>
+                </DataTable>
+              </div>
+            </Card>
+          </div>
+        </Row>
+      </Container>
+      {/* Page content */}
+      <Container className="mt-7" fluid>
         {/* Table */}
         <Row>
           <div className="col">

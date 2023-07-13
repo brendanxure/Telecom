@@ -59,7 +59,7 @@ const Header = () => {
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
         <div class="w-100 d-md-flex justify-content-between align-items-center px-5 my-5">
           <h2 className="col-12 col-md-8 fs-2 text-center text-md-left ">Welcome to Telecom</h2>
-          <div style={{background: "#ff5722", borderRadius: "5rem", cursor: "pointer"}} className='col-12 col-md-4 col-lg-3 col-xl-2 text-center text-white px-2 py-2' onClick={()=>setIsModalOpen(true)}>Fund Wallet</div>
+          {user?.isAdmin ? null : <div style={{background: "#ff5722", borderRadius: "5rem", cursor: "pointer"}} className='col-12 col-md-4 col-lg-3 col-xl-2 text-center text-white px-2 py-2' onClick={()=>setIsModalOpen(true)}>Fund Wallet</div>}
         </div>
         <Container fluid>
           <div className="header-body">
